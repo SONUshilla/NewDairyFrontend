@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Navigate,Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { FaRegUser,FaGoogle } from 'react-icons/fa';
-import { GoogleLogin } from 'react-google-login';
 const LoginPage = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -69,7 +68,7 @@ useEffect(()=>{
 },[])
 
 const handle=()=>{
-  const res= window.open("http://localhost:5000/auth/google","_self");
+  const res= window.open("https://dairy-backend-7sc5.onrender.com/auth/google","_self");
 }
 
   
