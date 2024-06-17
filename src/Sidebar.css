@@ -1,0 +1,25 @@
+.sidebar{
+display: flex;
+align-items: center;
+width: 100%;
+white-space: nowrap;
+font-size: 1rem;
+padding: 10px;
+gap: 10px;
+justify-content: space-evenly;
+}
+.sidebar-link{
+display: block;
+text-decoration: none;
+padding: 2px;
+}
+@media (max-width: 768px) {
+
+.sidebar{
+  gap:5px;
+  justify-content: space-around;
+}
+}
+.sidebar-link:hover{
+  border-bottom:1px solid;
+}

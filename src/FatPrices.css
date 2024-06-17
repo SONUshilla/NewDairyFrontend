@@ -1,0 +1,10 @@
+.fat-prices-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 10px;
+}
+
+.input-field {
+    width: 50px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+}

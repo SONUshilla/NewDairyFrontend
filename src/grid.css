@@ -1,0 +1,44 @@
+/* grid.css */
+.CowPriceEntryGrid input[type="number"] {
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Ensure height matches width for square appearance */
+    text-align: center; /* Center-align text */
+    border: 1px solid #ccc; /* Optional: Add border for visual separation */
+    border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+.fat-prices-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Example margin */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(10, 40px); /* Adjust width as needed */
+    gap: 5px; /* Adjust gap between cells */
+}
+
+.grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-field {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    text-align: center;
+}
+
+.small-square-input {
+    width: 100%;
+    height: 100%;
+    max-width: 40px; /* Adjust max-width as needed */
+    max-height: 40px; /* Adjust max-height as needed */
+}

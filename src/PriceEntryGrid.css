@@ -1,0 +1,30 @@
+.price-entry-grid-container {
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+  }
+  
+  .price-entry-grid {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .price-entry-grid th,
+  .price-entry-grid td {
+    border: 1px solid black;
+    padding: 0;
+    width: 40px; /* Width of each cell */
+    height: 40px; /* Height of each cell */
+    text-align: center;
+  }
+  
+  .price-entry-grid th {
+    background-color: lightgray;
+  }
+  
+  .price-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+  

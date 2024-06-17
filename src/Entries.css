@@ -1,0 +1,181 @@
+.Entries{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 4fr;
+}
+.EntriesTable{
+    display: flex;
+    justify-content: space-around;
+    flex:1fr;
+    gap: 10px;
+    padding: 10px;
+}
+.EntriesTable div{
+    width: 100%;
+}
+.Table1{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 20px;
+}
+.Table1c {
+    display: grid;
+  }
+  
+  .Header {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr; 
+ /* Adjust gap between header elements */
+  }
+  
+  .Header p {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .formTable {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr; /* Adjust gap between form elements */
+  }
+  
+  .formTable input {
+    width: 100%; /* Make input fields responsive */
+    padding: 5px;
+  }
+  
+  /* Media query for responsiveness */
+  @media screen and (max-width: 600px) {
+    .Header {
+        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;  /* Adjust header columns for smaller screens */
+    }
+    
+    .formTable {
+        grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr; /* Adjust form columns for smaller screens */
+    }
+  
+    .formTable input {
+      width: 100%; /* Adjust input width for smaller screens */
+    }
+  }
+  
+@media (max-width: 768px) {
+    .Table1{
+        grid-template-columns: 1fr;
+     } 
+}
+.handleEntry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.handleEntry a {
+border: 1px solid;
+padding: 10px 5px;
+color: white;
+background-color: rgb(105, 105, 250);
+}
+
+.DefaultEntry input,
+.DefaultEntry select,
+.DefaultEntry button{ 
+  margin: 2px;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 200px;
+  color: black;
+  background-color: #C1E4C5;
+}
+.BalanceButtons button,
+.BalanceButtons select{
+  margin: 2px;
+  padding: 10px;
+  background-color: rgb(169, 171, 248);
+  border-radius: 5px;
+  border: none;
+}
+.DefaultEntry form{
+  display: inline-flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+}
+.DefaultEntry {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #999;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.DefaultEntry form input{
+  outline: none;
+}
+/* Default styles for input fields and labels */
+.DefaultEntry form input {
+  border: 1px solid;
+  border-color: green; /* Default border color */
+  outline: none;
+}
+
+.input-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #999; /* Default label color */
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+.DefaultEntry input{
+  background-color: #C1E4C5;
+}
+.input-label{
+  background-color: #C1E4C5;
+}
+.DefaultEntry input:focus + .input-label{
+  top:-8px;
+  color: rgb(0, 0, 0);
+}
+.DefaultEntry input:valid + .visited{
+  top:-8px;
+  color: green;
+}
+.DefaultEntry input:invalid + .visited{
+  color: red;
+  top:-8px;
+}
+.Default{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media (max-width: 768px) {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+}
+
+.radios {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-bottom: 10px;
+  padding: 10px;
+}
+.userlist1{
+display: flex;
+}

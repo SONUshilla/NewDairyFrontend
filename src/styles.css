@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:wght@100&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+/* Style input field */
+input::-webkit-contacts-auto-fill-button,
+input::-webkit-credentials-auto-fill-button,
+input::-ms-clear {
+    display: none;
+}
+
+/* Style input field to remove background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #333; /* Set text color */
+    -webkit-box-shadow: 0 0 0px 1000px none; /* Set background color */
+}
+
+html{
+  background-color:  #F9F7F1;
+}
+.header {
+  display: grid;
+  grid-template-columns: 4rem 1fr  1fr 4rem;
+  width: 100%;
+  height: 10vh;
+  border: none;
+  background-color: #8dfc9a;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, .3); /* Add a shadow */
+  z-index: 4;
+  margin: 0;
+  padding: 0;
+  position: sticky;
+}
+.logo {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+} 
+.logo-text {
+  font-family: 'Truculenta', sans-serif;
+  font-weight: 100; /* You can adjust the font weight as needed */
+  color: linear-gradient(to right, #28a745, #ffc107);
+}
+.logo-link{
+  text-decoration: none;
+}
+.header-link {
+  display: flex;
+}
+
+.header-icon {
+  grid-column: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 5px;
+}
+@media (max-width: 768px) {
+  .header {
+    display: grid;
+    height: 7rem;
+    grid-template-columns: 2rem 1fr 1fr 2rem;
+  }
+  
+  .logo {
+    grid-column: 2/3; /* Position the logo from column 2 to column 3 */
+  }
+  .header-link {
+    display: flex;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure container takes full height of viewport */
+}
+
+.full {
+  background-color: #C1E4C5;
+  flex-grow: 1; /* Allow Main content to grow and take remaining space */
+}
+
+
+
+
+/*entries*/
+.EntriesTable{
+  border: 1px solid rgb(192, 186, 186);
+  box-shadow: 2px 2px 3px rgb(148, 145, 145);
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.selectDate{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteIcon{
+  height:10px;
+}
+.morningEntries {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 2px solid;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 5px 5px 8px rgb(126, 123, 123);
+}
+.morningEntries tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.morningEntries .MorningData {
+  background-color: #cee9f5; /* Light blue */
+}
+.MorningHeading {
+  padding: 5px;
+  background-color: rgb(240, 158, 219);
+  color: white;
+  border-bottom: 1px black solid;
+}
+.MorningData td{
+      text-align: center;
+      vertical-align: middle;
+}
+.MorningData:hover {
+  background-color: aquamarine;
+  box-shadow: 5px 5px 8px rgb(126, 123, 123);
+}
+.MorningHeading:hover {
+  box-shadow: 5px 5px 8px rgb(126, 123, 123);
+}
+.green-row {
+  background-color: green;
+}
+.EntriesRow{
+  display: flex;
+  width: 100%;
+}
+.DateSelector{
+  display: inline-flex;
+  border: 2px solid;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: rgba(117, 33, 196, 0.493);
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0px;
+    border: none;
+  }
+}
+.DateSelector input{
+  border-radius: 7px;
+  margin: 2px;
+  padding: 3px;
+  background-color: rgba(255, 255, 255, 0.678);
+}
+.DateSelector button{
+  height: 30px;
+  margin: 8px;
+  color: white;
+  background: linear-gradient(white, rgb(180, 179, 179));
+
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+/* CSS file */
+.balance-table-container {
+  font-family: Arial, sans-serif;
+  padding-top: 4px;
+  margin: 5px;
+  @media screen and (max-width: 600px) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+}
+
+.balance-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.balance-table th,
+.balance-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.balance-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.balance-table thead {
+  background-color: skyblue;
+  color: white;
+}
+
+.balance-table .MorningData {
+  background-color: #e6f7ff; /* Light blue */
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Style for register page */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.register-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+/*userIcon*/
+
+.userInfoModal {
+  position: absolute;
+  right: 250px;
+  transform: translateX(calc(100% + 10px));
+  z-index: 2;
+  background-color: #f0f0f0; /* Grey background color */
+  border: 1px solid #ccc; /* Grey border */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.userInfoContent {
+  position: relative;
+  text-align: center;
+}
+
+.userInfoTable {
+  width: 200px;
+}
+
+.tableLabel {
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.tableData {
+  padding-left: 10px;
+  font-size: 1rem;
+}
+
+.logoutButton {
+  margin-top: 10px;
+  background-color: #f44336; /* Red color for logout button */
+  color: #fff; /* White text color */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logoutButton:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+
+.profileImage{
+  width: 50%;
+  border: 1px solid orange;
+  border-radius:50%;
+}
+
+
