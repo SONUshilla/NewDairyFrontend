@@ -14,7 +14,7 @@ function UserInfoSection({ userData }) {
   const handleLogout = async () => {
     try {
       // Make a logout request to your backend server
-      const response = await axios.post('/logout'); // Adjust the URL based on your backend endpoint
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/logout'); // Adjust the URL based on your backend endpoint
 
       // Check if the logout was successful
       if (response.status === 200) {

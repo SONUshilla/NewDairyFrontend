@@ -13,7 +13,7 @@ const BothAuthComponent = () => {
     const fetchUserId = async () => {
       try {
         // Make a GET request to the backend route
-        const response = await axios.get('/bothAuth');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/bothAuth');
         // If successful, set the user ID
         setUserId(response.data.user_id);
       } catch (error) {

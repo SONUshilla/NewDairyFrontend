@@ -23,10 +23,10 @@ function TotalBalance({ startDate, endDate, userId }) {
       let response;
       if (userId) {
         // If userId is present, send userId with the request to '/admin/showBalance'
-        response = await axios.post("/admin/showBalance", { startDate, endDate, userId });
+        response = await axios.post("https://dairy-backend-7sc5.onrender.com/admin/showBalance", { startDate, endDate, userId });
       } else {
         // Otherwise, send request to '/showBalance' (default endpoint)
-        response = await axios.post("/showBalance", { startDate, endDate });
+        response = await axios.post("https://dairy-backend-7sc5.onrender.com/showBalance", { startDate, endDate });
       }
 
       if (!response.data) {

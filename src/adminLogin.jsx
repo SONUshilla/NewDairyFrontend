@@ -33,7 +33,7 @@ function SuperUserPage() {
       };
 
       // Send form data to backend
-      const response = await axios.post('/register-admin', formData);
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/register-admin', formData);
 
       // Reset form fields
       setName('');

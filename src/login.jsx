@@ -15,7 +15,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/login', {
         username: loginUsername,
         password: loginPassword
       });
@@ -42,7 +42,7 @@ const LoginPage = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('/register', {
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/register', {
         username: registerUsername,
         password: registerPassword
       });

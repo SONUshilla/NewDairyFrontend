@@ -9,7 +9,7 @@ const UserBoth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/admin/associated', { username, password });
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/admin/associated', { username, password });
       console.log(response.data); // Handle successful login response
     } catch (error) {
       if (error.response) {

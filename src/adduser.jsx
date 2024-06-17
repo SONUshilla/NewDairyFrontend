@@ -34,7 +34,7 @@ const AddUserForm = () => {
     }
     // Send form data to backend
     try {
-      const response = await axios.post('/addUser', formData);
+      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/addUser', formData);
       console.log(response.data); // Handle success response
     } catch (error) {
       console.error('Error adding user:', error); // Handle error

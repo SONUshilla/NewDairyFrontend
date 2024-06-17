@@ -18,7 +18,7 @@ function Entry() {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('/adminAuth');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
         if (response.status === 200) {
           setAdmin(true);
         } else {

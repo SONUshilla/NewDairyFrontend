@@ -9,7 +9,7 @@ const UserList = ({ onSelectUser }) => {
 
   useEffect(() => {
     // Fetch the list of users from the API endpoint
-    axios.get('/users')
+    axios.get('https://dairy-backend-7sc5.onrender.com/users')
       .then(response => {
         if (Array.isArray(response.data)) {
           setUsers(response.data); // Update state with the fetched users

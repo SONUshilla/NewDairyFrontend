@@ -15,7 +15,7 @@ function UserIcon() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("/user-profile");
+        const response = await axios.get("https://dairy-backend-7sc5.onrender.com/user-profile");
         console.log(response);
         setUserData(response.data.userProfile);
       } catch (error) {

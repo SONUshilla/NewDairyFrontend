@@ -9,7 +9,7 @@ const GoogleAuthCallback = () => {
     const handleGoogleAuth = async () => {
       try {
         // Make a request to the backend to complete the authentication process
-        const response = await axios.get('/auth/google/');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/auth/google/');
         // Assuming the backend sends user data upon successful authentication
         const userData = response.data.user;
         // Redirect to the home page or any other route after successful authentication

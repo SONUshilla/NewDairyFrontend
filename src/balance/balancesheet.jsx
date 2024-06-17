@@ -15,10 +15,10 @@ function BalanceSheet({ startDate, endDate, userId }) {
             let response;
             if (userId) {
                 // If userId is present, send userId with the request to '/admin/balanceSheet'
-                response = await axios.post("/admin/balanceSheet", { startDate, endDate, userId });
+                response = await axios.post("https://dairy-backend-7sc5.onrender.com/admin/balanceSheet", { startDate, endDate, userId });
             } else {
                 // Otherwise, send request to '/balanceSheet' (default endpoint)
-                response = await axios.post("/balanceSheet", { startDate, endDate });
+                response = await axios.post("https://dairy-backend-7sc5.onrender.com/balanceSheet", { startDate, endDate });
             }
 
             if (response.status === 200) {

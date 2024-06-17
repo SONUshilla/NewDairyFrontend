@@ -15,7 +15,7 @@ const Table1 = ({ work, timing }) => {
     const formData = new FormData(e.target);
 
     try {
-      const response = await axios.post(`/entries/${timeOfDay}`, {
+      const response = await axios.post(`https://dairy-backend-7sc5.onrender.com/entries/${timeOfDay}`, {
         date: formData.get("date"),
         weight: formData.get("weight"),
         fat: formData.get("fat"),

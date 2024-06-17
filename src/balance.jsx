@@ -5,7 +5,6 @@ import BalanceSheet from "./balance/balancesheet";
 import moment from "moment";
 import UserList from "./usersList";
 import axios from "axios";
-import { Button } from "@material-ui/core";
 
 function Balance() {
     const [startDate, setStartDate] = useState(moment().startOf('year').format('YYYY-MM-DD'));
@@ -16,7 +15,7 @@ function Balance() {
     useEffect(() => {
       const fetchAdminStatus = async () => {
         try {
-          const response = await axios.get('/adminAuth');
+          const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
           if (response.status === 200) {
             setAdmin(true);
           } else {

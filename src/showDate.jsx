@@ -21,7 +21,7 @@ function Showdate(props) {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('/adminAuth');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
         if (response.status === 200) {
           setAdmin(true);
         } else {
@@ -50,7 +50,7 @@ function Showdate(props) {
   const handleDelete = async (itemId, time) => {
     try {
       // Make an HTTP request to your backend to delete the entry with itemId
-      const response = await axios.delete('/deleteEntry', { data: { itemId, time } });
+      const response = await axios.delete('https://dairy-backend-7sc5.onrender.com/deleteEntry', { data: { itemId, time } });
       // Check the status code of the response
       console.log(itemId,time);
       if (response.status === 200) {
@@ -122,13 +122,13 @@ function Showdate(props) {
       if (userId) {
         console.log("here");
         // If userId is present, send request with userId
-        response = await axios.post('/admin/showEntries', { startDate, endDate, userId });
+        response = await axios.post('https://dairy-backend-7sc5.onrender.com/admin/showEntries', { startDate, endDate, userId });
       } else if (props.userId) {
         // If props.userId is present, send request with props.userId
-        response = await axios.post('/admin/showEntries', { startDate, endDate, userId: props.userId });
+        response = await axios.post('https://dairy-backend-7sc5.onrender.com/admin/showEntries', { startDate, endDate, userId: props.userId });
       }else {
         // Otherwise, send request to '/showEntries' (default endpoint)
-        response = await axios.post('/showEntries', { startDate, endDate });
+        response = await axios.post('https://dairy-backend-7sc5.onrender.com/showEntries', { startDate, endDate });
       }
 
       if (!response.data) {

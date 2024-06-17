@@ -26,7 +26,7 @@ function Main() {
     const checkSession = async () => {
       {console.log(check)}
       try {
-        const response = await axios.get('/check-session');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/check-session');
         if (response.status === 200) {
           localStorage.setItem('loggedIn', 'true');
           setLoggedIn(true);
@@ -52,7 +52,7 @@ function Main() {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('/adminAuth');
+        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
         if (response.status === 200) {
           setAdmin(true);
           localStorage.removeItem("user");
