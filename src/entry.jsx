@@ -4,8 +4,6 @@ import DateRange from "./dates";
 import Table from "./Table";
 import DefaultEntry from "./DefaultEntry";
 import DefaultMilk from "./DefaultMilk";
-import { IconButton } from '@material-ui/core';
-import { People } from '@material-ui/icons';
 import UserList from "./usersList";
 import axios from "axios";
 

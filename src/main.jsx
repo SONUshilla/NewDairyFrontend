@@ -5,7 +5,6 @@ import Sidebar from "./sidebar";
 import Entry from "./entry";
 import Balance from "./balance";
 import LoginPage from "./login";
-import GoogleAuthCallback from "./GoogleAuthCallback";
 import axios from "axios";
 import Home from "./home";
 import Header from "./header";
