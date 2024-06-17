@@ -4,14 +4,18 @@ import styles from './userList.css'; // Import CSS module for styling
 import Showdate from './showDate';
 
 const UserList = ({ onSelectUser }) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]); // Initialize with an empty array
   const [selectedUserId, setSelectedUserId] = useState(""); // State to store the ID of the selected user
 
   useEffect(() => {
     // Fetch the list of users from the API endpoint
     axios.get('/users')
       .then(response => {
-        setUsers(response.data); // Update state with the fetched users
+        if (Array.isArray(response.data)) {
+          setUsers(response.data); // Update state with the fetched users
+        } else {
+          console.error('Unexpected response format:', response.data);
+        }
       })
       .catch(error => {
         console.error('Error fetching users:', error);
