@@ -3,9 +3,10 @@ import "./Entries.css";
 import axios from 'axios';
 import moment from 'moment';
 import DateSelector from './DateSelector';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import UserList from './usersList';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 function Showdate(props) {
   const [data1, setdata1] = useState([]);
@@ -76,9 +77,11 @@ function Showdate(props) {
         <td>{item.price}</td>
         <td>{item.total}</td>
         {!props.userId && <td>
-          <IconButton className='deleteIcon' onClick={() => handleDelete(item.id, time)}>
-            <DeleteIcon />
-          </IconButton>
+          <FontAwesomeIcon
+            className='deleteIcon'
+            icon={faTrashAlt}
+            onClick={() => handleDelete(item.id, time)}
+          />
         </td>}
       </tr>
     );

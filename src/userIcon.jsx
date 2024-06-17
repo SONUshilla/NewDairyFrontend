@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import UserInfoSection from "./userinfo";
+
 function UserIcon() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn") === "true");
   const [userData, setUserData] = useState(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
-const navigate=useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -22,17 +25,17 @@ const navigate=useNavigate();
 
     fetchUserData();
   }, [loggedIn]);
-const toggleUserMenu = () => {
-      navigate("/login");
-       
-};
-      
+
+  const toggleUserMenu = () => {
+    navigate("/login");
+  };
+
   return (
     <div>
       {userData ? (
-        <UserInfoSection userData={userData}/>
+        <UserInfoSection userData={userData} />
       ) : (
-        <AccountCircleIcon onClick={toggleUserMenu} />
+        <FontAwesomeIcon icon={faUserCircle} onClick={toggleUserMenu} size="2x" />
       )}
     </div>
   );

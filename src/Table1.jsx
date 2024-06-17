@@ -1,23 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  buttonProgress: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    marginTop: -12,
-    marginLeft: -12,
-  },
-}));
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Table1 = ({ work, timing }) => {
   const [loadingStates, setLoadingStates] = useState(new Array(work.length).fill(false));
   const [sentStates, setSentStates] = useState(new Array(work.length).fill(false));
-  const classes = useStyles();
 
   async function handleClick(e, index, timeOfDay) {
     e.preventDefault();
@@ -79,18 +67,20 @@ const Table1 = ({ work, timing }) => {
                 style={{ color: "purple" }}
                 pattern="[0-9]+(\.[0-9]+)?"
               />
-              <Button
+              <button
                 type="submit"
-                variant="contained"
                 style={{
                   backgroundColor: sentStates[index] ? "green" : loadingStates[index] ? "gray" : "blue",
                   color: "white",
                   position: "relative",
+                  padding: "10px 20px",
+                  border: "none",
+                  cursor: loadingStates[index] || sentStates[index] ? "not-allowed" : "pointer",
                 }}
                 disabled={loadingStates[index] || sentStates[index]}
               >
                 {loadingStates[index] ? (
-                  <CircularProgress size={20} color="inherit" className={classes.buttonProgress} />
+                  <FontAwesomeIcon icon={faSpinner} spin size="lg" />
                 ) : sentStates[index] ? (
                   "Sent"
                 ) : (
@@ -99,7 +89,7 @@ const Table1 = ({ work, timing }) => {
                     <span style={{ marginLeft: '5px' }}>{">"}</span>
                   </>
                 )}
-              </Button>
+              </button>
             </form>
           </div>
         ))}
