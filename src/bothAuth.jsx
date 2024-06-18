@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Showdate from './showDate';
-import { Navigate } from 'react-router-dom';
+import { baseURL } from './config'; // Adjust the import path as necessary
 import UserBoth from './associatedAdmin';
 
 const BothAuthComponent = () => {
   const [userId, setUserId] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
-
   useEffect(() => {
     // Function to fetch user ID from backend
     const fetchUserId = async () => {
       try {
         // Make a GET request to the backend route
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/bothAuth');
+        const response = await axios.get(`${baseURL}/bothAuth`);
         // If successful, set the user ID
         setUserId(response.data.user_id);
       } catch (error) {

@@ -6,7 +6,7 @@ import DefaultEntry from "./DefaultEntry";
 import DefaultMilk from "./DefaultMilk";
 import UserList from "./usersList";
 import axios from "axios";
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function Entry() {
   const [datesBetween, setDatesBetween] = React.useState([]);
   const [DateSelect, setDateSelect] = useState(false);
@@ -14,11 +14,10 @@ function Entry() {
   const [path,setPath]=useState("table");
   const [userId, setUserId] = useState(""); // State to store the selected user ID
   const [admin, setAdmin] = useState(false);
-
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
+        const response = await axios.get(`${baseURL}/adminAuth`);
         if (response.status === 200) {
           setAdmin(true);
         } else {

@@ -4,18 +4,17 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import UserInfoSection from "./userinfo";
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function UserIcon() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn") === "true");
   const [userData, setUserData] = useState(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("https://dairy-backend-7sc5.onrender.com/user-profile");
+        const response = await axios.get(`${baseURL}/user-profile`);
         console.log(response);
         setUserData(response.data.userProfile);
       } catch (error) {

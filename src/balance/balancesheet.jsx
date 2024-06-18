@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
-
+import { baseURL } from '../config'; // Adjust the import path as necessary
 function BalanceSheet({ startDate, endDate, userId }) {
     const [balanceData, setBalanceData] = useState({ morning: {}, evening: {}, borrow: [] });
-
     useEffect(() => {
         // Fetch balance sheet data when component mounts or when startDate/endDate change
         fetchBalanceSheet();
@@ -15,10 +14,10 @@ function BalanceSheet({ startDate, endDate, userId }) {
             let response;
             if (userId) {
                 // If userId is present, send userId with the request to '/admin/balanceSheet'
-                response = await axios.post("https://dairy-backend-7sc5.onrender.com/admin/balanceSheet", { startDate, endDate, userId });
+                response = await axios.post(`${baseURL}/admin/balanceSheet`, { startDate, endDate, userId });
             } else {
                 // Otherwise, send request to '/balanceSheet' (default endpoint)
-                response = await axios.post("https://dairy-backend-7sc5.onrender.com/balanceSheet", { startDate, endDate });
+                response = await axios.post(`${baseURL}/balanceSheet`, { startDate, endDate });
             }
 
             if (response.status === 200) {

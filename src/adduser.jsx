@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './addUser.css'; // Import CSS file for styling
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 const AddUserForm = () => {
   const [formData, setFormData] = useState({
     mobileEmail: '',
@@ -34,7 +34,7 @@ const AddUserForm = () => {
     }
     // Send form data to backend
     try {
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/addUser', formData);
+      const response = await axios.post(`${baseURL}/addUser`, formData);
       console.log(response.data); // Handle success response
     } catch (error) {
       console.error('Error adding user:', error); // Handle error

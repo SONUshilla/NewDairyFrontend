@@ -6,7 +6,7 @@ import DateSelector from './DateSelector';
 import UserList from './usersList';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 
 function Showdate(props) {
   const [data1, setdata1] = useState([]);
@@ -21,7 +21,7 @@ function Showdate(props) {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
+        const response = await axios.get(`${baseURL}/adminAuth`);
         if (response.status === 200) {
           setAdmin(true);
         } else {
@@ -50,7 +50,7 @@ function Showdate(props) {
   const handleDelete = async (itemId, time) => {
     try {
       // Make an HTTP request to your backend to delete the entry with itemId
-      const response = await axios.delete('https://dairy-backend-7sc5.onrender.com/deleteEntry', { data: { itemId, time } });
+      const response = await axios.delete(`${baseURL}/deleteEntry`, { data: { itemId, time } });
       // Check the status code of the response
       console.log(itemId,time);
       if (response.status === 200) {

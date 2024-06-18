@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './userList.css'; // Import CSS module for styling
 import Showdate from './showDate';
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 const UserList = ({ onSelectUser }) => {
   const [users, setUsers] = useState([]); // Initialize with an empty array
   const [selectedUserId, setSelectedUserId] = useState(""); // State to store the ID of the selected user
-
   useEffect(() => {
     // Fetch the list of users from the API endpoint
-    axios.get('https://dairy-backend-7sc5.onrender.com/users')
+    axios.get(`${baseURL}/users`)
       .then(response => {
         if (Array.isArray(response.data)) {
           setUsers(response.data); // Update state with the fetched users

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './adminLogin.css'; // Import CSS for styling
 import axios from 'axios'; // Don't forget to import axios
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function SuperUserPage() {
   // State variables for form fields and messages
   const [name, setName] = useState('');
@@ -12,7 +12,6 @@ function SuperUserPage() {
   const [address, setAddress] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +32,7 @@ function SuperUserPage() {
       };
 
       // Send form data to backend
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/register-admin', formData);
+      const response = await axios.post(`${baseURL}/register-admin`, formData);
 
       // Reset form fields
       setName('');

@@ -7,16 +7,15 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 
 function Header() {
   const [admin, setAdmin] = useState(false);
   const [user, setUser] = useState(false);
-
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
+        const response = await axios.get(`${baseURL}/adminAuth`);
         if (response.status === 200) {
           setAdmin(true);
         }else if(response.status === 205){

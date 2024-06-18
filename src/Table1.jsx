@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 const Table1 = ({ work, timing }) => {
   const [loadingStates, setLoadingStates] = useState(new Array(work.length).fill(false));
   const [sentStates, setSentStates] = useState(new Array(work.length).fill(false));
-
   async function handleClick(e, index, timeOfDay) {
     e.preventDefault();
     const newLoadingStates = [...loadingStates];
@@ -15,7 +14,7 @@ const Table1 = ({ work, timing }) => {
     const formData = new FormData(e.target);
 
     try {
-      const response = await axios.post(`https://dairy-backend-7sc5.onrender.com/entries/${timeOfDay}`, {
+      const response = await axios.post(`${baseURL}/entries/${timeOfDay}`, {
         date: formData.get("date"),
         weight: formData.get("weight"),
         fat: formData.get("fat"),

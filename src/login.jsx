@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Navigate,Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { FaRegUser,FaGoogle } from 'react-icons/fa';
+import { baseURL } from './config'; // Adjust the import path as necessary
 const LoginPage = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -12,10 +13,9 @@ const LoginPage = () => {
   const [check,setCheck]=useState(false);
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("loggedIn") === "true");
   const navigate = useNavigate();
-
   const handleLogin = async () => {
     try {
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/login', {
+      const response = await axios.post(`${baseURL}/login`, {
         username: loginUsername,
         password: loginPassword
       });
@@ -42,7 +42,7 @@ const LoginPage = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/register', {
+      const response = await axios.post(`${baseURL}/register`, {
         username: registerUsername,
         password: registerPassword
       });
@@ -68,7 +68,7 @@ useEffect(()=>{
 },[])
 
 const handle=()=>{
-  const res= window.open("https://dairy-backend-7sc5.onrender.com/auth/google","_self");
+  const res= window.open(`${baseURL}/auth/google`,"_self");
 }
 
   

@@ -3,10 +3,9 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function UserInfoSection({ userData }) {
   const [showUserInfo, setShowUserInfo] = useState(false);
-
   const toggleUserInfo = () => {
     setShowUserInfo(!showUserInfo);
   };
@@ -14,7 +13,7 @@ function UserInfoSection({ userData }) {
   const handleLogout = async () => {
     try {
       // Make a logout request to your backend server
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/logout'); // Adjust the URL based on your backend endpoint
+      const response = await axios.post(`${baseURL}/logout`); // Adjust the URL based on your backend endpoint
 
       // Check if the logout was successful
       if (response.status === 200) {

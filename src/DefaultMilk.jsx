@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import CowPriceEntryGrid from './CowPriceEntryGrid'; // Import the CowPriceEntryGrid component
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function DefaultMilk({ userId }) {
   const [inputs, setInputs] = useState({
     date: "",
@@ -14,7 +14,6 @@ function DefaultMilk({ userId }) {
   const [time, setTime] = useState('morning'); // Default time selecteds
   const [calculationType, setCalculationType] = useState("fat");
   const [animalType, setAnimalType] = useState("buffalo"); // Default animal type is buffalo
-
   useEffect(() => {
     if (calculationType === "fat") {
       setInputs(prevInputs => ({
@@ -51,9 +50,9 @@ function DefaultMilk({ userId }) {
     try {
       let response;
       if (userId) {
-        response = await axios.post(`/admin/entries/${time}`, { ...inputs, userId });
+        response = await axios.post(`${baseURL}/admin/entries/${time}`, { ...inputs, userId });
       } else {
-        response = await axios.post(`/entries/${time}`, inputs);
+        response = await axios.post(`${baseURL}/entries/${time}`, inputs);
       }
 
       if (response.status === 200) {

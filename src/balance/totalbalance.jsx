@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
+import { baseURL } from '../config'; // Adjust the import path as necessary
 
 function TotalBalance({ startDate, endDate, userId }) {
   const [totalBefore,setTotalBefore]=useState("");
@@ -15,7 +15,6 @@ function TotalBalance({ startDate, endDate, userId }) {
   const [grandTotal, setGrandTotal] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const fetchData = async (startDate, endDate) => {
     setLoading(true);
     setError(null);
@@ -23,10 +22,10 @@ function TotalBalance({ startDate, endDate, userId }) {
       let response;
       if (userId) {
         // If userId is present, send userId with the request to '/admin/showBalance'
-        response = await axios.post("https://dairy-backend-7sc5.onrender.com/admin/showBalance", { startDate, endDate, userId });
+        response = await axios.post(`${baseURL}/admin/showBalance`, { startDate, endDate, userId });
       } else {
         // Otherwise, send request to '/showBalance' (default endpoint)
-        response = await axios.post("https://dairy-backend-7sc5.onrender.com/showBalance", { startDate, endDate });
+        response = await axios.post(`${baseURL}/showBalance`, { startDate, endDate });
       }
 
       if (!response.data) {

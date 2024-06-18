@@ -15,7 +15,7 @@ import BothAuthComponent from "./bothAuth";
 import BuffaloPriceEntryGrid from "./snfPrice";
 import FatPrices from "./FatInputs";
 import CowPriceEntryGrid from "./CowPriceEntryGrid";
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function Main() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn') === 'true');
   const [check, setCheck] = useState(loggedIn);
@@ -26,7 +26,7 @@ function Main() {
     const checkSession = async () => {
       {console.log(check)}
       try {
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/check-session');
+        const response = await axios.get(`${baseURL}/check-session`);
         if (response.status === 200) {
           localStorage.setItem('loggedIn', 'true');
           setLoggedIn(true);
@@ -52,7 +52,7 @@ function Main() {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
-        const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
+        const response = await axios.get(`${baseURL}/adminAuth`);
         if (response.status === 200) {
           setAdmin(true);
           localStorage.removeItem("user");

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 const UserBoth = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://dairy-backend-7sc5.onrender.com/admin/associated', { username, password });
+      const response = await axios.post(`${baseURL}/admin/associated`, { username, password });
       console.log(response.data); // Handle successful login response
     } catch (error) {
       if (error.response) {

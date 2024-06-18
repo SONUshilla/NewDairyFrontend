@@ -5,17 +5,16 @@ import BalanceSheet from "./balance/balancesheet";
 import moment from "moment";
 import UserList from "./usersList";
 import axios from "axios";
-
+import { baseURL } from './config'; // Adjust the import path as necessary
 function Balance() {
     const [startDate, setStartDate] = useState(moment().startOf('year').format('YYYY-MM-DD'));
     const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD'));
     const [userId, setUserId] = useState("");
     const [admin, setAdmin] = useState(false);
-
     useEffect(() => {
       const fetchAdminStatus = async () => {
         try {
-          const response = await axios.get('https://dairy-backend-7sc5.onrender.com/adminAuth');
+          const response = await axios.get(`${baseURL}/adminAuth`);
           if (response.status === 200) {
             setAdmin(true);
           } else {
