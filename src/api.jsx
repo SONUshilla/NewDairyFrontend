@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const baseURL = 'https://localhost:5000/';
+const baseURL = 'https://new-dairy.onrender.com';
 
 const api = axios.create({
   baseURL: baseURL,
