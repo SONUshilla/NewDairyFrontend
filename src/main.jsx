@@ -16,19 +16,30 @@ import BuffaloPriceEntryGrid from "./snfPrice";
 import FatPrices from "./FatInputs";
 import CowPriceEntryGrid from "./CowPriceEntryGrid";
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from './setUpAxios'; // Import the setup function
+
 function Main() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn') === 'true');
   const [check, setCheck] = useState(loggedIn);
   const [loading, setLoading] = useState(true); // State to track loading status
-  const [admin, setAdmin] = useState( localStorage.getItem("admin")==="true");
-  const [user, setuser] = useState(false);
+  const [admin, setAdmin] = useState(localStorage.getItem("admin") === "true");
+  const [user, setUser] = useState(false);
+
   useEffect(() => {
+    setUpAxios(); // Set up Axios with the token in the headers
+
     const checkSession = async () => {
-      {console.log(check)}
+      console.log(check);
       try {
-        const response = await axios.get(`${baseURL}/check-session`);
+        const token = localStorage.getItem('authToken');
+        const response = await axios.get(`${baseURL}/check-session`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         if (response.status === 200) {
           localStorage.setItem('loggedIn', 'true');
+          alert("hello");
           setLoggedIn(true);
           setCheck(true);
         } else {
@@ -49,6 +60,7 @@ function Main() {
 
     return () => clearInterval(intervalId);
   }, []);
+
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
@@ -56,11 +68,11 @@ function Main() {
         if (response.status === 200) {
           setAdmin(true);
           localStorage.removeItem("user");
-        } else if(response.status===205){
-          localStorage.setItem("user","true");
+        } else if (response.status === 205) {
+          localStorage.setItem("user", "true");
           localStorage.removeItem("admin");
-          setuser(true);
-        }else  {
+          setUser(true);
+        } else {
           setAdmin(false);
           localStorage.removeItem("user");
           localStorage.removeItem("admin");
@@ -73,6 +85,7 @@ function Main() {
 
     fetchAdminStatus();
   }, []);
+
   // Render loading indicator if still loading
   if (loading) {
     return <div className="full">Loading...</div>;
@@ -81,30 +94,29 @@ function Main() {
   // Render routes once loading is completed
   return (
     <div className="full">
-      <div >
+      <div>
         <Header />
         <div className="header-link">
           {check && <Sidebar />}
         </div>
       </div>
-      
-        <div className="main">
-          <Routes>
-            <Route exact path="/" element={<Home isLoggedIn ={loggedIn}/>} />
-            <Route path="view-entries" element={loggedIn ? <Showdate /> : <Navigate to="/login" />} />
-            <Route path="/balance" element={loggedIn ? <Balance /> : <Navigate to="/login" />} />
-            <Route path="/entries/*" element={loggedIn ? <Entry /> : <Navigate to="/login" />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/admin" element={<SuperUserPage/>} />
-            <Route path="/addUser" element={admin && <AddUserForm/>}/>
-            <Route path="/UserBoth" element={user && <UserBoth/>} />
-            <Route path="/BothAuth" element={user && <BothAuthComponent/>} />
-            <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"}/>}/>
-            <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"}/>}/>
-            <Route path="/buffalo/prices/snf" element={<CowPriceEntryGrid/>}/>
-            <Route path="/cow/prices/snf" element={<BuffaloPriceEntryGrid/>}/>
-         </Routes>
-        </div>
+      <div className="main">
+        <Routes>
+          <Route exact path="/" element={<Home isLoggedIn={loggedIn} />} />
+          <Route path="view-entries" element={loggedIn ? <Showdate /> : <Navigate to="/login" />} />
+          <Route path="/balance" element={loggedIn ? <Balance /> : <Navigate to="/login" />} />
+          <Route path="/entries/*" element={loggedIn ? <Entry /> : <Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin" element={<SuperUserPage />} />
+          <Route path="/addUser" element={admin && <AddUserForm />} />
+          <Route path="/UserBoth" element={user && <UserBoth />} />
+          <Route path="/BothAuth" element={user && <BothAuthComponent />} />
+          <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"} />} />
+          <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"} />} />
+          <Route path="/buffalo/prices/snf" element={<CowPriceEntryGrid />} />
+          <Route path="/cow/prices/snf" element={<BuffaloPriceEntryGrid />} />
+        </Routes>
+      </div>
     </div>
   );
 }

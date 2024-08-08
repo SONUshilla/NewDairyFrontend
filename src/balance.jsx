@@ -14,6 +14,7 @@ function Balance() {
     useEffect(() => {
       const fetchAdminStatus = async () => {
         try {
+          setUpAxios();
           const response = await axios.get(`${baseURL}/adminAuth`);
           if (response.status === 200) {
             setAdmin(true);

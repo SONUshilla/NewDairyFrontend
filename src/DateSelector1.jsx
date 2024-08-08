@@ -7,16 +7,18 @@ function DateSelector1({ onSelectDateRange }) {
     const handleMonthChange = (event) => {
         const selectedMonth = event.target.value;
         setSelectedMonth(selectedMonth);
-    
+        console.log('Selected Month:', selectedMonth); // Debug log
+
         if (selectedMonth !== "") {
             // Calculate start and end dates based on the selected month
             const startDate = moment(selectedMonth, 'YYYY-MM').startOf('month').format('YYYY-MM-DD');
             const endDate = moment(selectedMonth, 'YYYY-MM').endOf('month').format('YYYY-MM-DD');
-    
+            console.log('Start Date:', startDate); // Debug log
+            console.log('End Date:', endDate); // Debug log
+
             onSelectDateRange(startDate, endDate);
         }
     };
-    
 
     const handleDateRange = (range) => {
         let startDate, endDate;
@@ -46,6 +48,10 @@ function DateSelector1({ onSelectDateRange }) {
                 startDate = '';
                 endDate = '';
         }
+
+        console.log('Range:', range); // Debug log
+        console.log('Start Date:', startDate); // Debug log
+        console.log('End Date:', endDate); // Debug log
 
         onSelectDateRange(startDate, endDate);
     };

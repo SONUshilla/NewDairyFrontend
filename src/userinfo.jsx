@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from './setUpAxios';
 function UserInfoSection({ userData }) {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const toggleUserInfo = () => {
@@ -13,6 +14,7 @@ function UserInfoSection({ userData }) {
   const handleLogout = async () => {
     try {
       // Make a logout request to your backend server
+      setUpAxios();
       const response = await axios.post(`${baseURL}/logout`); // Adjust the URL based on your backend endpoint
 
       // Check if the logout was successful

@@ -3,6 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from "./setUpAxios";
 const Table1 = ({ work, timing }) => {
   const [loadingStates, setLoadingStates] = useState(new Array(work.length).fill(false));
   const [sentStates, setSentStates] = useState(new Array(work.length).fill(false));
@@ -14,6 +15,7 @@ const Table1 = ({ work, timing }) => {
     const formData = new FormData(e.target);
 
     try {
+      setUpAxios();
       const response = await axios.post(`${baseURL}/entries/${timeOfDay}`, {
         date: formData.get("date"),
         weight: formData.get("weight"),

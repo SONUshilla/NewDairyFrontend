@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import React from "react";
 import { baseURL } from '../config'; // Adjust the import path as necessary
+import setUpAxios from "../setUpAxios";
 function BalanceSheet({ startDate, endDate, userId }) {
     const [balanceData, setBalanceData] = useState({ morning: {}, evening: {}, borrow: [] });
     useEffect(() => {
@@ -10,12 +11,16 @@ function BalanceSheet({ startDate, endDate, userId }) {
     }, [startDate, endDate, userId]); // Include userId in the dependency array
 
     const fetchBalanceSheet = async () => {
+        
         try {
+           
             let response;
             if (userId) {
+                setUpAxios();
                 // If userId is present, send userId with the request to '/admin/balanceSheet'
                 response = await axios.post(`${baseURL}/admin/balanceSheet`, { startDate, endDate, userId });
             } else {
+               setUpAxios();
                 // Otherwise, send request to '/balanceSheet' (default endpoint)
                 response = await axios.post(`${baseURL}/balanceSheet`, { startDate, endDate });
             }

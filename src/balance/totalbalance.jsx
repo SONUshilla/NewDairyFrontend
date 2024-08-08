@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseURL } from '../config'; // Adjust the import path as necessary
-
+import setUpAxios from "../setUpAxios";
 function TotalBalance({ startDate, endDate, userId }) {
   const [totalBefore,setTotalBefore]=useState("");
   const [milk, setMilk] = useState("");
@@ -21,9 +21,11 @@ function TotalBalance({ startDate, endDate, userId }) {
     try {
       let response;
       if (userId) {
+        setUpAxios();
         // If userId is present, send userId with the request to '/admin/showBalance'
         response = await axios.post(`${baseURL}/admin/showBalance`, { startDate, endDate, userId });
       } else {
+        setUpAxios();
         // Otherwise, send request to '/showBalance' (default endpoint)
         response = await axios.post(`${baseURL}/showBalance`, { startDate, endDate });
       }

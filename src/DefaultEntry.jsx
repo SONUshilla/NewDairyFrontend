@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import moment from "moment";
+import axios from "axios"; // Import axios
+import setUpAxios from "./setUpAxios";
+
 function DefaultEntry() {
     const [selectedOption, setSelectedOption] = useState("Feed");
 
@@ -9,7 +12,7 @@ function DefaultEntry() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         let formData = {}; // Define formData variable
 
         // Handle form submission based on the selected option
@@ -20,7 +23,7 @@ function DefaultEntry() {
             formData.price = event.target.elements.price.value;
         }
         formData.selectedOption = selectedOption;
-        formData.date=moment(event.target.elements.date.value).format('YYYY-MM-DD');
+        formData.date = moment(event.target.elements.date.value).format('YYYY-MM-DD');
         let endpoint;
         if (selectedOption === "Money") {
             endpoint = "/addMoney";
@@ -31,22 +34,16 @@ function DefaultEntry() {
         }
 
         try {
-            // Send POST request to the determined endpoint
-            const response = await fetch(endpoint, {
-                method: "POST",
+            // Send POST request using axios
+            setUpAxios();
+            const response = await axios.post(endpoint, formData, {
                 headers: {
                     "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
+                }
             });
 
-            if (!response.ok) {
-                throw new Error("Failed to send request");
-            }
-
             // Handle response if needed
-            const responseData = await response.json();
-            console.log("Response data:", responseData);
+            console.log("Response data:", response.data);
         } catch (error) {
             console.error("Error:", error.message);
         }
@@ -54,9 +51,9 @@ function DefaultEntry() {
 
     return (
         <div className="DefaultEntry">
-        <h1>Entry</h1>
+            <h1>Entry</h1>
             <form onSubmit={handleSubmit}>
-            <input type="date" name="date" required></input>
+                <input type="date" name="date" required></input>
                 <select value={selectedOption} onChange={handleChange}>
                     <option value="Money">Money</option>
                     <option value="Feed">Feed</option>
@@ -68,7 +65,7 @@ function DefaultEntry() {
                 ) : (
                     <>
                         <input type="number" name="quantity" placeholder="Enter quantity" required/>
-                        <input type="number" name="price" placeholder="Enter price"  required />
+                        <input type="number" name="price" placeholder="Enter price" required />
                     </>
                 )}
                 <button type="submit">Submit</button>

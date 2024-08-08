@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "src/index.tsx",
-    "proxy": "https://new-dairy.onrender.com",
+    "proxy": "http://localhost:5000",
     "keywords": [],
     "dependencies": {
         "@emotion/react": "11.11.4",

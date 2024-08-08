@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import CowPriceEntryGrid from './CowPriceEntryGrid'; // Import the CowPriceEntryGrid component
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from "./setUpAxios";
 function DefaultMilk({ userId }) {
   const [inputs, setInputs] = useState({
     date: "",
@@ -50,8 +51,10 @@ function DefaultMilk({ userId }) {
     try {
       let response;
       if (userId) {
+        setUpAxios();
         response = await axios.post(`${baseURL}/admin/entries/${time}`, { ...inputs, userId });
       } else {
+        setUpAxios();
         response = await axios.post(`${baseURL}/entries/${time}`, inputs);
       }
 

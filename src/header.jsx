@@ -8,6 +8,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from "./setUpAxios";
 
 function Header() {
   const [admin, setAdmin] = useState(false);
@@ -15,6 +16,7 @@ function Header() {
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
+        setUpAxios();
         const response = await axios.get(`${baseURL}/adminAuth`);
         if (response.status === 200) {
           setAdmin(true);
