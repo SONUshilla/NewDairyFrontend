@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { baseURL } from './config'; // Adjust the import path as necessary
-
+import "./login.css";
 const LoginPage = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -14,23 +14,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
-  useEffect(() => {
-    // Add interceptor to include the JWT and userId in all requests
-    axios.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem('authToken');
-        const userId = localStorage.getItem('userId');
-        if (token) {
-          config.headers['Authorization'] = `Bearer ${token}`;
-        }
-        if (userId) {
-          config.headers['userId'] = userId;
-        }
-        return config;
-      },
-      (error) => Promise.reject(error)
-    );
-  }, []);
 
   const handleLogin = async () => {
     try {
@@ -64,6 +47,9 @@ const LoginPage = () => {
       }
     }
   };
+  const handleGoogleLogin = () => {
+    window.open(`${baseURL}/auth/google`, '_self');
+  };
 
   const handleRegister = async () => {
     try {
@@ -74,6 +60,10 @@ const LoginPage = () => {
       if (response.status === 201) {
         setLoggedIn(true);
         localStorage.setItem('loggedIn', 'true');
+        const { token } = response.data;
+
+        // Store JWT and userId in local storage
+        localStorage.setItem('token', token);
         window.location.reload();
       } else {
         console.error('Registration failed');
@@ -88,7 +78,7 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (loggedIn) navigate('/home');
+    if (loggedIn) navigate('/');
   }, [loggedIn, navigate]);
 
   const handle = () => {
@@ -96,47 +86,27 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        {error && <p className="error-message">{error}</p>}
-        <h2>Login</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={loginUsername}
-          onChange={(e) => setLoginUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={loginPassword}
-          onChange={(e) => setLoginPassword(e.target.value)}
-        />
-        <button onClick={handleLogin}>Login</button>
-
-        <h2>Register</h2>
-        <input
-          type="text"
-          placeholder="Username"
-          value={registerUsername}
-          onChange={(e) => setRegisterUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={registerPassword}
-          onChange={(e) => setRegisterPassword(e.target.value)}
-        />
-        <button onClick={handleRegister}>Register</button>
-
-        <div className="login-options">
-          <Link to="/admin">Admin? Login here</Link>
-          <button onClick={handle}>
-            <FaGoogle className="icon" /> Login with Google
-          </button>
-        </div>
-      </div>
+    <div className='fullBody'>
+    <div className="card">
+    <h1>LOGIN</h1>
+    {error && <p className="error-message">{error}</p>}
+    <div className="card-inputs">
+      <p>Username</p>
+      <input type="text" placeholder="username" value={loginUsername} onChange={(e) => setLoginUsername(e.target.value)} />
+      <p>Password</p>
+      <input type="password" placeholder="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
     </div>
+    <button className="loginButton" onClick={handleLogin}>Login</button>
+    <div className="divider"><span>or</span></div>
+    <button className="google-button" onClick={handleGoogleLogin}>
+      <FaGoogle className="icon" /> Login with Google
+    </button>
+    <p className="login-text">Don't have an account? <Link to="/register">Register here</Link></p>
+    <br/>
+    <p className="login-text">Admin register here? <Link to="/admin-register">Register here</Link></p>
+  </div>
+  </div>
+
   );
 };
 

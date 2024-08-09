@@ -25,8 +25,8 @@ function DateSelector1({ onSelectDateRange }) {
 
         switch (range) {
             case 'overall':
-                startDate = ''; // Set to empty string to indicate overall
-                endDate = '';
+                startDate = '1900-01-01'; // Start of 1900
+                endDate = '3000-12-31';   // End of 3000
                 break;
             case 'thisMonth':
                 startDate = moment().startOf('month').format('YYYY-MM-DD');

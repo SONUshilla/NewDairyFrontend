@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Showdate from './showDate';
+import Showdate from './viewEntries';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import UserBoth from './associatedAdmin';
 

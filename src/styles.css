@@ -22,16 +22,15 @@ input:-webkit-autofill:active {
 }
 
 html{
-  background-color:  #F9F7F1;
+  background-color:  #cee1f3;
 }
 .header {
   display: grid;
-  grid-template-columns: 4rem 1fr  1fr 4rem;
+  grid-template-columns: 4rem 1fr 1.5fr 1fr 4rem;
   width: 100%;
   height: 10vh;
   border: none;
-  background-color: #8dfc9a;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, .3); /* Add a shadow */
+  background: linear-gradient(to bottom,#a3c4e0, #cee1f3 ); 
   z-index: 4;
   margin: 0;
   padding: 0;
@@ -46,7 +45,7 @@ html{
   font-size: 25px;
 } 
 .logo-text {
-  font-family: 'Truculenta', sans-serif;
+  font-family: 'Playfair Display', serif; /* Example font for logo */
   font-weight: 100; /* You can adjust the font weight as needed */
   color: linear-gradient(to right, #28a745, #ffc107);
 }
@@ -58,7 +57,7 @@ html{
 }
 
 .header-icon {
-  grid-column: 3/4;
+  grid-column: 4/5;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -86,8 +85,11 @@ html{
 }
 
 .full {
-  background-color: #C1E4C5;
+  background: linear-gradient(to bottom,#cee1f3,#FFFFFF);
   flex-grow: 1; /* Allow Main content to grow and take remaining space */
+}
+.main{
+  max-width: 100%;
 }
 
 
@@ -200,30 +202,71 @@ html{
   }
 }
 
+/* Container for side-by-side tables */
+.table-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between the tables */
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  margin: 20px;
+}
+
+/* Individual Table Styling */
 .balance-table {
-  border-collapse: collapse;
-  width: 100%;
+  width: 48%; /* Half of the screen width, adjusted for margin and spacing */
+  border-collapse: collapse; /* Allows rounded corners */
+  overflow: hidden; /* Ensures rounded corners work */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a soft effect */
+  background-color: #ffffff; /* White background for the table */
+  padding: 15px;
+  margin: 0; /* Removes default margin */
+  border: 1px solid #d1d1d1; /* Grey border around the table */
 }
 
-.balance-table th,
-.balance-table td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-.balance-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
+/* Header Styling */
 .balance-table thead {
-  background-color: skyblue;
-  color: white;
+  background-color: #6BDA69; /* Soft green for the header background */
+  color: #000000; /* Black text for header */
+  font-family: 'Roboto', sans-serif; /* Clean font */
+  font-weight: 600; /* Slightly bold for header */
+  font-size: 14px; /* Smaller font size for the header */
 }
 
-.balance-table .MorningData {
-  background-color: #e6f7ff; /* Light blue */
+.balance-table th, .balance-table td {
+  padding: 12px 15px; /* Padding for a softer touch */
+  text-align: left;
+  font-family: 'Roboto', sans-serif; /* Consistent font */
+  font-weight: 700; /* Bold text for table content */
+  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
 }
+.balance-table td {
+  padding: 2px 15px; /* Padding for a softer touch */
+  text-align: left;
+  font-family: 'Roboto', sans-serif; /* Consistent font */
+  font-weight: 700; /* Bold text for table content */
+  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
+}
+
+.balance-table tbody tr:nth-child(even) {
+  background-color: #f4f4f4; /* Very light grey for even rows */
+}
+
+.balance-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+.balance-table tbody tr.MorningData:hover {
+  background-color: #e0e0e0; /* Light grey on hover for rows */
+  color: #000000; /* Black text on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .balance-table {
+    width: 100%; /* Full width on smaller screens */
+  }
+}
+
 
 
 .login-container {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseURL } from '../config'; // Adjust the import path as necessary
 import setUpAxios from "../setUpAxios";
+import Spinner from "../Spinner";
 function TotalBalance({ startDate, endDate, userId }) {
   const [totalBefore,setTotalBefore]=useState("");
   const [milk, setMilk] = useState("");
@@ -63,7 +64,7 @@ function TotalBalance({ startDate, endDate, userId }) {
   }, [startDate, endDate, userId]); // Include userId in the dependency array
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div><Spinner></Spinner></div>;
   }
 
   if (error) {

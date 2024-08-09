@@ -24,6 +24,7 @@ function UserInfoSection({ userData }) {
         localStorage.setItem('firstLogin', "false");
         // Set the isLogged flag to false in local storage
         localStorage.setItem("loggedIn", "false");
+        localStorage.removeItem("token");
         window.location.reload();
         // Redirect the user to the login page
         <Navigate to="/login" />;

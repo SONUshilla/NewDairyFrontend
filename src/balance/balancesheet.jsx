@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { baseURL } from '../config'; // Adjust the import path as necessary
 import setUpAxios from "../setUpAxios";
+import Spinner from "../Spinner";
 function BalanceSheet({ startDate, endDate, userId }) {
+    const [loading, setLoading] = useState(false);
     const [balanceData, setBalanceData] = useState({ morning: {}, evening: {}, borrow: [] });
     useEffect(() => {
         // Fetch balance sheet data when component mounts or when startDate/endDate change
@@ -11,9 +13,9 @@ function BalanceSheet({ startDate, endDate, userId }) {
     }, [startDate, endDate, userId]); // Include userId in the dependency array
 
     const fetchBalanceSheet = async () => {
-        
+        setLoading(true);
         try {
-           
+            
             let response;
             if (userId) {
                 setUpAxios();
@@ -35,8 +37,13 @@ function BalanceSheet({ startDate, endDate, userId }) {
         } catch (error) {
             console.error("Error fetching balance sheet data:", error);
         }
+        finally {
+            setLoading(false);
+          }
     };
-
+    if (loading) {
+        return <div><Spinner></Spinner></div>;
+      }
     return (
         <div>
             <span><h1>Balance Sheet</h1></span>
@@ -58,7 +65,7 @@ function BalanceSheet({ startDate, endDate, userId }) {
                         <td>----</td>
                         <td>{balanceData.morning && (<p>{balanceData.morning.total ? balanceData.morning.total : 0}</p>)}</td>
                     </tr>
-                    <tr key={"morning"} className="MorningData">
+                    <tr key={"evening"} className="MorningData">
                         <td>----</td>
                         <td>Milk</td>
                         <td>{balanceData.evening && (<p>{balanceData.evening.totalmilk ? balanceData.evening.totalmilk : 0}</p>)}</td>

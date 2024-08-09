@@ -5,13 +5,14 @@ import Main from "./main";
 import { useEffect, useState } from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import Footer from "./footer";
+import BottomBar from "./bottom-nav";
 export default function App() {
   return (
   <Router>
     
       <div className="container">
         <Main />
-        <Footer/>
+        <BottomBar/>
       </div>
     </Router>
   );

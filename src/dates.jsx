@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import moment from 'moment';
-import Showdate from './showDate';
+import Showdate from './viewEntries';
 import DateSelector from './DateSelector';
 
 function DateRange(props) {

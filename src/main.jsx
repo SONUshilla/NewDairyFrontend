@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Showdate from "./showDate";
+import ViewEntries from "./viewEntries";
 import Sidebar from "./sidebar";
 import Entry from "./entry";
 import Balance from "./balance";
@@ -17,6 +17,8 @@ import FatPrices from "./FatInputs";
 import CowPriceEntryGrid from "./CowPriceEntryGrid";
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios'; // Import the setup function
+import RegisterPage from "./register";
+import AdminRegisterPage from "./adminRegister";
 
 function Main() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn') === 'true');
@@ -39,7 +41,6 @@ function Main() {
         });
         if (response.status === 200) {
           localStorage.setItem('loggedIn', 'true');
-          alert("hello");
           setLoggedIn(true);
           setCheck(true);
         } else {
@@ -96,17 +97,17 @@ function Main() {
     <div className="full">
       <div>
         <Header />
-        <div className="header-link">
-          {check && <Sidebar />}
-        </div>
+     
       </div>
       <div className="main">
         <Routes>
           <Route exact path="/" element={<Home isLoggedIn={loggedIn} />} />
-          <Route path="view-entries" element={loggedIn ? <Showdate /> : <Navigate to="/login" />} />
+          <Route path="view-entries" element={loggedIn ? <ViewEntries /> : <Navigate to="/login" />} />
           <Route path="/balance" element={loggedIn ? <Balance /> : <Navigate to="/login" />} />
           <Route path="/entries/*" element={loggedIn ? <Entry /> : <Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage/>}></Route>
+          <Route path="/admin-register" element={<AdminRegisterPage/>}></Route>
           <Route path="/admin" element={<SuperUserPage />} />
           <Route path="/addUser" element={admin && <AddUserForm />} />
           <Route path="/UserBoth" element={user && <UserBoth />} />

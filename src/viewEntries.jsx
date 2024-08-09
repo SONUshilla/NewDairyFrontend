@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
 
-function Showdate(props) {
+function ViewEntries(props) {
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
   const [Mtotal, setMtotal] = useState([]);
@@ -123,8 +123,6 @@ function Showdate(props) {
     try {
       let response;
       if (userId) {
-        console.log("here");
-        // If userId is present, send request with userId
         setUpAxios();
         response = await axios.post(`${baseURL}/admin/showEntries`, { startDate, endDate, userId });
       } else if (props.userId) {
@@ -173,4 +171,4 @@ function Showdate(props) {
   );
 }
 
-export default Showdate;
+export default ViewEntries;

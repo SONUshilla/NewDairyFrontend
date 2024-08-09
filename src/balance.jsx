@@ -6,6 +6,7 @@ import moment from "moment";
 import UserList from "./usersList";
 import axios from "axios";
 import { baseURL } from './config'; // Adjust the import path as necessary
+import setUpAxios from "./setUpAxios";
 function Balance() {
     const [startDate, setStartDate] = useState(moment().startOf('year').format('YYYY-MM-DD'));
     const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD'));

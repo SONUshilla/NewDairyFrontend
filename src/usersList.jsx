@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './userList.css'; // Import CSS module for styling
-import Showdate from './showDate';
+import Showdate from './viewEntries';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
 const UserList = ({ onSelectUser }) => {

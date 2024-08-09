@@ -13,6 +13,7 @@ import setUpAxios from "./setUpAxios";
 function Header() {
   const [admin, setAdmin] = useState(false);
   const [user, setUser] = useState(false);
+  const [check,setCheck]=useState(false);
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
@@ -33,12 +34,36 @@ function Header() {
 
     fetchAdminStatus();
   }, []);
+  useEffect(() => {
+    const checkSession = async () => {
+      console.log(check);
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await axios.get(`${baseURL}/check-session`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (response.status === 200) {
+          setCheck(true);
+        }
+      } catch (error) {
+        setCheck(false);
+      }
+    };
+    checkSession();
+  }, []);
+
+
   return (
     <div class="header">
       <div className="logo">
       <Link className="logo-link" to={"/"}>
       <h1 className="logo-text">Dairy</h1>
       </Link>
+      </div>
+      <div>
+      {check ? <Sidebar /> : null} 
       </div>
     <div className="header-icon">
     {admin && <Link to="/addUser">
