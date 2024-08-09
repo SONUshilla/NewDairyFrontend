@@ -36,14 +36,7 @@ const LoginPage = () => {
     try {
       const response = await axios.post(
         `${baseURL}/login`,
-        { username: loginUsername, password: loginPassword },
-        {
-          withCredentials: true,
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-        }
+        { username: loginUsername, password: loginPassword }
       );
       
       if (response.status === 200) {
