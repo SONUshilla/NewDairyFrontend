@@ -59,7 +59,7 @@ function Entry() {
         </div>
       <div className="Default">
       <Routes>
-        <Route path="/" element={<DefaultMilk />} />
+        <Route path="/" element={<DefaultMilk userId={userId} />} />
       </Routes>
       <Routes>
         <Route path="/" element={<DefaultEntry userId={userId} />} />

@@ -31,9 +31,7 @@ function TotalBalance({ startDate, endDate, userId }) {
         response = await axios.post(`${baseURL}/showBalance`, { startDate, endDate });
       }
 
-      if (!response.data) {
-        throw new Error("No data received");
-      }
+     
       const { milk, feed, money, ghee, moneyGivenResults, moneyReceivedResults,Before} =
         response.data;
       setTotalBefore(Before.total);
