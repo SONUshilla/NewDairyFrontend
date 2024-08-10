@@ -1,0 +1,81 @@
+
+/* Individual Table Styling */
+.BalanceButtons
+{
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  gap:0.5rem;
+  @media (max-width: 600px) {
+  overflow-x: scroll;
+  }
+}
+.BalanceButtons {
+  -ms-overflow-style: none;  /* Hide scrollbar on Internet Explorer and Edge */
+  scrollbar-width: none;  /* Hide scrollbar on Firefox */
+}
+.BalanceButtons select {
+  line-height: 30px; /* Ensure the text is vertically centered */
+  padding: 2px 4px;
+  margin: 0px;
+  border: 2px solid gray; /* Match the border style */
+  background: transparent; /* Make the background consistent */
+  box-sizing: border-box; /* Include border in the height calculation */
+}
+
+.BalanceButtons button,select{
+  padding: 2px 4px;
+  font-size: 10px;
+  color: #000000;
+  font-family: 'Oswald', sans-serif;
+  margin: 0px;
+  background-color: transparent;
+  border: rgb(199, 199, 199) solid 1px;
+}
+.balance-table {
+  width: 100%; /* Half of the screen width, adjusted for margin and spacing */
+  border-collapse: collapse; /* Allows rounded corners */
+  overflow: scroll; /* Ensures rounded corners work */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a soft effect */
+  background-color: #ffffff; /* White background for the table */
+  padding: 15px;
+  margin: 0; /* Removes default margin */
+  border: 1px solid #d1d1d1; /* Grey border around the table */
+}
+
+/* Header Styling */
+.balance-table thead {
+  background-color: #6BDA69; /* Soft green for the header background */
+  color: #000000; /* Black text for header */
+  font-family: 'Roboto', sans-serif; /* Clean font */
+  font-weight: 600; /* Slightly bold for header */
+  font-size: 14px; /* Smaller font size for the header */
+}
+
+.balance-table th, .balance-table td {
+  padding: 12px 15px; /* Padding for a softer touch */
+  text-align: left;
+  font-family: 'Roboto', sans-serif; /* Consistent font */
+  font-weight: 700; /* Bold text for table content */
+  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
+}
+.balance-table td {
+  padding: 2px 15px; /* Padding for a softer touch */
+  text-align: left;
+  font-family: 'Oswald', sans-serif; /* Use the selected font */
+  font-weight: 100;
+  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
+}
+
+.balance-table tbody tr:nth-child(even) {
+  background-color: #f4f4f4; /* Very light grey for even rows */
+}
+
+.balance-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+.balance-table tbody tr.MorningData:hover {
+  background-color: #e0e0e0; /* Light grey on hover for rows */
+  color: #000000; /* Black text on hover */
+}

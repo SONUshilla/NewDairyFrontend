@@ -99,7 +99,7 @@ function Main() {
         <Header />
      
       </div>
-      <div className="main">
+      <main className="main">
         <Routes>
           <Route exact path="/" element={<Home isLoggedIn={loggedIn} />} />
           <Route path="view-entries" element={loggedIn ? <ViewEntries /> : <Navigate to="/login" />} />
@@ -117,7 +117,7 @@ function Main() {
           <Route path="/buffalo/prices/snf" element={<CowPriceEntryGrid />} />
           <Route path="/cow/prices/snf" element={<BuffaloPriceEntryGrid />} />
         </Routes>
-      </div>
+      </main>
     </div>
   );
 }

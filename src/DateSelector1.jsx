@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-
+import "./DateSelector1.css";
 function DateSelector1({ onSelectDateRange }) {
     const [selectedMonth, setSelectedMonth] = useState('');
 
@@ -58,11 +58,6 @@ function DateSelector1({ onSelectDateRange }) {
 
     return (
         <div className='BalanceButtons'>
-            <button onClick={() => handleDateRange('overall')}>Overall</button>
-            <button onClick={() => handleDateRange('thisMonth')}>This Month</button>
-            <button onClick={() => handleDateRange('lastMonth')}>Last Month</button>
-            <button onClick={() => handleDateRange('last3Months')}>Last 3 Months</button>
-            <button onClick={() => handleDateRange('last6Months')}>Last 6 Months</button>
             <select value={selectedMonth} onChange={handleMonthChange}>
                 <option value="">Select Month</option>
                 {[...Array(12).keys()].map(month => (
@@ -71,6 +66,12 @@ function DateSelector1({ onSelectDateRange }) {
                     </option>
                 ))}
             </select>
+            <button onClick={() => handleDateRange('overall')}>Overall</button>
+            <button onClick={() => handleDateRange('thisMonth')}>This Month</button>
+            <button onClick={() => handleDateRange('lastMonth')}>Last Month</button>
+            <button onClick={() => handleDateRange('last3Months')}>Last 3 Months</button>
+            <button onClick={() => handleDateRange('last6Months')}>Last 6 Months</button>
+        
         </div>
     );
 }

@@ -72,6 +72,7 @@ function TotalBalance({ startDate, endDate, userId }) {
   }
 
   return (
+    <div className="constainer1">
     <table className="balance-table">
       <thead>
         <tr>
@@ -118,6 +119,7 @@ function TotalBalance({ startDate, endDate, userId }) {
         </tr>
       </tbody>
     </table>
+    </div>
   );
 }
 

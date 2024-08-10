@@ -5,6 +5,8 @@ import BalanceSheet from "./balance/balancesheet";
 import moment from "moment";
 import UserList from "./usersList";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileInvoice, faPrint, faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
 function Balance() {
@@ -41,12 +43,15 @@ function Balance() {
   };
     return (
     <div className="balance-table-container">
-    {admin && <UserList onSelectUser={handleUserSelect} />}
-    <button onClick={()=>{window.print()}}>Print</button>
-    <h3>From {startDate} to {endDate}</h3>
     <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
+    <div className="user-select">
+    {admin && <UserList onSelectUser={handleUserSelect} />}
+    <button onClick={()=>{window.print()}}><FontAwesomeIcon icon={faFileInvoice} /></button>   
+    </div>
+    <div className="table-container">
     <TotalBalance startDate={startDate} endDate={endDate} userId={userId}/>
     <BalanceSheet startDate={startDate} endDate={endDate} userId={userId} />
+    </div>
     </div>
     );
 }

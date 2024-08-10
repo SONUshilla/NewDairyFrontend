@@ -79,14 +79,16 @@ html{
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure container takes full height of viewport */
+    max-width: 100vw; /* Prevents the screen from exceeding the viewport width */
+    min-height:100vh;
+  
 }
+
 
 .full {
   background: linear-gradient(to bottom,#cee1f3,#FFFFFF);
-  flex-grow: 1; /* Allow Main content to grow and take remaining space */
+  flex-grow: 1;
+
 }
 .main{
   max-width: 100%;
@@ -180,10 +182,12 @@ html{
 
 }
 
-.container1 {
+.container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Ensures the container is at least the height of the viewport */
 }
+
 
 
 
@@ -191,73 +195,39 @@ html{
 
 /* CSS file */
 .balance-table-container {
-  font-family: Arial, sans-serif;
-  padding-top: 4px;
-  margin: 5px;
-  @media screen and (max-width: 600px) {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  }
+  
 }
-
+.user-select{
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  justify-content: space-between;
+}
+.user-select button{
+  background: transparent;
+  color: black;
+}
 /* Container for side-by-side tables */
 .table-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px; /* Space between the tables */
-  flex-wrap: wrap; /* Allows wrapping on smaller screens */
-  margin: 20px;
+display: flex;
+min-height: 100vh;
+flex-direction: row;
+justify-content: space-around;
+@media(max-width:800px){
+flex-direction: column;
+justify-content: flex-start;
 }
+}
+@media (max-width: 450px) {
+  .balance-table {
+    width: 100%; /* Ensure table stays within screen bounds */
+    font-size: 12px; /* Reduce font size */
+    padding: 10px; /* Reduce padding */
+  }
 
-/* Individual Table Styling */
-.balance-table {
-  width: 48%; /* Half of the screen width, adjusted for margin and spacing */
-  border-collapse: collapse; /* Allows rounded corners */
-  overflow: hidden; /* Ensures rounded corners work */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a soft effect */
-  background-color: #ffffff; /* White background for the table */
-  padding: 15px;
-  margin: 0; /* Removes default margin */
-  border: 1px solid #d1d1d1; /* Grey border around the table */
-}
-
-/* Header Styling */
-.balance-table thead {
-  background-color: #6BDA69; /* Soft green for the header background */
-  color: #000000; /* Black text for header */
-  font-family: 'Roboto', sans-serif; /* Clean font */
-  font-weight: 600; /* Slightly bold for header */
-  font-size: 14px; /* Smaller font size for the header */
-}
-
-.balance-table th, .balance-table td {
-  padding: 12px 15px; /* Padding for a softer touch */
-  text-align: left;
-  font-family: 'Roboto', sans-serif; /* Consistent font */
-  font-weight: 700; /* Bold text for table content */
-  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
-}
-.balance-table td {
-  padding: 2px 15px; /* Padding for a softer touch */
-  text-align: left;
-  font-family: 'Roboto', sans-serif; /* Consistent font */
-  font-weight: 700; /* Bold text for table content */
-  border-bottom: 1px solid #e0e0e0; /* Very light grey dividers */
-}
-
-.balance-table tbody tr:nth-child(even) {
-  background-color: #f4f4f4; /* Very light grey for even rows */
-}
-
-.balance-table tbody tr:nth-child(odd) {
-  background-color: #ffffff; /* White for odd rows */
-}
-
-.balance-table tbody tr.MorningData:hover {
-  background-color: #e0e0e0; /* Light grey on hover for rows */
-  color: #000000; /* Black text on hover */
+  .balance-table th, .balance-table td {
+    padding: 8px 10px; /* Smaller padding for tighter spacing */
+  }
 }
 
 /* Responsive Design */
@@ -310,6 +280,7 @@ html{
   padding: 20px;
   border-radius: 5px;
 }
+
 
 
 

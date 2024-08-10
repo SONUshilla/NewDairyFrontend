@@ -24,7 +24,7 @@ justify-content: space-evenly;
 .bottom-nav{
   display: none;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
 .sidebar{
  display: none;

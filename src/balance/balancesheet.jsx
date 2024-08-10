@@ -45,7 +45,7 @@ function BalanceSheet({ startDate, endDate, userId }) {
         return <div><Spinner></Spinner></div>;
       }
     return (
-        <div>
+        <div className="constainer1">
             <span><h1>Balance Sheet</h1></span>
             <table className="balance-table">
                 <thead>
