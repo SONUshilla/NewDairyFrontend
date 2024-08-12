@@ -29,8 +29,7 @@ html{
   grid-template-columns: 4rem 1fr 1.5fr 1fr 4rem;
   width: 100%;
   height: 10vh;
-  border: none;
-  background: linear-gradient(to bottom,#a3c4e0, #cee1f3 ); 
+  border-bottom: 1px solid black;
   z-index: 4;
   margin: 0;
   padding: 0;
@@ -60,7 +59,7 @@ html{
   grid-column: 4/5;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: end;
   padding-top: 5px;
 }
 @media (max-width: 768px) {
@@ -86,7 +85,7 @@ html{
 
 
 .full {
-  background: linear-gradient(to bottom,#cee1f3,#FFFFFF);
+  background: #ffffff;
   flex-grow: 1;
 
 }
@@ -210,8 +209,9 @@ html{
 /* Container for side-by-side tables */
 .table-container {
 display: flex;
+flex: 1fr 1fr;
+flex-grow: 1;
 min-height: 100vh;
-flex-direction: row;
 justify-content: space-around;
 @media(max-width:800px){
 flex-direction: column;
@@ -221,12 +221,13 @@ justify-content: flex-start;
 @media (max-width: 450px) {
   .balance-table {
     width: 100%; /* Ensure table stays within screen bounds */
-    font-size: 12px; /* Reduce font size */
+    font-size: 14px; /* Reduce font size */
     padding: 10px; /* Reduce padding */
+    margin: 30px;
   }
 
   .balance-table th, .balance-table td {
-    padding: 8px 10px; /* Smaller padding for tighter spacing */
+    padding: 7px 7px; /* Smaller padding for tighter spacing */
   }
 }
 

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import "./DateSelector1.css";
+
 function DateSelector1({ onSelectDateRange }) {
     const [selectedMonth, setSelectedMonth] = useState('');
+    const [activeRange, setActiveRange] = useState(''); // New state for active button
 
     const handleMonthChange = (event) => {
         const selectedMonth = event.target.value;
@@ -21,6 +23,7 @@ function DateSelector1({ onSelectDateRange }) {
     };
 
     const handleDateRange = (range) => {
+        setActiveRange(range); // Set the active range
         let startDate, endDate;
 
         switch (range) {
@@ -66,12 +69,36 @@ function DateSelector1({ onSelectDateRange }) {
                     </option>
                 ))}
             </select>
-            <button onClick={() => handleDateRange('overall')}>Overall</button>
-            <button onClick={() => handleDateRange('thisMonth')}>This Month</button>
-            <button onClick={() => handleDateRange('lastMonth')}>Last Month</button>
-            <button onClick={() => handleDateRange('last3Months')}>Last 3 Months</button>
-            <button onClick={() => handleDateRange('last6Months')}>Last 6 Months</button>
-        
+            <button 
+                onClick={() => handleDateRange('overall')} 
+                style={{ color: activeRange === 'overall' ? '#007BFF' : 'initial' }}
+            >
+                Overall
+            </button>
+            <button 
+                onClick={() => handleDateRange('thisMonth')} 
+                style={{ color: activeRange === 'thisMonth' ? '#007BFF' : 'initial' }}
+            >
+                This Month
+            </button>
+            <button 
+                onClick={() => handleDateRange('lastMonth')} 
+                style={{ color: activeRange === 'lastMonth' ? '#007BFF' : 'initial' }}
+            >
+                Last Month
+            </button>
+            <button 
+                onClick={() => handleDateRange('last3Months')} 
+                style={{ color: activeRange === 'last3Months' ? '#007BFF' : 'initial' }}
+            >
+                Last 3 Months
+            </button>
+            <button 
+                onClick={() => handleDateRange('last6Months')} 
+                style={{ color: activeRange === 'last6Months' ? '#007BFF' : 'initial' }}
+            >
+                Last 6 Months
+            </button>
         </div>
     );
 }

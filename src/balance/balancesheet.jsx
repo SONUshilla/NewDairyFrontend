@@ -45,39 +45,34 @@ function BalanceSheet({ startDate, endDate, userId }) {
         return <div><Spinner></Spinner></div>;
       }
     return (
-        <div className="constainer1">
-            <span><h1>Balance Sheet</h1></span>
+        <div className="container1">
             <table className="balance-table">
                 <thead>
-                    <tr>
-                        <th>Date</th>
+                    <tr> 
                         <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                        <th style={{ textAlign: 'center' }}>Date</th>
+                        <th style={{ textAlign: 'center' }}>Quantity</th>
                         <th>Money</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr key={"morning"} className="MorningData">
-                        <td>----</td>
                         <td>Milk</td>
-                        <td>{balanceData.morning && (<p>{balanceData.morning.totalmilk ? balanceData.morning.totalmilk : 0}</p>)}</td>
-                        <td>----</td>
+                        <td></td>
+                        <td style={{ textAlign: 'center' }}>{balanceData.morning && (<p>{balanceData.morning.totalmilk ? balanceData.morning.totalmilk : 0}</p>)}</td>
                         <td>{balanceData.morning && (<p>{balanceData.morning.total ? balanceData.morning.total : 0}</p>)}</td>
                     </tr>
                     <tr key={"evening"} className="MorningData">
-                        <td>----</td>
                         <td>Milk</td>
-                        <td>{balanceData.evening && (<p>{balanceData.evening.totalmilk ? balanceData.evening.totalmilk : 0}</p>)}</td>
-                        <td>----</td>
+                        <td></td>
+                        <td style={{ textAlign: 'center' }}>{balanceData.evening && (<p>{balanceData.evening.totalmilk ? balanceData.evening.totalmilk : 0}</p>)}</td>
                         <td>{balanceData.evening && (<p>{balanceData.evening.total ? balanceData.evening.total : 0}</p>)}</td>
                     </tr>
                     {balanceData.borrow.map((item, index) => (
                         <tr key={index} className="MorningData">
-                            <td>{item.date}</td>
                             <td>{item.item}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.price}</td>
+                            <td style={{ textAlign: 'center' }}>{item.date}</td>
+                            <td style={{ textAlign: 'center' }}>{item.quantity}×{item.price}</td>
                             <td>{item.money}</td>
                         </tr>
                     ))}

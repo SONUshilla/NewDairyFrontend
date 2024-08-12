@@ -70,7 +70,7 @@ function TotalBalance({ startDate, endDate, userId }) {
   }
 
   return (
-    <div className="constainer1">
+    <div className="container1">
     <table className="balance-table">
       <thead>
         <tr>
@@ -110,11 +110,25 @@ function TotalBalance({ startDate, endDate, userId }) {
           <td>--</td>
           <td>{moneyGiven}</td>
         </tr>
-        <tr className="MorningData">
-          <td>Total</td>
-          <td>--</td>
-          <td style={{ color: "green" }}>{grandTotal}</td>
+        <tr style={{ borderTop: "2px solid #adadad" }}>
+  <td style={{
+    backgroundColor: "rgb(255, 255, 255)",
+    color: "#000000",
+    fontFamily: "'oswald', sans-serif",
+    fontWeight: 800,
+    fontSize: "15px",
+  }}>
+  Total</td>
+          <td></td>
+          <td style={{
+    backgroundColor: "rgb(255, 255, 255)",
+    color: "green",
+    fontFamily: "'oswald', sans-serif",
+    fontWeight: 800,
+    fontSize: "15px",
+  }}>{grandTotal}</td>
         </tr>
+
       </tbody>
     </table>
     </div>
