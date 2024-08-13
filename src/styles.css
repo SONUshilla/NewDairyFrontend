@@ -206,7 +206,7 @@ html{
 .user-select{
   display: flex;
   flex-direction: row;
-  flex:1;
+  overflow-x: scroll;
   gap:20px;
   justify-content: flex-start;
   align-items: center;
