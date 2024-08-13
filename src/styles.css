@@ -130,19 +130,17 @@ html{
   border: 2px solid;
   border-collapse: collapse;
   width: 100%;
+  background-color: #f9f9f9;
   box-shadow: 5px 5px 8px rgb(126, 123, 123);
 }
-.morningEntries tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+
 .morningEntries .MorningData {
   background-color: #cee9f5; /* Light blue */
 }
 .MorningHeading {
   padding: 5px;
-  background-color: rgb(240, 158, 219);
-  color: white;
-  border-bottom: 1px black solid;
+  background-color:#a0e7e5;
+  color: black;
 }
 .MorningData td{
       text-align: center;
@@ -377,6 +375,9 @@ background-color: #a0e7e5;
   padding: 10px;
   justify-content: top;
   align-items: start;
+  @media (max-width:500px) {
+    flex-direction: column;
+  }
 }
 
 .button-group {
@@ -480,4 +481,16 @@ background-color: #a0e7e5;
   grid-template-columns: 1fr 1fr;
   padding-bottom: 10px;
   padding: 10px;
+}
+
+.toggleBar{
+  display: flex;
+  background-color: black;
+  color: white;
+  gap:20px;
+  padding: 10px;
+margin-top: 2px;
+}
+.toggleBar p.active {
+  border-bottom: 2px solid yellow;
 }

@@ -50,8 +50,6 @@ function DefaultEntry() {
     };
 
     return (
-        <div className="form2">
-   <h1>Milk Entries</h1>
         <div className="DefaultEntry form">
             <form onSubmit={handleSubmit}>
                 <input style={{border:"2px solid black",color:"black", fontWeight:"bold" ,fontFamily: "'Truculenta', sans-serif"}} type="date" name="date" required></input>
@@ -71,7 +69,6 @@ function DefaultEntry() {
                 )}
                 <button  type="submit">Submit</button>
             </form>
-        </div>
         </div>
     );
 }

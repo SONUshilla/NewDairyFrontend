@@ -110,8 +110,6 @@ function DefaultMilk({ userId }) {
 
   return (
 
-   <div className="form2">
-   <h1>Milk Entries</h1>
     <div className="form">
     <div className="defaultButtons">
       <div className="button-group">
@@ -227,7 +225,7 @@ function DefaultMilk({ userId }) {
         <button style={{height:"30px", color:"white"}} type="submit" value="Submit" />
       </form>
     </div>
-    </div>
+
   );
 }
 

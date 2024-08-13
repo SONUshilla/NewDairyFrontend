@@ -18,6 +18,17 @@ function ViewEntries(props) {
   const [endDate, setEndDate] = useState(moment().format('YYYY-MM-DD'));
   const [userId, setUserId] = useState("");
   const [admin, setAdmin] = useState(false);
+  const [active, setActive] = useState('morning'); // Default active is 'milk'
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 850);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchAdminStatus = async () => {
@@ -108,7 +119,7 @@ function ViewEntries(props) {
             <ShowingEntries key={item.id} item={item} time={time} />
           ))}
         </tbody>
-        <tr className="MorningHeading" style={{ color: 'black' }}>
+        <tr className="MorningData" style={{ color: 'black',borderTop:"1px solid black" }}>
           <th>{total.totaldate} DAYS</th>
           <th>{total.totalweight} KG</th>
           <th>----</th>
@@ -154,20 +165,62 @@ function ViewEntries(props) {
     setUserId(selectedUserId);
   };
   return (
-    <div className='main1'>
-       {admin && <UserList onSelectUser={handleUserSelect} />}
-      <div className="DateSelector"><DateSelector updateDates={updateDates} /></div>
-      <div className='EntriesTable'>
-        <div>
-          <h1>MORNING</h1>
-          {showdata(data1, Mtotal, "morning")}
+    <>
+      {isSmallScreen ? (
+        <div className='main1'>
+          <div className="toggleBar">
+            <p 
+              className={active === 'morning' ? 'active' : ''}
+              onClick={() => setActive('morning')}
+            >
+              Morning
+            </p>
+            <p 
+              className={active === 'evening' ? 'active' : ''} 
+              onClick={() => setActive('evening')}
+            >
+              Evening
+            </p>
+          </div>
+          {admin && <UserList onSelectUser={handleUserSelect} />}
+          <div className="DateSelector">
+            <DateSelector updateDates={updateDates} />
+          </div>
+          <div className='EntriesTable'>
+            {active === 'morning' && (
+              <div>
+                <h1>MORNING</h1>
+                {showdata(data1, Mtotal, "morning")}
+              </div>
+            )}
+            {active === 'evening' && (
+              <div>
+                <h1>EVENING</h1>
+                {showdata(data2, Etotal, "evening")}
+              </div>
+            )}
+          </div>
+       
         </div>
-        <div>
-          <h1>EVENING</h1>
-          {showdata(data2, Etotal, "evening")}
+      ) : (
+        <div className='main1'>
+          {admin && <UserList onSelectUser={handleUserSelect} />}
+          <div className="DateSelector">
+            <DateSelector updateDates={updateDates} />
+          </div>
+          <div className='EntriesTable'>
+            <div>
+              <h1>MORNING</h1>
+              {showdata(data1, Mtotal, "morning")}
+            </div>
+            <div>
+              <h1>EVENING</h1>
+              {showdata(data2, Etotal, "evening")}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

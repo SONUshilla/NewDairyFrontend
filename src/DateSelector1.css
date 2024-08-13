@@ -11,6 +11,9 @@
   background: #f9f9f9; /* White background for the table */
   padding: 15px;
   margin: 0; /* Removes default margin */
+  @media (max-width: 800px) {
+    width: 100%;
+    }
   @media (max-width: 600px) {
     overflow-x: scroll;
     width: 100%;
