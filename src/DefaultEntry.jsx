@@ -50,11 +50,12 @@ function DefaultEntry() {
     };
 
     return (
-        <div className="DefaultEntry">
-            <h1>Entry</h1>
+        <div className="form2">
+   <h1>Milk Entries</h1>
+        <div className="DefaultEntry form">
             <form onSubmit={handleSubmit}>
-                <input type="date" name="date" required></input>
-                <select value={selectedOption} onChange={handleChange}>
+                <input style={{border:"2px solid black",color:"black", fontWeight:"bold" ,fontFamily: "'Truculenta', sans-serif"}} type="date" name="date" required></input>
+                <select style={{border:"2px solid black",color:"black", fontWeight:"bold" ,fontFamily: "'Truculenta', sans-serif"}}  value={selectedOption} onChange={handleChange}>
                     <option value="Money">Money</option>
                     <option value="Feed">Feed</option>
                     <option value="Ghee">Ghee</option>
@@ -64,12 +65,13 @@ function DefaultEntry() {
                     <input type="number" name="moneyAmount" placeholder="Enter money" />
                 ) : (
                     <>
-                        <input type="number" name="quantity" placeholder="Enter quantity" required/>
-                        <input type="number" name="price" placeholder="Enter price" required />
+                        <input style={{border:"2px solid black",color:"black", fontWeight:"bold" ,fontFamily: "'Truculenta', sans-serif"}} type="number" name="quantity" placeholder="Enter quantity" required/>
+                        <input style={{border:"2px solid black",color:"black", fontWeight:"bold" ,fontFamily: "'Truculenta', sans-serif"}}  type="number" name="price" placeholder="Enter price" required />
                     </>
                 )}
-                <button type="submit">Submit</button>
+                <button  type="submit">Submit</button>
             </form>
+        </div>
         </div>
     );
 }

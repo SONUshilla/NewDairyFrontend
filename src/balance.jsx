@@ -43,10 +43,11 @@ function Balance() {
   };
     return (
     <div className="balance-table-container">
-    <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
+
     <div className="user-select">
     {admin && <UserList onSelectUser={handleUserSelect} />}
-    <button onClick={()=>{window.print()}}><FontAwesomeIcon icon={faFileInvoice} /></button>   
+    <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
+    <button style={{color:"black",backgroundColor:"white",border:"1px solid black",padding:"8px"}} onClick={()=>{window.print()}}>🖨️ Print</button>   
     </div>
     <div className="table-container">
     <TotalBalance startDate={startDate} endDate={endDate} userId={userId}/>

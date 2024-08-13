@@ -66,8 +66,8 @@ function Header() {
       {check ? <Sidebar /> : null} 
       </div>
     <div className="header-icon">
-    {admin && <Link to="/addUser">
-        <FontAwesomeIcon icon={faUserPlus} />
+    {admin && <Link className="addUser" to="/addUser">
+        <FontAwesomeIcon icon={faUserPlus} /> ADD Customer
     </Link>}
     {user && <Link to={"/BothAuth"}>
       Admin account??

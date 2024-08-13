@@ -12,13 +12,22 @@ justify-content: space-evenly;
 .sidebar-link {
   display: block;
   padding: 10px;
-  color: #333;
+  font-family: italic;
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .sidebar-link.active {
-  color: #007BFF; /* Active link color */
+  background-color: #fff;
+  border-radius: 10px;
+  color: #5c00d2;
+  font-weight: bold;
+}
+.sidebar-link:hover{
+  background-color: #fff;
+  border-radius: 10px;
+  color: #5c00d2;
   font-weight: bold;
 }
 .bottom-nav{

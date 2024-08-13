@@ -18,28 +18,28 @@ function Sidebar() {
         to="/" 
         onClick={() => handleIconClick('home')}
       >
-        <FontAwesomeIcon icon={faHomeAlt} /> HOME
+         HOME
       </Link>
       <Link 
         className={`sidebar-link ${activeIcon === 'edit' ? 'active' : ''}`} 
         to="/entries" 
         onClick={() => handleIconClick('edit')}
       >
-        <FontAwesomeIcon icon={faPen} /> ENTRIES
+         ENTRIES
       </Link>
       <Link 
         className={`sidebar-link ${activeIcon === 'visibility' ? 'active' : ''}`} 
         to="/view-entries" 
         onClick={() => handleIconClick('visibility')}
       >
-        <FontAwesomeIcon icon={faEye} /> VIEW ENTRIES
+        VIEW ENTRIES
       </Link>
       <Link 
         className={`sidebar-link ${activeIcon === 'balance' ? 'active' : ''}`} 
         to="/balance" 
         onClick={() => handleIconClick('balance')}
       >
-        <FontAwesomeIcon icon={faMoneyBill} /> BALANCE
+         BALANCE
       </Link>
     </div>
   );

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import CowPriceEntryGrid from './CowPriceEntryGrid'; // Import the CowPriceEntryGrid component
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
+
 function DefaultMilk({ userId }) {
   const [inputs, setInputs] = useState({
     date: "",
@@ -12,9 +12,10 @@ function DefaultMilk({ userId }) {
     price: ""
   });
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [time, setTime] = useState('morning'); // Default time selecteds
+  const [time, setTime] = useState('morning');
   const [calculationType, setCalculationType] = useState("fat");
-  const [animalType, setAnimalType] = useState("buffalo"); // Default animal type is buffalo
+  const [animalType, setAnimalType] = useState("buffalo");
+
   useEffect(() => {
     if (calculationType === "fat") {
       setInputs(prevInputs => ({
@@ -37,12 +38,12 @@ function DefaultMilk({ userId }) {
     }));
   };
 
-  const handleCalculationTypeChange = (event) => {
-    setCalculationType(event.target.value);
+  const handleCalculationTypeChange = (value) => {
+    setCalculationType(value);
   };
 
-  const handleAnimalTypeChange = (event) => {
-    setAnimalType(event.target.value);
+  const handleAnimalTypeChange = (value) => {
+    setAnimalType(value);
   };
 
   const handleSubmit = async (event) => {
@@ -74,37 +75,23 @@ function DefaultMilk({ userId }) {
   const calculatePriceBasedOnFat = (animalType, fat) => {
     let price = 0;
     let fatValue = parseFloat(fat);
-  
+
     if (fatValue > 13) {
-      fatValue /= 10; // Convert "10.0" to "1.0"
+      fatValue /= 10;
     }
-  
-    if (animalType === "cow") {
-      let cowFatPrices = JSON.parse(localStorage.getItem("Cow_fatPrices"));
-  
-      // Check if cowFatPrices is not null before using find
-      if (cowFatPrices) {
-        const foundObject = cowFatPrices.find(obj => obj.value === fatValue);
-        if (foundObject) {
-          price = parseFloat(foundObject.inputValue);
-        }
-      }
-    } else if (animalType === "buffalo") {
-      let buffaloFatPrices = JSON.parse(localStorage.getItem("buffalo_fatPrices"));
-  
-      // Check if buffaloFatPrices is not null before using find
-      if (buffaloFatPrices) {
-        const foundObject = buffaloFatPrices.find(obj => obj.value === fatValue);
-        if (foundObject) {
-          price = parseFloat(foundObject.inputValue);
-        }
+
+    const localStorageKey = animalType === "cow" ? "Cow_fatPrices" : "buffalo_fatPrices";
+    const fatPrices = JSON.parse(localStorage.getItem(localStorageKey));
+
+    if (fatPrices) {
+      const foundObject = fatPrices.find(obj => obj.value === fatValue);
+      if (foundObject) {
+        price = parseFloat(foundObject.inputValue);
       }
     }
 
-    
     return price.toFixed(2);
   };
-  
 
   const calculatePriceBasedOnFatAndSNF = (animalType, fat, snf) => {
     let price = 0;
@@ -113,82 +100,71 @@ function DefaultMilk({ userId }) {
 
     const localStorageKey = animalType === 'cow' ? 'cowChartData' : 'buffaloChartData';
     const storedPrices = JSON.parse(localStorage.getItem(localStorageKey));
-    const prices = storedPrices 
-    // Check if prices exist and if the indices are within bounds
-    if (prices && prices.length > snfValue && prices[snfValue].length > fatValue) {
-        price = parseFloat(prices[snfValue][fatValue]) || 0;
+    
+    if (storedPrices && storedPrices.length > snfValue && storedPrices[snfValue].length > fatValue) {
+      price = parseFloat(storedPrices[snfValue][fatValue]) || 0;
     }
 
     return price.toFixed(2);
-};
-
+  };
 
   return (
-    <div>
-      <div className="radios">
-        <div className="radio-group">
-          <label>
-            <input
-              type="radio"
-              name="calculationType"
-              value="fat"
-              checked={calculationType === "fat"}
-              onChange={handleCalculationTypeChange}
-            />Fat only
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="calculationType"
-              value="fatAndSNF"
-              checked={calculationType === "fatAndSNF"}
-              onChange={handleCalculationTypeChange}
-            />Fat and SNF
-          </label>
-        </div>
-        <div className="radio-group">
-          <label>
-            <input
-              type="radio"
-              name="animalType"
-              value="buffalo"
-              checked={animalType === "buffalo"}
-              onChange={handleAnimalTypeChange}
-            />Buffalo
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="animalType"
-              value="cow"
-              checked={animalType === "cow"}
-              onChange={handleAnimalTypeChange}
-            />Cow
-          </label>
-        </div>
-        <div className="radio-group">
-          <label >
-            <input
-              type="radio"
-              id="morning"
-              name="time"
-              value="morning"
-              checked={time === 'morning'}
-              onChange={() => setTime('morning')}
-            />Morning
-          </label>
-          <label >
-            <input
-              type="radio"
-              id="evening"
-              name="time"
-              value="evening"
-              checked={time === 'evening'}
-              onChange={() => setTime('evening')}
-            />Evening
-          </label>
-        </div>
+
+   <div className="form2">
+   <h1>Milk Entries</h1>
+    <div className="form">
+    <div className="defaultButtons">
+      <div className="button-group">
+        <button
+          type="button"
+          className={`calc-button ${calculationType === "fat" ? "active" : ""}`}
+          onClick={() => handleCalculationTypeChange("fat")}
+        >
+          Fat only
+        </button>
+        <button
+          type="button"
+          className={`calc-button ${calculationType === "fatAndSNF" ? "active" : ""}`}
+          onClick={() => handleCalculationTypeChange("fatAndSNF")}
+        >
+          Fat and SNF
+        </button>
       </div>
+
+      <div className="button-group">
+        <button
+          type="button"
+          className={`animal-button ${animalType === "buffalo" ? "active" : ""}`}
+          onClick={() => handleAnimalTypeChange("buffalo")}
+        >
+          Buffalo
+        </button>
+        <button
+          type="button"
+          className={`animal-button ${animalType === "cow" ? "active" : ""}`}
+          onClick={() => handleAnimalTypeChange("cow")}
+        >
+          Cow
+        </button>
+      </div>
+
+      <div className="button-group">
+        <button
+          type="button"
+          className={`time-button ${time === "morning" ? "active" : ""}`}
+          onClick={() => setTime("morning")}
+        >
+          Morning
+        </button>
+        <button
+          type="button"
+          className={`time-button ${time === "evening" ? "active" : ""}`}
+          onClick={() => setTime("evening")}
+        >
+          Evening
+        </button>
+      </div>
+        </div>
       <form id="myForm" onSubmit={handleSubmit}>
         <div className="DefaultEntry">
           <input
@@ -248,8 +224,9 @@ function DefaultMilk({ userId }) {
           />
           <label htmlFor="price" className={`input-label ${inputs.price ? "visited" : "not_visited"}`}>Price</label>
         </div>
-        <input type="submit" value="Submit" />
+        <button style={{height:"30px", color:"white"}} type="submit" value="Submit" />
       </form>
+    </div>
     </div>
   );
 }
