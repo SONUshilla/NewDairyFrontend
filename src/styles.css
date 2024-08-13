@@ -375,7 +375,7 @@ background-color: #a0e7e5;
   padding: 10px;
   justify-content: top;
   align-items: start;
-  @media (max-width:500px) {
+  @media (max-width:800px) {
     flex-direction: column;
   }
 }
