@@ -13,21 +13,21 @@ justify-content: space-evenly;
   display: block;
   padding: 10px;
   font-family: italic;
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   transition: color 0.3s ease;
+
 }
 
 .sidebar-link.active {
-  background-color: #fff;
-  border-radius: 10px;
-  color: #5c00d2;
+
+  border-bottom: 1px solid black;
+  color: black;
   font-weight: bold;
 }
 .sidebar-link:hover{
-  background-color: #fff;
-  border-radius: 10px;
-  color: #5c00d2;
+  border-bottom: 1px solid black;
+  color: black;
   font-weight: bold;
 }
 .bottom-nav{
@@ -65,9 +65,7 @@ justify-content: space-evenly;
 }
 
 }
-.sidebar-link:hover{
-  border-bottom:1px solid;
-}
+
 .material-symbols-rounded.active {
   color: #ff6347; /* Active color, e.g., tomato */
   transform: scale(1.2); /* Pop-up effect */

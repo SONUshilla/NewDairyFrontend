@@ -1,9 +1,9 @@
 
 
 .footer {
-    background-color: #222121;
+    background-color: #cee9f5;
     padding: 40px;
-    color: #fffbfb;
+    color: #000000;
     flex-shrink: 0;
     height: auto;
   }
@@ -33,6 +33,5 @@
   .footer-bottom {
     margin-top: 20px;
     text-align: center;
-    background-color: #222121;
   }
   

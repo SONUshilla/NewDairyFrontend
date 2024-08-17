@@ -1,143 +1,97 @@
-/* Home.css */
-.home-container {
-    text-align: center;
-    padding: 0px 0px 50px 0px;
+.hero-section {
+  display: flex;
+  height: 90vh;
+
 }
 
-.home-content {
-    max-width: 100vw;
-    margin: 0 auto;
+.text-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #cee9f5;
+  text-align: left;
+}
+
+.text-content h1 {
+  font-size: 8rem;
+  color: #6c2eb9;
+  margin-bottom: 20px;
+}
+
+.text-content p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #cee9f5;
+}
+
+.image-hero {
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+.homepage-body {
+  padding: 20px;
 }
 
 .feature-section {
-    display: flex;
-    flex-wrap: nowrap; /* Allow items to wrap to the next line if needed */
-    justify-content: space-around;
-    gap: 20px;
-    flex: 1;
-    margin-top: 50px;
-    @media (max-width: 768px) {
-        flex-direction: column;
-    }
-}
-.main-home {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    @media (max-width: 768px) {
-        height: 50vh;
-    }
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of items */
+  gap: 20px; /* Space between the cards */
+  justify-content: space-between; /* Distributes space between items */
 }
 
-.Home-icons {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    gap: 10px;
+.feature-box {
+  flex: 1 1 calc(33.333% - 20px); /* Three columns with space between */
+  box-sizing: border-box; /* Includes padding and border in the width calculation */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds hover effects */
 }
 
-.btn {
-    text-decoration: none;
-}
-.btn2{
-    transform: rotateY(180deg);
-}
-.icon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Center content vertically */
-    border: 1px solid black;
-    padding: 10px;
-    background-color: #f0f0f0; /* Light gray background color */
-    width: 120px; /* Set fixed width to ensure consistent size */
+.feature-box:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 
-.icon-container:hover {
-    background-color: #e0e0e0; /* Darker background color on hover */
+.feature-image {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+  object-fit: contain;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.icon {
-    margin-bottom: 5px; /* Adjust spacing */
+.feature-box p {
+  color: #333;
+  font-size: 16px;
+  margin: 10px 0 0;
 }
 
-.icon-svg {
-    width: 50px; /* Adjust dimensions as needed */
-    height: 50px; /* Adjust dimensions as needed */
-}
-.full-screen-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .feature-box {
+    flex: 1 1 calc(50% - 20px); /* Two columns */
+  }
 }
 
-.content-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: left;
-    padding: 20px;
-    color: #fff; /* Text color set to white */
-    @media (max-width: 768px) {
-       
-    }
+@media (max-width: 480px) {
+  .feature-box {
+    flex: 1 1 100%; /* Single column */
+  }
 }
-
-h1, p {
-    margin: 0;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.5); Semi-transparent black overlay */
-    z-index: 1; /* Ensure the overlay is above the image */
-}
-
-
-
-
-.feature {
-    flex: 0 1 30%; /* Set flex basis to 30% to ensure equal width for feature items */
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px;
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center align content within feature item */
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .5); /* Add a shadow */
-    gap: 20px;
-    @media screen and (max-width: 600px) {
-        flex-direction: column;
-    }
-}
-
-.feature img {
-    width: 100%; /* Stretch the image horizontally */
-    height: auto; /* Stretch the image vertically */
-    /* max-width: 40vh; Limit the maximum width */
-    /* max-height: 20vh; Limit the maximum height */
-    object-fit: cover; /* Ensure the image covers the entire container */
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3); /* Add a shadow */
-}
-
-.feature h2 {
-}
-
-.feature p {
-    color: #666;
-}
-
-

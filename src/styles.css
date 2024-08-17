@@ -28,12 +28,12 @@ html{
   display: grid;
   grid-template-columns: 4rem 1fr 1.5fr 1fr 4rem;
   width: 100%;
-  border-bottom: 1px solid black;
   z-index: 4;
   margin: 0;
   padding: 0;
   position: sticky;
-  background: linear-gradient(90deg, #8a2be2, #5c00d2);
+  background-color: #cee9f5;
+  /*background: linear-gradient(90deg, #8a2be2, #5c00d2);*/
   color: white;
   align-content: center;
 }
@@ -42,13 +42,12 @@ html{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: rgb(255, 255, 255);
   font-size: 25px;
 } 
 .logo-text {
   font-family: 'Playfair Display', serif; /* Example font for logo */
   font-weight: 100; /* You can adjust the font weight as needed */
-  color: white;
+  color: linear-gradient(90deg, #8a2be2, #5c00d2);
 }
 .logo-link{
   text-decoration: none;
@@ -65,8 +64,7 @@ html{
   padding-top: 5px;
 }
 .addUser{
-  background-color:white;
-  color:white;
+  color:black;
   border-radius: 8px;
   padding: 4px;
 }
@@ -94,7 +92,7 @@ html{
 
 .full {
   font-family: 'Truculenta', sans-serif;
-  background: #cee1f3;
+  background: #cee9f5;
   flex-grow: 1;
 
 }
@@ -206,10 +204,13 @@ html{
 .user-select{
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
   gap:20px;
   justify-content: flex-start;
   align-items: center;
+  @media (max-width:600px) {
+    overflow-x: scroll;
+  }
+  margin-left: 4rem;
 }
 .user-select button{
   background: transparent;

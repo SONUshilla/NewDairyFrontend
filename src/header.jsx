@@ -1,6 +1,6 @@
 import React from "react";
 import UserIcon from "./userIcon";
-import { Routes,Route ,Link} from "react-router-dom";
+import { Routes,Route ,Link, Navigate,useNavigate} from "react-router-dom";
 import Sidebar from "./sidebar"
 import AddUserForm from "./adduser";
 import { useState,useEffect } from "react";
@@ -14,6 +14,7 @@ function Header() {
   const [admin, setAdmin] = useState(false);
   const [user, setUser] = useState(false);
   const [check,setCheck]=useState(false);
+  const navigate = useNavigate(); // Get the navigate function
   useEffect(() => {
     const fetchAdminStatus = async () => {
       try {
@@ -54,6 +55,10 @@ function Header() {
     checkSession();
   }, []);
 
+  const handleClick = () => {
+    navigate("/login"); // Navigate to the /login page
+  };
+
 
   return (
     <div class="header">
@@ -72,7 +77,7 @@ function Header() {
     {user && <Link to={"/BothAuth"}>
       Admin account??
     </Link>}
-      <UserIcon/>
+    {check ? <UserIcon/> :  <button onClick={handleClick} style={{ color: "black" }}>Sign Up</button>} 
     </div>
     </div>
   );
