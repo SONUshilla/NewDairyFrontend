@@ -21,8 +21,10 @@ function CustomerTable(){
         fetchData();
     }, []);
 
-    return (
+    return (<>
+    
         <div className="customer-table">
+        <h3 className="table-heading">Customer Table</h3>
             <ul className="icon-list">
                 {customers.map((customer, index) => (
                     <li key={customer.id}>
@@ -33,6 +35,7 @@ function CustomerTable(){
                 ))}
             </ul>
         </div>
+        </>
     );
 }
 

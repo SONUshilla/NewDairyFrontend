@@ -86,19 +86,24 @@ html{
 .container {
     max-width: 100vw; /* Prevents the screen from exceeding the viewport width */
     min-height:100vh;
+
   
 }
 
 
 .full {
+
   font-family: 'Truculenta', sans-serif;
   background: #cee9f5;
   flex-grow: 1;
-
 }
 .main{
   max-width: 100%;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  background-color: #cee9f5;
 }
+
 
 
 
@@ -462,7 +467,7 @@ background-color: #a0e7e5;
 }
 .Default{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: start;
   @media (max-width: 768px) {
    flex-direction: column;

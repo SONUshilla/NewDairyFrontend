@@ -5,8 +5,57 @@ import itemImage3 from "./images/item3.png";
 import poster from "./images/home.jpg";
 import './home.css';
 import Footer from "./footer";
+import CustomerTable from "./customerTable";
 
 function Home({ isLoggedIn }) {
+
+  if (isLoggedIn) {
+    return (
+      <div className="homepage-grid">
+        <div className="homepage-card1">
+          <CustomerTable/>
+        </div>
+        <div className="homepage-card2">
+        <h3 className="table-heading">Stock Table</h3>
+        <div className="stock-table">
+               
+                <span >item</span>
+                <span className="name">Quantity sold</span>
+                <span className="name">Amount</span>
+        </div>
+        </div>
+        <>
+        <div className="homepage-card3">
+        <h3 className="table-heading">Stock Table</h3>
+        
+    <div className="summary-item">
+        <span className="label">Milk Arrived Today:</span>
+        <span className="value">500 liters</span>
+    </div>
+    <div className="summary-item">
+        <span className="label">Feed Sold:</span>
+        <span className="value">300 kg</span>
+    </div>
+    <div className="summary-item">
+        <span className="label">Ghee Sold:</span>
+        <span className="value">50 kg</span>
+    </div>
+    <div className="summary-item">
+        <span className="label">Money Given:</span>
+        <span className="value">₹20,000</span>
+    </div>
+    <div className="summary-item">
+        <span className="label">Money Received:</span>
+        <span className="value">₹15,000</span>
+    </div>
+</div></>
+
+      </div>
+    );
+  }
+  
+  
+
 
 
   return (<>
