@@ -90,7 +90,6 @@ function Home({ isLoggedIn }) {
 
   </div>
   </div>
-  <Footer/>
   </>
   );
 }

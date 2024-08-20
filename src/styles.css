@@ -102,6 +102,10 @@ html{
   margin-left: 4rem;
   margin-right: 4rem;
   background-color: #cee9f5;
+  @media (max-width:800px) {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
 
@@ -215,7 +219,6 @@ html{
   @media (max-width:600px) {
     overflow-x: scroll;
   }
-  margin-left: 4rem;
 }
 .user-select button{
   background: transparent;
@@ -224,10 +227,8 @@ html{
 /* Container for side-by-side tables */
 .table-container {
 display: flex;
-flex: 1fr 1fr;
-flex-grow: 1;
 min-height: 100vh;
-justify-content: space-around;
+justify-content: space-between;
 @media(max-width:800px){
 flex-direction: column;
 justify-content: flex-start;

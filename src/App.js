@@ -13,6 +13,7 @@ export default function App() {
       <div className="container">
         <Main />
         <BottomBar/>
+        <Footer/>
       </div>
     </Router>
   );

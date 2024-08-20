@@ -1,36 +1,51 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 import { baseURL } from './config'; // Adjust the import path as necessary
-const GoogleAuthCallback = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const handleGoogleAuth = async () => {
-      try {
-        // Make a request to the backend to complete the authentication process
-        const response = await axios.get(`${baseURL}/auth/google/`);
-        // Assuming the backend sends user data upon successful authentication
-        const userData = response.data.user;
-        // Redirect to the home page or any other route after successful authentication
-        navigate('/home');
-      } catch (error) {
-        // Handle authentication error
-        console.error('Authentication failed:', error);
-        // Redirect to the login page or show an error message
-        navigate('/login');
-      }
-    };
 
-    // Call the authentication handler when the component mounts
-    handleGoogleAuth();
-  }, [navigate]); // Depend on navigate to prevent useEffect from running in an infinite loop
+const clientId = '52798891502-335tpaser7uatbprq1upm5kpmafn2qr4.apps.googleusercontent.com'; // Replace with your Google Client ID
+
+const GoogleAuth = () => {
+  const handleSuccess = async (response) => {
+    try {
+      const idToken = response.credential;
+      const userInfo = jwtDecode(idToken);
+
+      const dataToSend = {
+        idToken,
+        user: {
+          email: userInfo.email,
+          name: userInfo.name,
+          picture: userInfo.picture,
+        },
+      };
+      const backendResponse = await axios.post(`${baseURL}/auth/google/callback`, dataToSend);
+      const { token, user } = backendResponse.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error sending data to the backend:', error);
+    }
+  };
+
+  const handleFailure = (error) => {
+    console.error('Google login failed:', error);
+  };
 
   return (
-    <div>
-      <p>Redirecting...</p>
-      {/* You can add a loading spinner or any other UI element here */}
-    </div>
+    <GoogleOAuthProvider clientId={clientId}>
+      <div>
+        <h2>Login with Google</h2>
+        <GoogleLogin
+          onSuccess={handleSuccess}
+          onFailure={handleFailure}
+          useOneTap
+        />
+      </div>
+    </GoogleOAuthProvider>
   );
 };
 
-export default GoogleAuthCallback;
+export default GoogleAuth;

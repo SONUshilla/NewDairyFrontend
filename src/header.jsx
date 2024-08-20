@@ -74,9 +74,7 @@ function Header() {
     {admin && <Link className="addUser" to="/addUser">
         <FontAwesomeIcon icon={faUserPlus} /> ADD Customer
     </Link>}
-    {user && <Link to={"/BothAuth"}>
-      Admin account??
-    </Link>}
+
     {check ? <UserIcon/> :  <button onClick={handleClick} style={{ color: "black" }}>Sign Up</button>} 
     </div>
     </div>

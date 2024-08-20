@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import "./login.css";
+import GoogleAuth from './GoogleAuthCallback';
 const LoginPage = () => {
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -98,9 +99,7 @@ const LoginPage = () => {
     </div>
     <button className="loginButton" onClick={handleLogin}>Login</button>
     <div className="divider"><span>or</span></div>
-    <button className="google-button" onClick={handleGoogleLogin}>
-      <FaGoogle className="icon" /> Login with Google
-    </button>
+    <GoogleAuth/>
     <p className="login-text">Don't have an account? <Link to="/register">Register here</Link></p>
     <br/>
     <p className="login-text">Admin register here? <Link to="/admin-register">Register here</Link></p>

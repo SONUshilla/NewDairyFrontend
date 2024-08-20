@@ -1,7 +1,7 @@
 /* General styles */
 
 .fullBody{
-    background-color: #f0f4f8;
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@
         align-items: center;
     }
     .card {
-        background-color: #ffffff;
+        background-color: #cee9f5;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         text-align: center;
         width: 100%; /* Make the card take full width */

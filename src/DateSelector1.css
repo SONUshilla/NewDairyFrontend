@@ -4,7 +4,8 @@
   border:1px solid black;
 }
 .balance-table {
-  width: 48vw; /* Half of the screen width, adjusted for margin and spacing */
+  flex-grow: 1;
+  width: 43vw;
   border-collapse: collapse; /* Allows rounded corners */
   overflow: scroll; /* Ensures rounded corners work */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a soft effect */

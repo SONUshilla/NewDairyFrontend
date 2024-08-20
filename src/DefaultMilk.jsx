@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
@@ -15,6 +15,16 @@ function DefaultMilk({ userId }) {
   const [time, setTime] = useState('morning');
   const [calculationType, setCalculationType] = useState("fat");
   const [animalType, setAnimalType] = useState("buffalo");
+  const [today, setToday] = useState('');
+
+  // References to input fields
+  const inputRefs = useRef({});
+
+  // Set today's date when the component mounts
+  useEffect(() => {
+      const todayDate = new Date().toISOString().split('T')[0];
+      setToday(todayDate);
+  }, []);
 
   useEffect(() => {
     if (calculationType === "fat") {
@@ -108,61 +118,70 @@ function DefaultMilk({ userId }) {
     return price.toFixed(2);
   };
 
+  const handleKeyDown = (e, index) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent form submission
+      // Focus on the next input field
+      if (inputRefs.current[index + 1]) {
+        inputRefs.current[index + 1].focus();
+      }
+    }
+  };
+
   return (
-
     <div className="form">
-    <div className="defaultButtons">
-      <div className="button-group">
-        <button
-          type="button"
-          className={`calc-button ${calculationType === "fat" ? "active" : ""}`}
-          onClick={() => handleCalculationTypeChange("fat")}
-        >
-          Fat only
-        </button>
-        <button
-          type="button"
-          className={`calc-button ${calculationType === "fatAndSNF" ? "active" : ""}`}
-          onClick={() => handleCalculationTypeChange("fatAndSNF")}
-        >
-          Fat and SNF
-        </button>
-      </div>
-
-      <div className="button-group">
-        <button
-          type="button"
-          className={`animal-button ${animalType === "buffalo" ? "active" : ""}`}
-          onClick={() => handleAnimalTypeChange("buffalo")}
-        >
-          Buffalo
-        </button>
-        <button
-          type="button"
-          className={`animal-button ${animalType === "cow" ? "active" : ""}`}
-          onClick={() => handleAnimalTypeChange("cow")}
-        >
-          Cow
-        </button>
-      </div>
-
-      <div className="button-group">
-        <button
-          type="button"
-          className={`time-button ${time === "morning" ? "active" : ""}`}
-          onClick={() => setTime("morning")}
-        >
-          Morning
-        </button>
-        <button
-          type="button"
-          className={`time-button ${time === "evening" ? "active" : ""}`}
-          onClick={() => setTime("evening")}
-        >
-          Evening
-        </button>
-      </div>
+      <div className="defaultButtons">
+        <div className="button-group">
+          <button
+            type="button"
+            className={`calc-button ${calculationType === "fat" ? "active" : ""}`}
+            onClick={() => handleCalculationTypeChange("fat")}
+          >
+            Fat only
+          </button>
+          <button
+            type="button"
+            className={`calc-button ${calculationType === "fatAndSNF" ? "active" : ""}`}
+            onClick={() => handleCalculationTypeChange("fatAndSNF")}
+          >
+            Fat and SNF
+          </button>
         </div>
+
+        <div className="button-group">
+          <button
+            type="button"
+            className={`animal-button ${animalType === "buffalo" ? "active" : ""}`}
+            onClick={() => handleAnimalTypeChange("buffalo")}
+          >
+            Buffalo
+          </button>
+          <button
+            type="button"
+            className={`animal-button ${animalType === "cow" ? "active" : ""}`}
+            onClick={() => handleAnimalTypeChange("cow")}
+          >
+            Cow
+          </button>
+        </div>
+
+        <div className="button-group">
+          <button
+            type="button"
+            className={`time-button ${time === "morning" ? "active" : ""}`}
+            onClick={() => setTime("morning")}
+          >
+            Morning
+          </button>
+          <button
+            type="button"
+            className={`time-button ${time === "evening" ? "active" : ""}`}
+            onClick={() => setTime("evening")}
+          >
+            Evening
+          </button>
+        </div>
+      </div>
       <form id="myForm" onSubmit={handleSubmit}>
         <div className="DefaultEntry">
           <input
@@ -173,6 +192,8 @@ function DefaultMilk({ userId }) {
             onChange={handleChange}
             onFocus={toggleDatePicker}
             onBlur={toggleDatePicker}
+            onKeyDown={(e) => handleKeyDown(e, 0)}
+            ref={(el) => (inputRefs.current[0] = el)}
           />
           <label htmlFor="date" className={`input-label ${inputs.date ? "visited" : "not_visited"}`}>Date</label>
         </div>
@@ -186,6 +207,8 @@ function DefaultMilk({ userId }) {
             value={inputs.weight}
             onChange={handleChange}
             className={inputs.weight ? "visited" : "not_visited"}
+            onKeyDown={(e) => handleKeyDown(e, 1)}
+            ref={(el) => (inputRefs.current[1] = el)}
           />
           <label htmlFor="weight" className={`input-label ${inputs.weight ? "visited" : "not_visited"}`}>Weight</label>
         </div>
@@ -197,10 +220,12 @@ function DefaultMilk({ userId }) {
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.fat}
             onChange={handleChange}
+            onKeyDown={(e) => handleKeyDown(e, 2)}
+            ref={(el) => (inputRefs.current[2] = el)}
           />
           <label htmlFor="fat" className={`input-label ${inputs.fat ? "visited" : "not_visited"}`}>Fat</label>
         </div>
-        <div className="DefaultEntry">
+        {calculationType!="fat" && <div className="DefaultEntry">
           <input
             name="snf"
             id="snf"
@@ -208,9 +233,11 @@ function DefaultMilk({ userId }) {
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.snf}
             onChange={handleChange}
+            onKeyDown={(e) => handleKeyDown(e, 3)}
+            ref={(el) => (inputRefs.current[3] = el)}
           />
           <label htmlFor="snf" className={`input-label ${inputs.snf ? "visited" : "not_visited"}`}>SNF</label>
-        </div>
+        </div> }
         <div className="DefaultEntry">
           <input
             name="price"
@@ -219,13 +246,14 @@ function DefaultMilk({ userId }) {
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.price}
             onChange={handleChange}
+            onKeyDown={(e) => handleKeyDown(e, 4)}
+            ref={(el) => (inputRefs.current[4] = el)}
           />
           <label htmlFor="price" className={`input-label ${inputs.price ? "visited" : "not_visited"}`}>Price</label>
         </div>
         <button style={{height:"30px", color:"white"}} type="submit" value="Submit" />
       </form>
     </div>
-
   );
 }
 
