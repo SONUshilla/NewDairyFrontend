@@ -40,6 +40,8 @@ function TotalBalance({ startDate, endDate, userId }) {
       setFeed(feed.totalMoney);
       setFeedQuantity(feed.totalQuantity);
       setMoneyReceived(moneyReceivedResults.totalMoney);
+      console.log(moneyReceivedResults.totalMoney);
+      console.log(moneyGivenResults.totalMoney);
       setMoneyGiven(moneyGivenResults.totalMoney);
       setGhee(ghee.totalMoney);
       setGheeQuantity(ghee.totalQuantity);

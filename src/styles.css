@@ -307,38 +307,75 @@ justify-content: flex-start;
 
 
 /*userIcon*/
+.userMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 20rem;
+  height: 100%;
+  background-color: white;  /* Updated to white background */
+  color: #333;
+  padding: 1rem;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Truculenta', sans-serif;  /* Ensure good font is used */
+  animation: slideInOut 0.4s ease-in-out 1; /* Run animation only once */
 
-.userInfoModal {
-  position: absolute;
-  right: 250px;
-  transform: translateX(calc(100% + 10px));
-  z-index: 2;
-  background-color: #f0f0f0; /* Grey background color */
-  border: 1px solid #ccc; /* Grey border */
-  padding: 10px;
+
+}
+
+.menuProfile{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.menuProfile img{
+  width: 4rem;
+}
+.userMenuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.menuIcon, .closeIcon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c2eb9;  /* Purple color for icons */
+  
+}
+
+.userMenuIcons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.userMenuIcons li {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #f9f9f9;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  color: #333;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
 }
 
-.userInfoContent {
-  position: relative;
-  text-align: center;
+.userMenuIcons li:hover {
+  background-color: #e0e0e0;  /* Slightly darker background on hover */
 }
-
-.userInfoTable {
-  width: 200px;
+@keyframes slideInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-.tableLabel {
-  font-weight: bold;
-  padding-right: 10px;
-}
-
-.tableData {
-  padding-left: 10px;
-  font-size: 1rem;
-}
-
 .logoutButton {
   margin-top: 10px;
   background-color: #f44336; /* Red color for logout button */
@@ -348,6 +385,45 @@ justify-content: flex-start;
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  color: #333;
+}
+
+.menu-item i {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.menu-item:hover {
+  background-color: #ececec;
+}
+
+.menu-item.logout {
+  margin-top: auto;
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.menu-item.logout:hover {
+  background-color: #ff6666;
 }
 
 .logoutButton:hover {

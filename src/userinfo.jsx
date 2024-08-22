@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState,useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,10 +7,21 @@ import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
 function UserInfoSection({ userData }) {
   const [showUserInfo, setShowUserInfo] = useState(false);
-  const toggleUserInfo = () => {
-    setShowUserInfo(!showUserInfo);
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);  // Create ref for the menu
 
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsOpen(false);  // Close the menu if click is outside
+    }
+  };
+  
+  const toggleUserInfo = () => {
+    setIsOpen(true);
+  };
+  const closeMenu = () => {
+   setIsOpen(null);
+  };
   const handleLogout = async () => {
     try {
       // Make a logout request to your backend server
@@ -38,6 +49,14 @@ function UserInfoSection({ userData }) {
     }
   };
 
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div>
       {userData ? (
@@ -47,23 +66,78 @@ function UserInfoSection({ userData }) {
           ) : (
             <FontAwesomeIcon icon={faUserCircle} className="profileIcon" size="2x" />
           )}
-          {showUserInfo && (
-            <div className="userInfoModal">
-              <div className="userInfoContent">
-                <table className="userInfoTable">
-                  <tbody className="tableData">
-                    <tr>
-                      <td>{userData.name}</td>
-                    </tr>
-                    <tr>
-                      <td>{userData.username}</td>
-                    </tr>
-                    {/* Add more rows for additional user info if needed */}
-                  </tbody>
-                </table>
-                <button onClick={handleLogout} className="logoutButton">Logout</button>
-              </div>
-            </div>
+          {isOpen && (
+            <div className="userMenu" ref={menuRef}>
+              <div className="userMenuHeader">
+
+    <span className="closeIcon" onMouseDown={closeMenu}>✖</span> 
+  </div>
+            <div className='menuProfile'>
+      {userData.image ? (
+            <img src={userData.image} alt={userData.name} className="profileImage" />
+          ) : (
+            <FontAwesomeIcon icon={faUserCircle} className="profileIcon" size="2x" />
+          )}
+          <h4>{userData.name}</h4>
+          <p>{userData.username}</p>
+
+  </div>
+
+  <div className="userMenuIcons">
+    <ul>
+    <li
+  onMouseDown={() => {
+    // Prompt user for input
+    const input = prompt("Enter your Buffalo Milk prices");
+
+    // Validate input and store in localStorage if it's a number
+    if (input !== null) { // Check if the user pressed 'Cancel'
+      const numberInput = Number(input);
+
+      // Check if the input is a valid number
+      if (!isNaN(numberInput) && isFinite(numberInput)) {
+        localStorage.setItem("buffaloFatPrices", numberInput);
+        alert("Fat prices stored successfully.");
+      } else {
+        alert("Please enter a valid number.");
+      }
+    }
+  }}
+>
+  Buffalo prices
+</li>
+
+<li
+  onMouseDown={() => {
+    // Prompt user for input
+    const input = prompt("Enter your Cow Milk prices");
+
+    // Validate input and store in localStorage if it's a number
+    if (input !== null) { // Check if the user pressed 'Cancel'
+      const numberInput = Number(input);
+
+      // Check if the input is a valid number
+      if (!isNaN(numberInput) && isFinite(numberInput)) {
+        localStorage.setItem("cowFatPrices", numberInput);
+        alert("Fat prices stored successfully.");
+      } else {
+        alert("Please enter a valid number.");
+      }
+    }
+  }}
+>
+  Cow prices
+</li>
+
+      <li>Hlo</li>
+      <li>Hlo</li>
+      <li>Hlo</li>
+      <li onClick={handleLogout} className='logoutButton'>Logout</li>
+    </ul>
+  
+  </div>
+</div>
+
           )}
         </div>
       ) : (

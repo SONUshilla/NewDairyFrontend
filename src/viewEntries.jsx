@@ -64,9 +64,10 @@ function ViewEntries(props) {
     try {
       // Make an HTTP request to your backend to delete the entry with itemId
       setUpAxios();
-      const response = await axios.delete(`${baseURL}/deleteEntry`, { data: { itemId, time } });
-      // Check the status code of the response
       console.log(itemId,time);
+      const response = await axios.post(`${baseURL}/deleteEntry`, { data: { itemId, time } });
+      // Check the status code of the response
+      
       if (response.status === 200) {
         // If the deletion was successful, update the state or perform any necessary actions
         fetchData(); // Refetch data after deletion
