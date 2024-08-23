@@ -260,7 +260,7 @@ function DefaultMilk({ userId }) {
           <input
             name="weight"
             id="weight"
-            type="text"
+            type="date"
             pattern="[0-9]+(\.[0-9]+)?"
             required
             value={inputs.weight}
@@ -275,7 +275,7 @@ function DefaultMilk({ userId }) {
           <input
             name="fat"
             id="fat"
-            type="text"
+            type="number"
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.fat}
             onChange={handleChange}
@@ -288,7 +288,7 @@ function DefaultMilk({ userId }) {
           <input
             name="snf"
             id="snf"
-            type="text"
+            type="number"
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.snf}
             onChange={handleChange}
@@ -301,7 +301,7 @@ function DefaultMilk({ userId }) {
           <input
             name="price"
             id="price"
-            type="text"
+            type="number"
             pattern="[0-9]+(\.[0-9]+)?"
             value={inputs.price}
             onChange={handleChange}
