@@ -1,5 +1,5 @@
-import React, { useRef, useState,useEffect } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import React, { useRef, useState,useEffect} from 'react';
+import { Link, Navigate,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,7 @@ function UserInfoSection({ userData }) {
   const [showUserInfo, setShowUserInfo] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);  // Create ref for the menu
-
+const navigate=useNavigate();
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       setIsOpen(false);  // Close the menu if click is outside
@@ -129,7 +129,9 @@ function UserInfoSection({ userData }) {
   Cow prices
 </li>
 
-      <li>Hlo</li>
+      <li onMouseDown={()=>{
+        navigate("/buffalo/prices/snf")
+      }}>Cow</li>
       <li>Hlo</li>
       <li>Hlo</li>
       <li onClick={handleLogout} className='logoutButton'>Logout</li>

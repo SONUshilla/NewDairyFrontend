@@ -260,7 +260,7 @@ function DefaultMilk({ userId }) {
           <input
             name="weight"
             id="weight"
-            type="date"
+            type="number"
             pattern="[0-9]+(\.[0-9]+)?"
             required
             value={inputs.weight}

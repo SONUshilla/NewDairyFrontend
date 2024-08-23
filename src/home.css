@@ -160,9 +160,11 @@
 
 .table-heading {
  padding: 4px;
- border-bottom:1px solid black;
 }
-
+.addUser{
+color: blue;
+font-size: 1.5rem;
+}
 .customer-table {
   min-height: 100%;
   padding: 1rem;

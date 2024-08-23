@@ -71,9 +71,7 @@ function Header() {
       {check ? <Sidebar /> : null} 
       </div>
     <div className="header-icon">
-    {admin && <Link className="addUser" to="/addUser">
-        <FontAwesomeIcon icon={faUserPlus} /> ADD Customer
-    </Link>}
+
 
     {check ? <UserIcon/> :  <button onClick={handleClick} style={{ color: "black" }}>Sign Up</button>} 
     </div>

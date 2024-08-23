@@ -1,10 +1,20 @@
-/* grid.css */
-.CowPriceEntryGrid input[type="number"] {
-    width: 40px; /* Adjust width as needed */
-    height: 40px; /* Ensure height matches width for square appearance */
-    text-align: center; /* Center-align text */
-    border: 1px solid #ccc; /* Optional: Add border for visual separation */
-    border-radius: 5px; /* Optional: Add rounded corners */
+.CowPriceEntryGrid{
+border-collapse: collapse;
+}
+.CowPriceEntryGrid tr td{
+    border:1px solid black;
+}
+.CowEntryInputs Input{
+    width: 100%;
+    border: none;
+    text-align: center;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+.CowEntryInputs input:focus {
+    outline: none;
+    background-color: #e0f7fa;
 }
 
 .fat-prices-container {
@@ -42,3 +52,4 @@
     max-width: 40px; /* Adjust max-width as needed */
     max-height: 40px; /* Adjust max-height as needed */
 }
+

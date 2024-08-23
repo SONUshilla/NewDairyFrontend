@@ -1,22 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./grid.css";
 
 const CowPriceEntryGrid = ({ calculatePrice }) => {
+  const numRows = 10;
+  const numCols = 10;
+  
+  // Initialize prices from localStorage or default to 0
   const [prices, setPrices] = useState(() => {
-    // Initialize prices from localStorage or default to 0
     const storedPrices = localStorage.getItem('cowChartData');
-    return storedPrices ? JSON.parse(storedPrices) : Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => 0));
+    return storedPrices ? JSON.parse(storedPrices) : Array.from({ length: numRows }, () => Array.from({ length: numCols }, () => 0));
   });
 
+  // Store prices in localStorage whenever it changes
   useEffect(() => {
-    // Store prices in localStorage whenever it changes
     localStorage.setItem('cowChartData', JSON.stringify(prices));
   }, [prices]);
 
+  // Create refs for each input
+  const inputRefs = useRef(Array.from({ length: numRows }, () => Array(numCols).fill(null)));
+
   const handlePriceChange = (x, y, event) => {
     const newPrices = [...prices];
-    newPrices[y][x] = parseFloat(event.target.value) || 0; // Ensure the value is a number or default to 0
+    newPrices[y][x] = parseFloat(event.target.value) || 0;
     setPrices(newPrices);
+  };
+
+  const focusNextInput = (currentIndex, rowIndex) => {
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < numCols) {
+      inputRefs.current[rowIndex][nextIndex].focus();
+    }
+  };
+
+  const handleKeyDown = (e, x, y) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      focusNextInput(x, y);
+    }
   };
 
   return (
@@ -26,21 +46,23 @@ const CowPriceEntryGrid = ({ calculatePrice }) => {
         <thead>
           <tr>
             <th></th>
-            {Array.from({ length: 10 }, (_, index) => (
+            {Array.from({ length: numCols }, (_, index) => (
               <th key={index}>Fat {index + 1}%</th>
             ))}
           </tr>
         </thead>
-        <tbody>
-          {Array.from({ length: 10 }, (_, y) => (
+        <tbody className='CowEntryInputs'>
+          {Array.from({ length: numRows }, (_, y) => (
             <tr key={y}>
               <td>SNF {y + 1}%</td>
-              {Array.from({ length: 10 }, (_, x) => (
+              {Array.from({ length: numCols }, (_, x) => (
                 <td key={x}>
                   <input
                     type="number"
                     value={prices[y][x]}
                     onChange={(event) => handlePriceChange(x, y, event)}
+                    onKeyDown={(e) => handleKeyDown(e, x, y)}
+                    ref={(el) => { inputRefs.current[y][x] = el; }}
                   />
                 </td>
               ))}
