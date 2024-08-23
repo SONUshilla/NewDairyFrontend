@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios
 import setUpAxios from "./setUpAxios";
 
-function DefaultEntry() {
+function DefaultEntry({ userId }) {
     const [selectedOption, setSelectedOption] = useState("Feed");
     const [date, setDate] = useState('');
 
@@ -34,7 +34,7 @@ function DefaultEntry() {
         }
         formData.selectedOption = selectedOption;
         formData.date = date;
-
+        formData.userId=userId;
         let endpoint;
         if (selectedOption === "Money") {
             endpoint = "/addMoney";

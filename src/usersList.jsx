@@ -4,7 +4,7 @@ import styles from './userList.css'; // Import CSS module for styling
 import Showdate from './viewEntries';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
-const UserList = ({ onSelectUser }) => {
+const UserList = ({ onSelectUser,component }) => {
   const [users, setUsers] = useState([]); // Initialize with an empty array
   const [selectedUserId, setSelectedUserId] = useState(""); // State to store the ID of the selected user
   useEffect(() => {
@@ -34,6 +34,7 @@ const UserList = ({ onSelectUser }) => {
     <div className="userList">
       <select value={selectedUserId} onChange={handleUserSelect}>
         <option value="">Select a user</option>
+        {component == "balance" && (<option value="0">All Customers</option>)}
         {users.map((user) => (
           <option key={user.id} value={user.id}>{user.username}</option>
         ))}

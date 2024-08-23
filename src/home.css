@@ -1,7 +1,7 @@
 .hero-section {
   display: flex;
   height: 90vh;
-
+ 
 }
 
 .text-content {
@@ -11,8 +11,11 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #cee9f5;
   text-align: left;
+  @media (max-width:800px ){
+    background-image: url(./images/dairy-home.jpg);
+    object-fit: contain;
+  }
 }
 
 .text-content h1 {
@@ -32,6 +35,9 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(206, 233, 245);
+  @media (max-width:800px) {
+ display: none;
+  }
 }
 
 .image-hero {
