@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import poster from "./images/dairy-home.jpg";
+import UserProfile from './userprofile';
+import { useLocation } from 'react-router-dom';
 
 const Balance = () => {
   const [active, setActive] = useState('Stats'); // Default active is 'Stats'
@@ -21,6 +23,27 @@ const Balance = () => {
   const [option ,setOption]=useState("Customers");
   const [user,setUser]=useState(false);
   const [AssociateUser,setAssociateUser]=useState(false);
+  const [profile,setprofile]=useState("");
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [total, setTotal] = useState(0);
+
+  const location = useLocation(); // Get location object from react-router-dom
+
+  useEffect(() => {
+    // Extract state from location
+    const { state } = location;
+    if (state) {
+      const { username, name, total } = state;
+      setUsername(username || '');
+      setName(name || '');
+      setTotal(total || 0);
+    }
+  }, [location]);
+
+  const handleUserDataFetched = (data) => {
+    setprofile(data);
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 850);
@@ -29,6 +52,23 @@ const Balance = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+
+  useEffect(() => {
+    // Fetching data from the API
+    const fetchData = async () => {
+        try {
+          const response = await axios.post(`${baseURL}/singleUser`, {userId});
+            setName(response.data[0].name);
+            setUsername(response.data[0].username);
+            setTotal(response.data[0].total);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    fetchData();
+}, [userId]);
 
   useEffect(() => {
     const fetchAdminStatus = async () => {
@@ -63,7 +103,7 @@ const Balance = () => {
 
   return (
     <>
-
+<UserProfile onUserDataFetched={handleUserDataFetched} />
       {isSmallScreen ? (
         <div className="balance-table-container">
           <div className="toggleBar">
@@ -97,16 +137,16 @@ const Balance = () => {
           </div>
           <div className='ProfileUser'>
     <div className='ProfileFront'>
-    <div className='ProfileImageContainer'>
-    <img className='profileImage' src={poster}></img>
-    </div>
+    {profile.image ? <div className='ProfileImageContainer'>
+    <img className='profileImage' src={profile.image}></img>
+    </div> : <span className="user-icon">{name.charAt(0)}</span>}
       <div className='ProfileInfo'>
-        <h2>Sonu</h2>
-        <p>sonushilla189@gmail.com</p>
+        <h2>{name}</h2>
+        <p>{username}</p>
       </div>
 </div>
       <div>
-      <h3> Available Balance : 5000</h3>
+      <h3> {total}</h3>
       </div>
     </div>
           <div className="table-container">
@@ -135,16 +175,16 @@ const Balance = () => {
           
           <div className='ProfileUser'>
     <div className='ProfileFront'>
-    <div className='ProfileImageContainer'>
-    <img className='profileImage' src={poster}></img>
-    </div>
+    {profile.image ? <div className='ProfileImageContainer'>
+    <img className='profileImage' src={profile.image}></img>
+    </div> : <span className="user-icon">{name.charAt(0)}</span>}
       <div className='ProfileInfo'>
-        <h2>Sonu</h2>
-        <p>sonushilla189@gmail.com</p>
+        <h2>{name}</h2>
+        <p>{username}</p>
       </div>
 </div>
       <div>
-      <h3> Available Balance : 5000</h3>
+      <h3> {total}</h3>
       </div>
     </div>
           <div className="table-container">

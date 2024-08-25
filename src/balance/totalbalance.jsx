@@ -53,7 +53,7 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
       setGrandTotal(
         milk.total +
           feed.totalMoney -
-          moneyReceivedResults.totalMoney -
+          moneyReceivedResults.totalMoney +
           moneyGivenResults.totalMoney +
           ghee.totalMoney
       );

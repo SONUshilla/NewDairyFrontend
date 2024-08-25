@@ -10,6 +10,7 @@ function CustomerTable(){
     const [customers, setCustomers] = useState([]);
     const [admin, setAdmin] = useState(false);
     setUpAxios();
+    const navigate=useNavigate();
     useEffect(() => {
         // Fetching data from the API
         const fetchData = async () => {
@@ -53,10 +54,19 @@ function CustomerTable(){
      
             <ul className="icon-list">
                 {customers.map((customer, index) => (
-                    <li key={customer.id}>
+                  <li 
+                      key={customer.id} 
+                      onMouseDown={() => {
+                          navigate("/balance", { state: { 
+                              username: customer.username, 
+                              name: customer.name, 
+                              total: customer.total
+                          }});
+                      }}
+                    >
                         <span className="user-icon">{customer.name.charAt(0)}</span>
                         <span className="name">{customer.name}</span>
-                        <span className="name">+4000</span>
+                        <span className="name">{customer.total}</span>
                     </li>
                 ))}
             </ul>
