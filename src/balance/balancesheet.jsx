@@ -4,7 +4,7 @@ import React from "react";
 import { baseURL } from '../config'; // Adjust the import path as necessary
 import setUpAxios from "../setUpAxios";
 import Spinner from "../Spinner";
-function BalanceSheet({ startDate, endDate, userId }) {
+function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
     const [loading, setLoading] = useState(false);
     const [balanceData, setBalanceData] = useState({ morning: {}, evening: {}, borrow: [] });
     useEffect(() => {

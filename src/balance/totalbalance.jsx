@@ -3,7 +3,7 @@ import axios from "axios";
 import { baseURL } from '../config'; // Adjust the import path as necessary
 import setUpAxios from "../setUpAxios";
 import Spinner from "../Spinner";
-function TotalBalance({ startDate, endDate, userId }) {
+function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
   const [totalBefore,setTotalBefore]=useState("");
   const [milk, setMilk] = useState("");
   const [milkQuantity, setMilkQuantity] = useState("");
@@ -39,9 +39,14 @@ function TotalBalance({ startDate, endDate, userId }) {
       setMilkQuantity(milk.totalMilk);
       setFeed(feed.totalMoney);
       setFeedQuantity(feed.totalQuantity);
-      setMoneyReceived(moneyReceivedResults.totalMoney);
-      console.log(moneyReceivedResults.totalMoney);
+    /*  if(AssociateUser){
+        setMoneyGiven(moneyReceivedResults.totalMoney);
+        setMoneyReceived(moneyGivenResults.totalMoney);
+      }
+      else{*/
       console.log(moneyGivenResults.totalMoney);
+      console.log(moneyReceivedResults.totalMoney);
+      setMoneyReceived(moneyReceivedResults.totalMoney);
       setMoneyGiven(moneyGivenResults.totalMoney);
       setGhee(ghee.totalMoney);
       setGheeQuantity(ghee.totalQuantity);

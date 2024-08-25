@@ -575,3 +575,22 @@ margin-top: 2px;
 .toggleBar p.active {
   border-bottom: 2px solid yellow;
 }
+
+
+
+.ProfileUser{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ecf0f1;
+  padding: 10px;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.ProfileFront{
+  display: flex;
+}
+.ProfileImageContainer{
+  width: 7rem;
+}

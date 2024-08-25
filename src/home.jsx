@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import itemImage1 from "./images/item1.png";
 import itemImage2 from "./images/item2.png";
 import itemImage3 from "./images/item3.png";
@@ -9,23 +9,10 @@ import CustomerTable from "./customerTable";
 import setUpAxios from "./setUpAxios";
 import axios from "axios";
 import { baseURL } from "./config";
+import StockTable from "./stockTable";
 function Home({ isLoggedIn }) {
 
-
-  useEffect(async ()=>{
-    try {
-      // Send POST request using axios
-      setUpAxios();
-      const startDate='2020-8-1';
-      const endDate='2020-8-1';
-      // If userId is present, send userId with the request to '/admin/showBalance'
-      response = await axios.post(`${baseURL}/admin/stockCheck`, { startDate, endDate});
-      // Handle response if needed
-      console.log("Response data:", response.data);
-  } catch (error) {
-      console.error("Error:", error.message);
-  }
-  },[]);
+ 
 
   if (isLoggedIn) {
     return (
@@ -34,13 +21,8 @@ function Home({ isLoggedIn }) {
           <CustomerTable/>
         </div>
         <div className="homepage-card2">
-        <h3 className="table-heading">Stock Table</h3>
-        <div className="stock-table">
-               
-                <span >item</span>
-                <span className="name">Quantity sold</span>
-                <span className="name">Amount</span>
-        </div>
+                <StockTable/>
+  
         </div>
         <>
         <div className="homepage-card3">

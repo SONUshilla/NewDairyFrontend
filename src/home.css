@@ -250,7 +250,8 @@ font-size: 1.5rem;
 
 .stock-table span:first-child {
   text-align: left;
-}.homepage-card3 {
+}
+.homepage-card3 {
   display: grid;
   grid-template-columns: 1fr; /* Ensure the heading spans full width */
   gap: 1rem;
