@@ -70,7 +70,7 @@ function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
                     </tr>
                     {balanceData.borrow.map((item, index) => (
                         <tr key={index} className="MorningData">
-                            <td>{item.item}{item.name}</td>
+                            <td><div style={{display:"flex", flexDirection:"column"}}><h3>{item.item}</h3><p>{item.name}</p></div></td>
                             <td style={{ textAlign: 'center' }}>{item.date}</td>
                             <td style={{ textAlign: 'center' }}>{item.quantity}×{item.price}</td>
                             <td>{item.money}</td>

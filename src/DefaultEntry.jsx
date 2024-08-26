@@ -26,7 +26,7 @@ function DefaultEntry({ userId }) {
         let formData = {}; // Define formData variable
 
         // Handle form submission based on the selected option
-        if (selectedOption === "Money" || selectedOption === "Money Return") {
+        if (selectedOption === "Give Money" || selectedOption === "Receive Money") {
             formData.moneyAmount = event.target.elements.moneyAmount.value;
         } else {
             formData.quantity = event.target.elements.quantity.value;
@@ -36,9 +36,9 @@ function DefaultEntry({ userId }) {
         formData.date = date;
         formData.userId=userId;
         let endpoint;
-        if (selectedOption === "Money") {
+        if (selectedOption === "Give Money") {
             endpoint = "/addMoney";
-        } else if (selectedOption === "Money Return") {
+        } else if (selectedOption === "Receive Money") {
             endpoint = "/receiveMoney";
         } else {
             endpoint = "/items";
@@ -86,12 +86,12 @@ function DefaultEntry({ userId }) {
                     value={selectedOption}
                     onChange={handleChange}
                 >
-                    <option value="Money">Money</option>
+                    <option value="Give Money">Give Money</option>
                     <option value="Feed">Feed</option>
                     <option value="Ghee">Ghee</option>
-                    <option value="Money Return">Money Return</option>
+                    <option value="Receive Money">Receive Money</option>
                 </select>
-                {selectedOption === "Money" || selectedOption === "Money Return" ? (
+                {selectedOption === "Give Money" || selectedOption === "Receive Money" ? (
                     <input
                         type="number"
                         name="moneyAmount"

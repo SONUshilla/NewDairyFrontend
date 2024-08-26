@@ -51,10 +51,10 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
       setGhee(ghee.totalMoney);
       setGheeQuantity(ghee.totalQuantity);
       setGrandTotal(
-        milk.total +
-          feed.totalMoney -
+        milk.total -
+          feed.totalMoney +
           moneyReceivedResults.totalMoney +
-          moneyGivenResults.totalMoney +
+          moneyGivenResults.totalMoney -
           ghee.totalMoney
       );
     } catch (error) {
