@@ -46,11 +46,12 @@ function CustomerTable(){
         fetchAdminStatus();
       }, []);
     return ( admin && <>
-    <div className="customer-table">
-        <div className="table-heading"><h3 >Customer Table</h3>
+       <div className="table-heading"><h3 >Customer Table</h3>
          <Link className="addUser" to="/addUser">
          <button> <FontAwesomeIcon className="addUserIcon" icon={faPlus}/>ADD CUSTOMER</button>
          </Link></div>
+    <div className="customer-table">
+     
      
             <ul className="icon-list">
                         <li className="CustomerTableHeading">
