@@ -7,11 +7,25 @@ import Spinner from "../Spinner";
 function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
     const [loading, setLoading] = useState(false);
     const [balanceData, setBalanceData] = useState({ morning: {}, evening: {}, borrow: [] });
+    const [admin,setAdmin]=useState(false);
     useEffect(() => {
         // Fetch balance sheet data when component mounts or when startDate/endDate change
         fetchBalanceSheet();
     }, [startDate, endDate, userId]); // Include userId in the dependency array
-
+    function itemSetup(item)
+    {
+            if(item==="Receive Money")
+            {
+                return "Give Money";
+            }
+            else if(item==="Give Money")
+            {
+                return "Receive Money";
+            }
+            else{
+                return item;
+            }
+    }
     const fetchBalanceSheet = async () => {
         setLoading(true);
         try {
@@ -21,10 +35,12 @@ function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
                 setUpAxios();
                 // If userId is present, send userId with the request to '/admin/balanceSheet'
                 response = await axios.post(`${baseURL}/admin/balanceSheet`, { startDate, endDate, userId });
+                setAdmin(true);
             } else {
                setUpAxios();
                 // Otherwise, send request to '/balanceSheet' (default endpoint)
                 response = await axios.post(`${baseURL}/balanceSheet`, { startDate, endDate });
+                setAdmin(false);
             }
 
             if (response.status === 200) {
@@ -70,7 +86,7 @@ function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
                     </tr>
                     {balanceData.borrow.map((item, index) => (
                         <tr key={index} className="MorningData">
-                            <td><div style={{display:"flex", flexDirection:"column"}}><h3>{item.item}</h3><p>{item.name}</p></div></td>
+                            <td><div style={{display:"flex", flexDirection:"column"}}><h3>{admin && itemSetup(item.item) || item.item}</h3><p>{item.name}</p></div></td>
                             <td style={{ textAlign: 'center' }}>{item.date}</td>
                             <td style={{ textAlign: 'center' }}>{item.quantity}×{item.price}</td>
                             <td>{item.money}</td>

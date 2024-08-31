@@ -159,34 +159,67 @@
 }
 
 .table-heading {
- padding: 4px;
+display: flex;
+justify-content: space-between;
+padding: 1rem;
+align-items: center;
+background-color: #6687cecb;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+font-size: 1em;
+color: white;
+border-bottom: 1px solid #cee9f5;
 }
 .addUser{
-color: blue;
-font-size: 1.5rem;
+text-decoration: none;
+
+}
+.addUserIcon{
+
+}
+.addUser button{
+  color: #ffffff;
+  background-color: #6687ce;
+  display: flex;
+  align-items: center;
+  gap:4px;
+}
+
+.CustomerTableHeading .user-icon{
+  background-color: #f4f4f4;
+  color: black;
+}
+.CustomerTableHeading .name{
+  color: black;
+  font-weight: 700;
 }
 .customer-table {
-  min-height: 100%;
-  padding: 1rem;
+  height: 100%;
+  padding: 0px;
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .icon-list {
   list-style-type: none;
-  padding: 0;
   margin: 0;
 }
-
+.icon-list li:first-child{
+  border-bottom: 1px solid black;
+}
 .icon-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 0.5rem 5px;
   border-bottom: 1px solid #ddd;
 }
-
+.icon-list :hover{
+  background-color: #ddd;
+}
 .icon-list li:last-child {
   border-bottom: none;
 }
@@ -195,67 +228,42 @@ font-size: 1.5rem;
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  background-color: #6c2eb9; /* purple color */
+  background-color: #9fc088; /* purple color */
   color: white;
   border-radius: 50%;
   text-align: center;
   line-height: 2rem;
   font-weight: bold;
-  margin-right: 1rem;
+  margin: 0px 10px;
 }
 
 .name {
-  font-size: 1.5rem;
+  font-size: 1em;
   color: #333;
   flex-grow: 1;
-  font-weight: bold;
+  font-weight: 400;
+  padding: 10px;
 }
 
 .name:last-of-type {
   text-align: right;
   color: green; /* Can be customized to indicate the balance */
-  font-weight: bold;
 }
 .homepage-card2 {
-  padding: 1rem;
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  overflow: hidden;
 }
 
-.stock-table {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
 
-.stock-table span {
-  font-size: 1rem;
-  color: #333;
-  text-align: center;
-  padding: 0.5rem;
-}
-
-.stock-table span.name {
-  font-weight: bold;
-  color: #6c2eb9; /* purple color to match theme */
-}
-
-.stock-table span:first-child {
-  text-align: left;
-}
 .homepage-card3 {
   display: grid;
   grid-template-columns: 1fr; /* Ensure the heading spans full width */
   gap: 1rem;
-  padding: 1rem;
   background-color: #f4f4f4;
   border-radius: 8px;
 }

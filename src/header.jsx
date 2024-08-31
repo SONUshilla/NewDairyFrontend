@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
+import logo from "./images/Gemini_Generated_Image_5r31l85r31l85r31-removebg-preview.png";
 
 function Header() {
   const [admin, setAdmin] = useState(false);
@@ -64,6 +65,7 @@ function Header() {
     <div class="header">
       <div className="logo">
       <Link className="logo-link" to={"/"}>
+      <img src={logo} alt="logo"></img>
       <h1 className="logo-text">Dairy</h1>
       </Link>
       </div>

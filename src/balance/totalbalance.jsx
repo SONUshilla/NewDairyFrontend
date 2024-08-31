@@ -19,16 +19,19 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
   const fetchData = async (startDate, endDate) => {
     setLoading(true);
     setError(null);
+    const[admin,setAdmin]=useState(false);
     try {
       let response;
       if (userId) {
         setUpAxios();
         // If userId is present, send userId with the request to '/admin/showBalance'
         response = await axios.post(`${baseURL}/admin/showBalance`, { startDate, endDate, userId });
+        setAdmin(true);
       } else {
         setUpAxios();
         // Otherwise, send request to '/showBalance' (default endpoint)
         response = await axios.post(`${baseURL}/showBalance`, { startDate, endDate });
+        setAdmin(false);
       }
 
      
@@ -39,20 +42,13 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
       setMilkQuantity(milk.totalMilk);
       setFeed(feed.totalMoney);
       setFeedQuantity(feed.totalQuantity);
-    /*  if(AssociateUser){
-        setMoneyGiven(moneyReceivedResults.totalMoney);
-        setMoneyReceived(moneyGivenResults.totalMoney);
-      }
-      else{*/
-      console.log(moneyGivenResults.totalMoney);
-      console.log(moneyReceivedResults.totalMoney);
       setMoneyReceived(moneyReceivedResults.totalMoney);
       setMoneyGiven(moneyGivenResults.totalMoney);
       setGhee(ghee.totalMoney);
       setGheeQuantity(ghee.totalQuantity);
       setGrandTotal(
-        milk.total -
-          feed.totalMoney +
+        Before.total+milk.total -
+          feed.totalMoney -
           moneyReceivedResults.totalMoney +
           moneyGivenResults.totalMoney -
           ghee.totalMoney

@@ -1,0 +1,43 @@
+.stock-summary {
+font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  }
+  .stock-table-heading h2{
+    padding: 9px;
+  }
+  .stock-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .stock-item {
+    background-color: #f4f4f4;
+    display: flex;
+    flex: 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  
+  .sub-list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  
+  .sub-list li {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding: 3px;
+    justify-content: space-between;
+  }
+  .sub-list li:last-child{
+   
+  }
+  .stock-item h3{
+    font-weight: 10;
+  }
+  

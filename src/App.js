@@ -8,13 +8,12 @@ import Footer from "./footer";
 import BottomBar from "./bottom-nav";
 export default function App() {
   return (
-  <Router>
-    
+    <Router>
       <div className="container">
         <Main />
         <BottomBar/>
         <Footer/>
       </div>
-    </Router>
+      </Router>
   );
 }

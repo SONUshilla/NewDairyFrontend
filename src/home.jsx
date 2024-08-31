@@ -26,7 +26,7 @@ function Home({ isLoggedIn }) {
         </div>
         <>
         <div className="homepage-card3">
-        <h3 className="table-heading">Stock Table</h3>
+       <div className="table-heading"><h3 style={{padding:"9px"}} >Stock Table</h3></div> 
         
     <div className="summary-item">
         <span className="label">Milk Arrived Today:</span>

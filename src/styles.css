@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Truculenta:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 *{
   margin: 0;
@@ -44,13 +45,22 @@ html{
   align-items: center;
   font-size: 25px;
 } 
+.logo img{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  color: transparent;
+}
 .logo-text {
   font-family: 'Playfair Display', serif; /* Example font for logo */
   font-weight: 100; /* You can adjust the font weight as needed */
   color: linear-gradient(90deg, #8a2be2, #5c00d2);
 }
 .logo-link{
+  display: flex;
+  flex-direction: row;
   text-decoration: none;
+  align-items: center;
 }
 .header-link {
   display: flex;
@@ -92,8 +102,8 @@ html{
 
 
 .full {
-
-  font-family: 'Truculenta', sans-serif;
+text-transform: capitalize;
+  font-family: Arial;
   background: #cee9f5;
   flex-grow: 1;
 }

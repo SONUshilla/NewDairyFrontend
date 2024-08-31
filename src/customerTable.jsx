@@ -2,7 +2,7 @@ import {React,useState,useEffect }from "react";
 import { Routes,Route ,Link, Navigate,useNavigate} from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
+import { faPlus, faUserPlus } from '@fortawesome/free-solid-svg-icons'; // Import the add user icon
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
 
@@ -45,14 +45,19 @@ function CustomerTable(){
     
         fetchAdminStatus();
       }, []);
-    return (<>
-    
-        <div className="customer-table">
-        <div style={{display:"flex",justifyContent:"space-between",borderBottom:"1px solid black"}}>    <h3 className="table-heading">Customer Table</h3>
-        {admin && <Link className="addUser" to="/addUser">
-        <FontAwesomeIcon icon={faUserPlus} /> </Link>}</div>
+    return ( admin && <>
+    <div className="customer-table">
+        <div className="table-heading"><h3 >Customer Table</h3>
+         <Link className="addUser" to="/addUser">
+         <button> <FontAwesomeIcon className="addUserIcon" icon={faPlus}/>ADD CUSTOMER</button>
+         </Link></div>
      
             <ul className="icon-list">
+                        <li className="CustomerTableHeading">
+                        <span className="user-icon">#</span>
+                        <span className="name">name</span>
+                        <span className="name">total</span>
+                        </li>
                 {customers.map((customer, index) => (
                   <li 
                       key={customer.id} 
