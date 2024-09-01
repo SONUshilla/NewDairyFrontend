@@ -40,7 +40,6 @@
         "typescript": "4.4.4"
     },
     "scripts": {
-        "install": "npm install --legacy-peer-deps",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
         "start": "react-scripts start --host 0.0.0.0",
