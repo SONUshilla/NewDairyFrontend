@@ -85,7 +85,7 @@ function Entry() {
       <div className="Default">
    <div className="form2">
 
-    {active === 'milk' ?  <h1 >Milk Entries</h1>:""}
+    {active === 'milk' ?    <div className="table-heading">  <h1>Milk Entries</h1></div>:""}
    {active === 'milk' && (
   
         <Routes>
@@ -94,7 +94,7 @@ function Entry() {
       )}
       </div>
       <div className="form2">
-      {active === 'others'?  <h1 >Others</h1>:""}
+      {active === 'others'? <div className="table-heading">  <h1>Milk Entries</h1></div>:""}
       {active === 'others' && (
         <Routes>
           <Route path="/" element={<DefaultEntry userId={userId} />} />
@@ -131,13 +131,13 @@ function Entry() {
         </div>
       <div className="Default">
       <div className="form2">
-      <h1>Milk Entries</h1>
+    <div className="table-heading">  <h1>Milk Entries</h1></div>
       <Routes>
         <Route path="/" element={<DefaultMilk userId={userId} />} />
       </Routes>
       </div>
       <div className="form2">
-      <h1>Others</h1>
+      <div className="table-heading">  <h1>OtherItems</h1></div>
       <Routes>
         <Route path="/" element={<DefaultEntry userId={userId} />} />
       </Routes></div>

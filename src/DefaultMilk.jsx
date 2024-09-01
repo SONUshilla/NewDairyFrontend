@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
+import { toast,Bounce } from "react-toastify";
 
 function DefaultMilk({ userId }) {
   const [inputs, setInputs] = useState({
@@ -77,41 +78,56 @@ function DefaultMilk({ userId }) {
     setAnimalType(value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    try {
+    
+    const apiCall = async () => {
       let response;
-      inputs.date=date;
+      inputs.date = date;
+      setUpAxios();
       if (userId) {
-        setUpAxios();
         response = await axios.post(`${baseURL}/admin/entries/${time}`, { ...inputs, userId });
       } else {
-        setUpAxios();
         response = await axios.post(`${baseURL}/entries/${time}`, inputs);
       }
 
       if (response.status === 200) {
-        inputRefs.current[1].focus(); // Focus on the next input field
-        inputs.weight="";
-        inputs.fat="";
+        inputs.weight = "";
+        inputs.fat = "";
+        inputRefs.current[1].focus();
+
         if (isAutoIncrement) {
-            const newDate = new Date(date);
-            newDate.setDate(newDate.getDate() + 1); // Increment the date by 1 day
-            
-            // Format the new date to 'YYYY-MM-DD'
-            const formattedDate = newDate.toISOString().split('T')[0];
-            setDate(formattedDate); // Update the state with the new date
-            
-            console.log(formattedDate); // Log the updated date
+          const newDate = new Date(date);
+          newDate.setDate(newDate.getDate() + 1);
+          const formattedDate = newDate.toISOString().split('T')[0];
+          setDate(formattedDate);
         }
 
-      console.log(response.data.message);
+        return response.data.message;
       }
-    } catch (error) {
-      console.error('Error inserting data:', error);
-    }
+    };
+
+    toast.promise(
+      apiCall(),
+      {
+        pending: 'Submitting your data...',
+        success: 'Data submitted successfully 👌',
+        error: 'Error submitting data 🤯'
+      },
+      {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce
+      }
+    );
   };
+
 
   const toggleDatePicker = () => {
     setIsDatePickerOpen(!isDatePickerOpen);
@@ -136,7 +152,7 @@ function DefaultMilk({ userId }) {
     }*/
    if(animalType=="cow")
    {
-    const price2=localStorage.getItem("cowFatPrices");
+    const price2=parseFloat(localStorage.getItem("cowFatPrices"));
     if(fat>35){
       price=fat*((price2+10)/100);
      }

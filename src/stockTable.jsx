@@ -2,22 +2,21 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { baseURL } from './config';
 import setUpAxios from './setUpAxios';
-import "./stockTable.css";
+import './stockTable.css';
 
 const StockTable = () => {
-  const [stockData, setStockData] = useState({});
+  const [stockData, setStockData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        setUpAxios(); // Call to set up axios if needed
+        setUpAxios();
         const startDate = '2024-08-01';
         const endDate = '2024-08-31';
         const response = await axios.post(`${baseURL}/admin/stockCheck`, { startDate, endDate });
         setStockData(response.data);
-        console.log(response);
       } catch (error) {
         setError("Error fetching data: " + error.message);
         console.error("Error:", error.message);
@@ -33,61 +32,36 @@ const StockTable = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className='stock-summary'>
-      <div className='table-heading stock-table-heading'><h2>Stock Summary</h2></div>
-      <ul className='stock-list'>
-        {/* Feed */}
-        <li className='stock-item'>
+    <div className='stock-container'>
+      <div className='table-heading'><h2 style={{padding:"9px"}}>Stock Summary</h2></div>
+      <div className='stock-grid'>
+        <div className='stock-item'>
           <h3>Feed</h3>
-          <ul className='sub-list'>
-            <li>
-              <span>Available:</span> {stockData.feedStockAvailable}
-            </li>
-            <li>
-              <span>Sold:</span> {stockData.feedQuantitySold}
-            </li>
-          </ul>
-        </li>
-
-        {/* Ghee */}
-        <li className='stock-item'>
+          <p>Available: {stockData.feedStockAvailable}</p>
+          <p>Sold: {stockData.feedQuantitySold}</p>
+        </div>
+        <div className='stock-item'>
           <h3>Ghee</h3>
-          <ul className='sub-list'>
-            <li>
-              <span>Available:</span> <p>{stockData.gheeStockAvailable}</p>
-            </li>
-            <li>
-              <span>Sold:</span> <p>{stockData.gheeQuantitySold}</p>
-            </li>
-          </ul>
-        </li>
-
-        {/* Money Available & Given */}
-        <li className='stock-item'>
+          <p>Available: {stockData.gheeStockAvailable}</p>
+          <p>Sold: {stockData.gheeQuantitySold}</p>
+        </div>
+        <div className='stock-item'>
+          <h3>Money Available</h3>
+          <p>{stockData.moneyAvailable}</p>
+        </div>
+        <div className='stock-item'>
+          <h3>Money Given</h3>
+          <p>{stockData.moneyGiven}</p>
+        </div>
+        <div className='stock-item'>
+          <h3>Receive Money Available</h3>
+          <p>{stockData.receiveMoneyAvailable}</p>
+        </div>
+        <div className='stock-item'>
           <h3>Money Received</h3>
-          <ul className='sub-list'>
-            <li>
-              <span>Available:</span> {stockData.moneyAvailable}
-            </li>
-            <li>
-              <span>Given:</span> {stockData.moneyGiven}
-            </li>
-          </ul>
-        </li>
-
-        {/* Receive Money Available & Received */}
-        <li className='stock-item'>
-          <h3>Money</h3>
-          <ul className='sub-list'>
-            <li>
-              <span>Available:</span> {stockData.receiveMoneyAvailable}
-            </li>
-            <li>
-              <span>Received:</span> {stockData.moneyReceived}
-            </li>
-          </ul>
-        </li>
-      </ul>
+          <p>{stockData.moneyReceived}</p>
+        </div>
+      </div>
     </div>
   );
 };

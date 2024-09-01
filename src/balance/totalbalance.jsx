@@ -16,10 +16,10 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
   const [grandTotal, setGrandTotal] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const[admin,setAdmin]=useState(false);
   const fetchData = async (startDate, endDate) => {
     setLoading(true);
     setError(null);
-    const[admin,setAdmin]=useState(false);
     try {
       let response;
       if (userId) {

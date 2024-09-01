@@ -111,9 +111,9 @@
   width: 100%;
   min-height: 100vh;
   display: grid;
-  margin-top: 2rem;
+  margin-top: 1rem;
   grid-template-columns:  2fr 4rem 1fr ;
-  grid-template-rows: 60vh 4rem auto;
+  grid-template-rows: 70vh 4rem auto;
 }
 
 .homepage-card1 {
@@ -194,12 +194,17 @@ text-decoration: none;
   font-weight: 700;
 }
 .customer-table {
-  height: 310px;
+  height: 375px;
+  max-height: 100%;
   padding: 0px;
   background-color: #f4f4f4;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   overflow-y: scroll;
   scrollbar-width: none;
+  @media (max-width:700px) {
+    height: fit-content;
+    max-height: 70vh;
+  }
 }
 
 .icon-list {

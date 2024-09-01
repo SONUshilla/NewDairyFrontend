@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios
 import setUpAxios from "./setUpAxios";
-
+import { toast,Bounce } from "react-toastify";
 function DefaultEntry({ userId }) {
     const [selectedOption, setSelectedOption] = useState("Feed");
     const [date, setDate] = useState('');
@@ -22,7 +22,7 @@ function DefaultEntry({ userId }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+        const apiCall=async()=>{
         let formData = {}; // Define formData variable
 
         // Handle form submission based on the selected option
@@ -58,6 +58,26 @@ function DefaultEntry({ userId }) {
         } catch (error) {
             console.error("Error:", error.message);
         }
+    };
+    toast.promise(
+        apiCall(),
+        {
+          pending: 'Submitting your data...',
+          success: 'Data submitted successfully 👌',
+          error: 'Error submitting data 🤯'
+        },
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce
+        }
+      );
     };
 
     return (
