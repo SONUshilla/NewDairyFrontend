@@ -468,6 +468,9 @@ padding: 10px;
   padding: 15px;
   justify-content: top;
   align-items: start;
+  @media (max-width:700px) {
+    flex-direction: column;
+  }
 }
 
 .button-group {
