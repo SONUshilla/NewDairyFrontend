@@ -556,11 +556,14 @@ padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: start;
-  @media (max-width: 768px) {
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
 }
+
+.DefaultSmall{
+  max-width: 100%;
+  width: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .radios {

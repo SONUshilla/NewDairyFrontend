@@ -82,7 +82,7 @@ function Entry() {
         </Routes>
      
         </div>
-      <div className="Default">
+      <div className="DefaultSmall">
    <div className="form2">
 
     {active === 'milk' ?    <div className="table-heading">  <h1>Milk Entries</h1></div>:""}
