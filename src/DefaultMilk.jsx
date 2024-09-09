@@ -194,6 +194,7 @@ function DefaultMilk({ userId }) {
   };
 
   return (
+    <div><div className="table-heading">  <h1>Milk Entries</h1></div>
     <div className="form">
       <div className="defaultButtons">
         <div className="button-group">
@@ -331,7 +332,7 @@ function DefaultMilk({ userId }) {
          ref={(el) => (inputRefs.current[4] = el)}
          />
       </form>
-    </div>
+    </div></div>
   );
 }
 

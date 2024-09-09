@@ -1,23 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./grid.css";
 
-const CowPriceEntryGrid = ({ calculatePrice }) => {
+const CowPriceEntryGrid = ({ calculatePrice, tableTitle }) => {
   const numRows = 10;
   const numCols = 10;
-  
+  const [title, setTitle] = useState("");
+
   // Initialize prices from localStorage or default to 0
   const [prices, setPrices] = useState(() => {
-    const storedPrices = localStorage.getItem('cowChartData');
-    return storedPrices ? JSON.parse(storedPrices) : Array.from({ length: numRows }, () => Array.from({ length: numCols }, () => 0));
+    const storedPrices = localStorage.getItem(tableTitle);
+    return storedPrices
+      ? JSON.parse(storedPrices)
+      : Array.from({ length: numRows }, () => Array.from({ length: numCols }, () => 0));
   });
+
+  // Set the title based on the tableTitle prop
+  useEffect(() => {
+    if (tableTitle === "cow-snf") {
+      setTitle("Cow");
+    } else {
+      setTitle("Buffalo");
+    }
+
+    // Update prices when the tableTitle changes
+    const storedPrices = localStorage.getItem(tableTitle);
+    if (storedPrices) {
+      setPrices(JSON.parse(storedPrices));
+    } else {
+      setPrices(Array.from({ length: numRows }, () => Array.from({ length: numCols }, () => 0)));
+    }
+  }, [tableTitle]);
 
   // Store prices in localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('cowChartData', JSON.stringify(prices));
-  }, [prices]);
+    localStorage.setItem(tableTitle, JSON.stringify(prices));
+  }, [prices, tableTitle]);
 
   // Create refs for each input
-  const inputRefs = useRef(Array.from({ length: numRows }, () => Array(numCols).fill(null)));
+  const inputRefs = useRef(
+    Array.from({ length: numRows }, () => Array(numCols).fill(null))
+  );
 
   const handlePriceChange = (x, y, event) => {
     const newPrices = [...prices];
@@ -40,8 +62,8 @@ const CowPriceEntryGrid = ({ calculatePrice }) => {
   };
 
   return (
-    <div>
-      <h2>Cow Price Entry Grid</h2>
+    <div className='MainGrid'>
+      <h2>{title} Price Entry Grid</h2>
       <table className='CowPriceEntryGrid'>
         <thead>
           <tr>
@@ -54,7 +76,7 @@ const CowPriceEntryGrid = ({ calculatePrice }) => {
         <tbody className='CowEntryInputs'>
           {Array.from({ length: numRows }, (_, y) => (
             <tr key={y}>
-              <td>SNF {y + 1}%</td>
+              <td style={{fontWeight:"bold"}}>SNF {y + 1}%</td>
               {Array.from({ length: numCols }, (_, x) => (
                 <td key={x}>
                   <input

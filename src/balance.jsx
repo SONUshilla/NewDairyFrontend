@@ -11,7 +11,7 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import poster from "./images/dairy-home.jpg";
 import UserProfile from './userprofile';
-import { useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Outlet ,useNavigate,useLocation} from "react-router-dom";
 
 const Balance = () => {
   const [active, setActive] = useState('Stats'); // Default active is 'Stats'
@@ -29,7 +29,7 @@ const Balance = () => {
   const [total, setTotal] = useState(0);
 
   const location = useLocation(); // Get location object from react-router-dom
-
+  const navigate=useNavigate();
   useEffect(() => {
     // Extract state from location
     const { state } = location;
@@ -121,7 +121,22 @@ const Balance = () => {
             </p>
           </div>
           <div className="user-select">
-            {admin && <UserList onSelectUser={handleUserSelect} />}
+            {admin && <div>       
+              <UserList onSelectUser={handleUserSelect} />
+            <div className='ProfileUser'>
+    <div className='ProfileFront'>
+    {profile.image ? <div className='ProfileImageContainer'>
+    <img className='profileImage' src={profile.image}></img>
+    </div> : <span className="user-icon">{name.charAt(0)}</span>}
+      <div className='ProfileInfo'>
+        <h2>{name}</h2>
+        <p>{username}</p>
+      </div>
+</div>
+      <div>
+      <h3> {total}</h3>
+      </div>
+    </div></div>}
             <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
             <button
               style={{
@@ -135,67 +150,29 @@ const Balance = () => {
               <FontAwesomeIcon icon={faPrint} /> Print
             </button>
           </div>
-          <div className='ProfileUser'>
-    <div className='ProfileFront'>
-    {profile.image ? <div className='ProfileImageContainer'>
-    <img className='profileImage' src={profile.image}></img>
-    </div> : <span className="user-icon">{name.charAt(0)}</span>}
-      <div className='ProfileInfo'>
-        <h2>{name}</h2>
-        <p>{username}</p>
-      </div>
-</div>
-      <div>
-      <h3> {total}</h3>
-      </div>
-    </div>
+   
           <div className="table-container">
             {active === 'Stats' && <TotalBalance startDate={startDate} endDate={endDate} userId={userId}  AssociateUser={AssociateUser}/>}
             {active === 'entry' && <BalanceSheet startDate={startDate} endDate={endDate} userId={userId} option={option} AssociateUser={AssociateUser} />}
           </div>
         </div>
       ) : (
-        <div className="balance-table-container">
-        <div style={{backgroundColor:"#ecf0f1", padding:"10px", borderRadius:"5px"}}>
-          <div className="user-select">
-            {admin && <UserList onSelectUser={handleUserSelect} component={"balance"} />}
-            <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
-            <button
-              style={{
-                color: 'black',
-                backgroundColor: 'white',
-                border: '1px solid black',
-                padding: '8px'
-              }}
-              onClick={() => window.print()}
-            >
-              <FontAwesomeIcon icon={faPrint} /> Print
-            </button>
-          </div>
+        <div className="Default">
+        <div className="entrySidebar">
+      <div class="sidebar1">
+            {admin && <UserList onSelectUser={handleUserSelect}/>}
+            <ul>
+                <li><a onClick={()=>{navigate("/balance/all")}}>Balance Table</a></li>
+                <li><a onClick={()=>{navigate("/balance/balanceSheet")}}>Entry Table</a></li>
+            </ul>
+        </div></div>
+        <div>
           
-          <div className='ProfileUser'>
-    <div className='ProfileFront'>
-    {profile.image ? <div className='ProfileImageContainer'>
-    <img className='profileImage' src={profile.image}></img>
-    </div> : <span className="user-icon">{name.charAt(0)}</span>}
-      <div className='ProfileInfo'>
-        <h2>{name}</h2>
-        <p>{username}</p>
-      </div>
-</div>
-      <div>
-      <h3> {total}</h3>
-      </div>
-    </div>
           <div className="table-container">
-          <div>
-          <h1>Balance</h1>
-            <TotalBalance startDate={startDate} endDate={endDate} userId={userId} />
-            </div>
-            <div>
-            <h1>Entry</h1>
-            <BalanceSheet startDate={startDate} endDate={endDate} userId={userId} option={option} />
-            </div>
+          <Routes>
+          <Route path="*" element={<TotalBalance startDate={startDate} endDate={endDate} userId={userId} />} />
+          <Route path="/balanceSheet" element={<BalanceSheet startDate={startDate} endDate={endDate} userId={userId} option={option} />} />
+          </Routes>
           </div>
         </div>
         </div>

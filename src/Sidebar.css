@@ -13,7 +13,7 @@ justify-content: space-evenly;
   display: block;
   padding: 10px;
   font-family: italic;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   transition: color 0.3s ease;
 
@@ -21,12 +21,11 @@ justify-content: space-evenly;
 
 .sidebar-link.active {
 
-  border-bottom: 1px solid black;
-  color: black;
+  border-bottom: 2px solid rgb(238, 255, 0);
+  color: rgb(255, 199, 199);
   font-weight: bold;
 }
 .sidebar-link:hover{
-  border-bottom: 1px solid black;
   color: black;
   font-weight: bold;
 }

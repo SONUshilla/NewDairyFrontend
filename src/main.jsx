@@ -12,12 +12,10 @@ import SuperUserPage from "./adminLogin";
 import AddUserForm from "./adduser";
 import UserBoth from "./associatedAdmin";
 import BothAuthComponent from "./bothAuth";
-import BuffaloPriceEntryGrid from "./snfPrice";
-import FatPrices from "./FatInputs";
-import CowPriceEntryGrid from "./CowPriceEntryGrid";
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios'; // Import the setup function
 import RegisterPage from "./register";
+import Footer from "./footer";
 import AdminRegisterPage from "./adminRegister";
 
 function Main() {
@@ -102,8 +100,8 @@ function Main() {
       <main className="main">
         <Routes>
           <Route exact path="/" element={<Home isLoggedIn={loggedIn} />} />
-          <Route path="view-entries" element={loggedIn ? <ViewEntries /> : <Navigate to="/login" />} />
-          <Route path="/balance" element={loggedIn ? <Balance /> : <Navigate to="/login" />} />
+          <Route path="view-entries/*" element={loggedIn ? <ViewEntries /> : <Navigate to="/login" />} />
+          <Route path="/balance/*" element={loggedIn ? <Balance /> : <Navigate to="/login" />} />
           <Route path="/entries/*" element={loggedIn ? <Entry /> : <Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage/>}></Route>
@@ -112,10 +110,7 @@ function Main() {
           <Route path="/addUser" element={admin && <AddUserForm />} />
           <Route path="/UserBoth" element={user && <UserBoth />} />
           <Route path="/BothAuth" element={user && <BothAuthComponent />} />
-          <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"} />} />
-          <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"} />} />
-          <Route path="/buffalo/prices/snf" element={<CowPriceEntryGrid />} />
-          <Route path="/cow/prices/snf" element={<BuffaloPriceEntryGrid />} />
+
         </Routes>
       </main>
     </div>

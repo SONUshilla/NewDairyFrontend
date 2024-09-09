@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const BuffaloPriceEntryGrid = () => {
+const BuffaloPriceEntryGrid = ({tableTitle}) => {
   const [prices, setPrices] = useState(() => {
     // Initialize prices from localStorage or default to 0
-    const storedPrices = localStorage.getItem('buffaloChartData');
+    const storedPrices = localStorage.getItem(tableTitle);
     return storedPrices ? JSON.parse(storedPrices) : Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => 0));
   });
 
   useEffect(() => {
     // Store prices in localStorage whenever it changes
-    localStorage.setItem('buffaloChartData', JSON.stringify(prices));
+    localStorage.setItem(tableTitle, JSON.stringify(prices));
   }, [prices]);
 
   const handlePriceChange = (x, y, event) => {
@@ -20,7 +20,7 @@ const BuffaloPriceEntryGrid = () => {
 
   return (
     <div>
-      <h2>Buffalo Price Entry Grid</h2>
+      <h2>{tableTitle} Price Entry Grid</h2>
       <table>
         <thead>
           <tr>

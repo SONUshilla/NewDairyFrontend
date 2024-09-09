@@ -1,10 +1,93 @@
+/* Container for the entire fat prices component */
 .fat-prices-container {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.input-field {
-    width: 50px; /* Adjust as needed */
-    height: 20px; /* Adjust as needed */
+.fat-prices-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* Styling for the cow prices section */
+.cow-prices,
+.other-prices {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Styling for each input block */
+.cow-prices div,
+.other-prices div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Labels for the inputs */
+.cow-prices label,
+.other-prices label {
+    font-size: 1rem;
+    color: #555;
+    flex-basis: 60%;
+    text-align: left;
+}
+
+/* Inputs for price entries */
+.cow-prices input,
+.other-prices input {
+    flex-basis: 35%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for inputs */
+.cow-prices input:focus,
+.other-prices input:focus {
+    border-color: #007bff;
+}
+
+/* Ensure the inputs and labels align well on mobile */
+@media (max-width: 600px) {
+    .cow-prices div,
+    .other-prices div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cow-prices label,
+    .other-prices label {
+        margin-bottom: 5px;
+        flex-basis: auto;
+    }
+
+    .cow-prices input,
+    .other-prices input {
+        flex-basis: 100%;
+    }
+}
+
+/* Add some hover effect on inputs for better user experience */
+.cow-prices input:hover,
+.other-prices input:hover {
+    border-color: #007bff;
+    background-color: #f0f8ff;
+}
+
+/* General spacing */
+.fat-prices-container {
+    margin-top: 40px;
 }

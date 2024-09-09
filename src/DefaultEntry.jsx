@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios
 import setUpAxios from "./setUpAxios";
 import { toast,Bounce } from "react-toastify";
-function DefaultEntry({ userId }) {
+function DefaultEntry({ userId ,userSelectedOption}) {
     const [selectedOption, setSelectedOption] = useState("Feed");
     const [date, setDate] = useState('');
-
+useEffect(()=>{
+    if(userSelectedOption){
+    setSelectedOption(userSelectedOption);
+    }
+},[userSelectedOption]);
     // Set today's date when the component mounts
     useEffect(() => {
         const todayDate = new Date().toISOString().split('T')[0];
@@ -80,16 +84,11 @@ function DefaultEntry({ userId }) {
       );
     };
 
-    return (
-        <div className="DefaultEntry form">
+    return (<div>
+     <div className="table-heading">  <h1>OtherItems</h1></div>
+        <div className="DefaultEntry form others">
             <form onSubmit={handleSubmit}>
                 <input
-                    style={{
-                        border: "2px solid black",
-                        color: "black",
-                        fontWeight: "bold",
-                        fontFamily: "'Truculenta', sans-serif"
-                    }}
                     type="date"
                     name="date"
                     value={date}
@@ -97,12 +96,6 @@ function DefaultEntry({ userId }) {
                     required
                 />
                 <select
-                    style={{
-                        border: "2px solid black",
-                        color: "black",
-                        fontWeight: "bold",
-                        fontFamily: "'Truculenta', sans-serif"
-                    }}
                     value={selectedOption}
                     onChange={handleChange}
                 >
@@ -120,24 +113,12 @@ function DefaultEntry({ userId }) {
                 ) : (
                     <>
                         <input
-                            style={{
-                                border: "2px solid black",
-                                color: "black",
-                                fontWeight: "bold",
-                                fontFamily: "'Truculenta', sans-serif"
-                            }}
                             type="number"
                             name="quantity"
                             placeholder="Enter quantity"
                             required
                         />
                         <input
-                            style={{
-                                border: "2px solid black",
-                                color: "black",
-                                fontWeight: "bold",
-                                fontFamily: "'Truculenta', sans-serif"
-                            }}
                             type="number"
                             name="price"
                             placeholder="Enter price"
@@ -147,7 +128,7 @@ function DefaultEntry({ userId }) {
                 )}
                 <button type="submit">Submit</button>
             </form>
-        </div>
+        </div></div>
     );
 }
 

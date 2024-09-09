@@ -4,7 +4,6 @@ import Sidebar from "./sidebar";
 import Main from "./main";
 import { useEffect, useState } from "react";
 import {BrowserRouter as Router} from "react-router-dom";
-import Footer from "./footer";
 import BottomBar from "./bottom-nav";
 import { ToastContainer ,Bounce} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -16,9 +15,8 @@ export default function App() {
       <div className="container">
         <Main />
         <BottomBar/>
-        <Footer/>
         <ToastContainer
-        position="centre"
+        position="top-left"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

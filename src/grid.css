@@ -1,8 +1,11 @@
 .CowPriceEntryGrid{
 border-collapse: collapse;
+width: 100%;
+
 }
 .CowPriceEntryGrid tr td{
     border:1px solid black;
+    background-color: white;
 }
 .CowEntryInputs Input{
     width: 100%;
@@ -16,7 +19,10 @@ border-collapse: collapse;
     outline: none;
     background-color: #e0f7fa;
 }
-
+.MainGrid{
+    width: 100%;
+    padding: 5px;
+}
 .fat-prices-container {
     display: flex;
     flex-direction: column;
@@ -24,17 +30,6 @@ border-collapse: collapse;
     margin-top: 20px; /* Example margin */
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(10, 40px); /* Adjust width as needed */
-    gap: 5px; /* Adjust gap between cells */
-}
-
-.grid-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .input-field {
     width: 100%;

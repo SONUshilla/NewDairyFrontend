@@ -1,22 +1,124 @@
-/* userList.css */
-.hide tr {
+/* User list container */
+.CustomUserList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 5px;
+  width: 400px;
+}
+
+
+
+/* User icon */
+.user-icon1 {
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  color: #252525;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+.user-icon2 {
+  width: 40px;
+  height: 40px;
+  background-color: #252525;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Dropdown arrow */
+.CustomListDownArrow {
+  font-size: 20px;
+  color: #5eb6e4; /* Same color as the icon */
+  transition: all 0.3s ease;
+}
+
+.CustomListDownArrow:hover {
+  color: #3b97ce; /* Darken the arrow on hover */
+}
+
+/* User details */
+.CustomListMiddle {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.CustomListMiddle div {
+  display: flex;
+  flex-direction: column;
+}
+
+.CustomListMiddle span {
+  font-weight: bold;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.CustomListMiddle p {
+  font-size: 12px;
+}
+
+/* User list dropdown */
+.UserListMenu {
+  position: absolute;
+  top: 80px;
+  left: 225px;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  width: 400px;
+  z-index: 10;
+}
+
+.UserListMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.UserListMenu ul li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.UserListMenu ul li:hover {
+  background-color: #f1f1f1; /* Light gray background on hover */
+}
+
+/* User details in dropdown */
+.CustomUserList2 {
+  display: flex;
+  align-items: center;
+}
+
+.CustomUserList2 .user-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+/* Handle selected user */
+.userList select {
   display: none;
 }
 
-.userList {
-  font-family: Arial, sans-serif;
-  padding: 10px;
-}
-
-
-.userList select {
-  padding: 10px;
-  width: 15rem;
-  border-radius: 10px;
-  border: 1px solid rgb(0, 0, 0); /* Match the border style */
-  background-color: white;
-  box-sizing: border-box; /* Include border in the height calculation */
-}
-.userList select option{
-  background-color: aqua;
-}

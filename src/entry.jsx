@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from "react";
-import { BrowserRouter as Router, Route, Routes, Link, Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Outlet ,useNavigate} from "react-router-dom";
 import DateRange from "./dates";
 import Table from "./Table";
 import DefaultEntry from "./DefaultEntry";
@@ -7,6 +7,10 @@ import DefaultMilk from "./DefaultMilk";
 import UserList from "./usersList";
 import axios from "axios";
 import { baseURL } from './config'; // Adjust the import path as necessary
+import "./entry.css";
+import BuffaloPriceEntryGrid from "./snfPrice";
+import FatPrices from "./FatInputs";
+import CowPriceEntryGrid from "./CowPriceEntryGrid";
 function Entry() {
   const [datesBetween, setDatesBetween] = React.useState([]);
   const [DateSelect, setDateSelect] = useState(false);
@@ -16,7 +20,7 @@ function Entry() {
   const [admin, setAdmin] = useState(false);
   const [active, setActive] = useState('milk'); // Default active is 'milk'
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
-
+const navigate=useNavigate();
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 850);
@@ -121,44 +125,43 @@ function Entry() {
       <Outlet/>
     </div> :    
     <div className="container1">
-      <div className="userlist1">
-        <Routes>
-          <Route path="/" element={admin && <UserList onSelectUser={handleUserSelect} />} />
-        </Routes>
-        <div className="handleEntry">
-        <Link to={path} onClick={handleToggleDateSelect}>{text}</Link>
-      </div>
-        </div>
       <div className="Default">
+      <div className="entrySidebar">
+      <div class="sidebar1">
+            {admin && <UserList onSelectUser={handleUserSelect}/>}
+            <ul>
+                <li><a onClick={()=>{navigate("/entries/milk-entry")}}>Enter Milk</a></li>
+                <li><a onClick={()=>{navigate("/entries/ghee-entry")}}>Ghee Entry</a></li>
+                <li><a onClick={()=>{navigate("/entries/feed-entry")}}>Feed Entry</a></li>
+                <li><a onClick={()=>{navigate("/entries/give-money")}}>Receive Money</a></li>
+                <li><a onClick={()=>{navigate("/entries/receive-money")}}>Give Money</a></li>
+                <li><a onClick={()=>{navigate("/entries/cow/prices")}}>Cow Fat Chart</a></li>
+                <li><a onClick={()=>{navigate("/entries/cow/prices/snf")}}>Cow Fat and SNF Chart</a></li>
+                <li><a onClick={()=>{navigate("/entries/buffalo/prices")}}>Buffalo Fat Chart</a></li>
+                <li><a onClick={()=>{navigate("/entries/buffalo/prices/snf")}}>Buffalo Fat and SNF Chart</a></li>
+            </ul>
+        </div></div>
       <div className="form2">
-    <div className="table-heading">  <h1>Milk Entries</h1></div>
+    
+    
       <Routes>
-        <Route path="/" element={<DefaultMilk userId={userId} />} />
+        <Route path="*" element={<DefaultMilk userId={userId} />} />
+          <Route path="/others" element={<DefaultEntry userId={userId} />} />
+          <Route path="/ghee-entry" element={<DefaultEntry userId={userId} userSelectedOption="Ghee"/>} />
+          <Route path="/receive-money" element={<DefaultEntry userId={userId} userSelectedOption="Receive Money"/>} />
+          <Route path="/give-money" element={<DefaultEntry userId={userId} userSelectedOption="Give Money"/>} />
+          <Route path="/feed-entry" element={<DefaultEntry userId={userId} userSelectedOption="Feed"/>} />
+          <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"} />} />
+          <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"} />} />
+          <Route path="/buffalo/prices/snf" element={ <CowPriceEntryGrid tableTitle={"buffalo-snf"}/>}/>
+          <Route path="/cow/prices/snf" element={<CowPriceEntryGrid tableTitle={"cow-snf"}/>} />
       </Routes>
-      </div>
-      <div className="form2">
-      <div className="table-heading">  <h1>OtherItems</h1></div>
-      <Routes>
-        <Route path="/" element={<DefaultEntry userId={userId} />} />
-      </Routes></div>
+     
+      
+  </div>
       </div>
       
-      <div className="main1">
-        {DateSelect && (
-          <>
-            <div className="DateSelector">
-              <Routes>
-                <Route path="/table" element={<DateRange settingDate={setting} />} />
-              </Routes>
-            </div>
-            <div>
-              <Routes>
-                <Route path="/table" element={<Table datesBetween={datesBetween} />} />
-              </Routes>
-            </div>
-          </>
-        )}
-</div>
+
       <Outlet/>
     </div>
   }</>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Routes,Route, useNavigate } from 'react-router-dom';
 import "./Entries.css";
 import axios from 'axios';
 import moment from 'moment';
@@ -20,7 +21,7 @@ function ViewEntries(props) {
   const [admin, setAdmin] = useState(false);
   const [active, setActive] = useState('morning'); // Default active is 'milk'
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
-
+  const navigate =useNavigate();
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 850);
@@ -204,20 +205,35 @@ function ViewEntries(props) {
        
         </div>
       ) : (
-        <div className='main1'>
-          {admin && <UserList onSelectUser={handleUserSelect} />}
-          <div className="DateSelector">
+        <div className='Default'>
+        <div class="sidebar1">
+            {admin && <UserList onSelectUser={handleUserSelect}/>}
+            <div className="DateSelector">
             <DateSelector updateDates={updateDates} />
           </div>
+            <ul>
+                <li><a onClick={()=>{navigate("/view-entries/morning")}}>Morning</a></li>
+                <li><a onClick={()=>{navigate("/view-entries/evening")}}>Evening</a></li>
+          </ul>
+
+        </div>
+     
           <div className='EntriesTable'>
-            <div>
+          <Routes>
+            <Route path="*" element={  <div>
               <h1>MORNING</h1>
               {showdata(data1, Mtotal, "morning")}
-            </div>
-            <div>
+            </div>}
+            />
+              <Route path="/evening" element={ 
+               <div>
               <h1>EVENING</h1>
               {showdata(data2, Etotal, "evening")}
             </div>
+            }
+            />
+          </Routes>
+  
           </div>
         </div>
       )}
