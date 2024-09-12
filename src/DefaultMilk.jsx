@@ -4,7 +4,7 @@ import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from "./setUpAxios";
 import { toast,Bounce } from "react-toastify";
 
-function DefaultMilk({ userId }) {
+function DefaultMilk({ userId,smallScreen }) {
   const [inputs, setInputs] = useState({
     date: "",
     weight: "",
@@ -195,7 +195,7 @@ function DefaultMilk({ userId }) {
 
   return (
     <div><div className="table-heading">  <h1>Milk Entries</h1></div>
-    <div className="form">
+    <div className="form" style={smallScreen ? { flexDirection: 'column' } : {}}>
       <div className="defaultButtons">
         <div className="button-group">
           <button

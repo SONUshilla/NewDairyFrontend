@@ -92,7 +92,7 @@ const navigate=useNavigate();
    {active === 'milk' && (
   
         <Routes>
-          <Route path="/" element={<DefaultMilk userId={userId} />} />
+          <Route path="/" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen}/>} />
         </Routes>
       )}
       </div>
@@ -144,7 +144,7 @@ const navigate=useNavigate();
     
     
       <Routes>
-        <Route path="*" element={<DefaultMilk userId={userId} />} />
+        <Route path="*" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen} />} />
           <Route path="/others" element={<DefaultEntry userId={userId} />} />
           <Route path="/ghee-entry" element={<DefaultEntry userId={userId} userSelectedOption="Ghee"/>} />
           <Route path="/receive-money" element={<DefaultEntry userId={userId} userSelectedOption="Receive Money"/>} />
