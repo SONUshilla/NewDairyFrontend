@@ -81,15 +81,14 @@ const navigate=useNavigate();
       </p>
     </div>
       <div className="userlist1">
-        <Routes>
-          <Route path="/" element={admin && <UserList onSelectUser={handleUserSelect} />} />
-        </Routes>
+      {admin && <UserList onSelectUser={handleUserSelect} /> }
+
      
         </div>
       <div className="DefaultSmall">
    <div className="form2">
 
-    {active === 'milk' ?    <div className="table-heading">  <h1>Milk Entries</h1></div>:""}
+   
    {active === 'milk' && (
   
         <Routes>

@@ -9,7 +9,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 gap:20px;
-height: 70vh;
+flex-direction: column;
+padding: 30px 4px;
 
   }
   .form2 h1 {
@@ -28,6 +29,7 @@ height: 70vh;
       flex-direction: column;
     }
   }
+
   .button-group {
     display: flex;
     flex-direction: row;
@@ -116,7 +118,7 @@ height: 70vh;
   
   .DefaultSmall{
     max-width: 100%;
-    width: fit-content;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
