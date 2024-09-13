@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import axios
 import setUpAxios from "./setUpAxios";
 import { toast,Bounce } from "react-toastify";
+import { baseURL } from './config'; // Adjust the import path as necessary
 function DefaultEntry({ userId ,userSelectedOption}) {
     const [selectedOption, setSelectedOption] = useState("Feed");
     const [date, setDate] = useState('');
