@@ -54,12 +54,12 @@ function DefaultEntry({ userId, userSelectedOption }) {
     try {
       // Send POST request using axios
       setUpAxios();
-      const response = await axios.post(endpoint, formData, {
+      const response = await axios.post("/receiveMoney", formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-
+      console.log("req is sent");
       // Handle response if needed
       console.log("Response data:", response.data);
     } catch (error) {
