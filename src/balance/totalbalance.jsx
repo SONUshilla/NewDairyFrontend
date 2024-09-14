@@ -74,9 +74,9 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
 
   return (
     <div className="container1">
-    <table className="balance-table">
+    <table className="morningEntries">
       <thead>
-        <tr>
+        <tr className="MorningHeading">
           <th>Type</th>
           <th>Quantity</th>
           <th>Balance</th>
@@ -113,23 +113,10 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
           <td>--</td>
           <td>{moneyGiven}</td>
         </tr>
-        <tr style={{ borderTop: "2px solid #adadad" }}>
-  <td style={{
-    backgroundColor: "rgb(255, 255, 255)",
-    color: "#000000",
-    fontFamily: "'oswald', sans-serif",
-    fontWeight: 800,
-    fontSize: "15px",
-  }}>
-  Total</td>
-          <td></td>
-          <td style={{
-    backgroundColor: "rgb(255, 255, 255)",
-    color: "green",
-    fontFamily: "'oswald', sans-serif",
-    fontWeight: 800,
-    fontSize: "15px",
-  }}>{grandTotal}</td>
+        <tr className="MorningData">
+          <th>Total</th>
+          <th></th>
+          <th>{grandTotal}</th>
         </tr>
 
       </tbody>

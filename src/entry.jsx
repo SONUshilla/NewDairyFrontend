@@ -12,6 +12,7 @@ import BuffaloPriceEntryGrid from "./snfPrice";
 import FatPrices from "./FatInputs";
 import CowPriceEntryGrid from "./CowPriceEntryGrid";
 function Entry() {
+  const [activeItem, setActiveItem] = useState("milk");
   const [datesBetween, setDatesBetween] = React.useState([]);
   const [DateSelect, setDateSelect] = useState(false);
   const [text,setText]=useState("Multiple");
@@ -21,6 +22,10 @@ function Entry() {
   const [active, setActive] = useState('milk'); // Default active is 'milk'
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
 const navigate=useNavigate();
+const handleNavigation = (path, item) => {
+  navigate(path);
+  setActiveItem(item); // Set the active item
+};
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 850);
@@ -124,20 +129,39 @@ const navigate=useNavigate();
     <div className="container1">
       <div className="Default">
       <div className="entrySidebar">
-      <div class="sidebar1">
-            {admin && <UserList onSelectUser={handleUserSelect}/>}
-            <ul>
-                <li><a onClick={()=>{navigate("/entries/milk-entry")}}>Enter Milk</a></li>
-                <li><a onClick={()=>{navigate("/entries/ghee-entry")}}>Ghee Entry</a></li>
-                <li><a onClick={()=>{navigate("/entries/feed-entry")}}>Feed Entry</a></li>
-                <li><a onClick={()=>{navigate("/entries/give-money")}}>Receive Money</a></li>
-                <li><a onClick={()=>{navigate("/entries/receive-money")}}>Give Money</a></li>
-                <li><a onClick={()=>{navigate("/entries/cow/prices")}}>Cow Fat Chart</a></li>
-                <li><a onClick={()=>{navigate("/entries/cow/prices/snf")}}>Cow Fat and SNF Chart</a></li>
-                <li><a onClick={()=>{navigate("/entries/buffalo/prices")}}>Buffalo Fat Chart</a></li>
-                <li><a onClick={()=>{navigate("/entries/buffalo/prices/snf")}}>Buffalo Fat and SNF Chart</a></li>
-            </ul>
-        </div></div>
+      <div className="sidebar1">
+        {admin && <UserList onSelectUser={handleUserSelect} />}
+        <ul>
+          <li className={activeItem === 'milk' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/milk-entry', 'milk')}>Enter Milk</a>
+          </li>
+          <li className={activeItem === 'ghee' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/ghee-entry', 'ghee')}>Ghee Entry</a>
+          </li>
+          <li className={activeItem === 'feed' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/feed-entry', 'feed')}>Feed Entry</a>
+          </li>
+          <li className={activeItem === 'give-money' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/give-money', 'give-money')}>Give Money</a>
+          </li>
+          <li className={activeItem === 'receive-money' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/receive-money', 'receive-money')}>Receive Money</a>
+          </li>
+          <li className={activeItem === 'cow-fat' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/cow/prices', 'cow-fat')}>Cow Fat Chart</a>
+          </li>
+          <li className={activeItem === 'cow-snf' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/cow/prices/snf', 'cow-snf')}>Cow Fat and SNF Chart</a>
+          </li>
+          <li className={activeItem === 'buffalo-fat' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/buffalo/prices', 'buffalo-fat')}>Buffalo Fat Chart</a>
+          </li>
+          <li className={activeItem === 'buffalo-snf' ? 'active' : ''}>
+            <a onClick={() => handleNavigation('/entries/buffalo/prices/snf', 'buffalo-snf')}>Buffalo Fat and SNF Chart</a>
+          </li>
+        </ul>
+      </div>
+    </div>
       <div className="form2">
     
     

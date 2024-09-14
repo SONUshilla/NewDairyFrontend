@@ -2,6 +2,7 @@
 padding: 0px;
 margin: 0px;
 height: 100%;
+width: 100%;
   }
 
   .form2 {
@@ -162,7 +163,9 @@ height: 100%;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
-
+.entrySidebar ul li.active {
+  background-color: rgb(55, 121, 133);
+}
 .sidebar1 ul li a:hover {
     background-color: #3949ab;
 }
