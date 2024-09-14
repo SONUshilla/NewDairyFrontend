@@ -121,7 +121,7 @@ function ViewEntries(props) {
             <ShowingEntries key={item.id} item={item} time={time} />
           ))}
         </tbody>
-        <tr className="MorningData" style={{ color: 'black',borderTop:"1px solid black" }}>
+        <tr className="MorningData" >
           <th>{total.totaldate} DAYS</th>
           <th>{total.totalweight} KG</th>
           <th>----</th>

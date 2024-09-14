@@ -66,7 +66,11 @@ const navigate=useNavigate();
     {isSmallScreen? 
     <div className="container1">
 
-       <div className="toggleBar">
+
+      <div className="userlist1">
+      {admin && <UserList onSelectUser={handleUserSelect} /> }
+        </div>
+        <div className="toggleBar">
       <p 
         className={active === 'milk' ? 'active' : ''}
         onClick={() => setActive('milk')}
@@ -80,11 +84,6 @@ const navigate=useNavigate();
         others
       </p>
     </div>
-      <div className="userlist1">
-      {admin && <UserList onSelectUser={handleUserSelect} /> }
-
-     
-        </div>
       <div className="DefaultSmall">
    <div className="form2">
 
