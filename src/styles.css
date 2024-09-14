@@ -482,6 +482,8 @@ justify-content: center;
   width: 50%;
   border: 1px solid orange;
   border-radius:50%;
+  width: 40px;
+  margin-right: 10px;
 }
 
 form {
