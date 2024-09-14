@@ -9,7 +9,10 @@
   padding: 5px;
   width: 500px;
   @media (max-width:800px) {
-    width: 80vw;
+    width: 85vw;
+  }
+  @media (max-width:600px) {
+    width: 90vw;
   }
 }
 
@@ -78,18 +81,19 @@
 .UserListMenu {
   position: absolute;
   top: 80px;
-  left: 225px;
+  left: 125px;
   transform: translateX(-50%);
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
-  width:100%;
+  width:inherit;
   z-index: 10;
   @media (max-width:800px) {
     top: 70px;
-    left: 165px;
+    left: 240px;
+    width: 85%;
   }
 }
 

@@ -62,9 +62,9 @@ function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
       }
     return (
         <div className="container1">
-            <table className="balance-table">
+            <table className="morningEntries">
                 <thead>
-                    <tr> 
+                    <tr className="MorningHeading"> 
                         <th>Item</th>
                         <th style={{ textAlign: 'center' }}>Date</th>
                         <th style={{ textAlign: 'center' }}>Quantity</th>
@@ -73,22 +73,22 @@ function BalanceSheet({ startDate, endDate, userId,AssociateUser }) {
                 </thead>
                 <tbody>
                     <tr key={"morning"} className="MorningData">
-                        <td>Milk</td>
+                        <td style={{ textAlign: 'start' }}>Milk</td>
                         <td></td>
                         <td style={{ textAlign: 'center' }}>{balanceData.morning && (<p>{balanceData.morning.totalmilk ? balanceData.morning.totalmilk : 0}</p>)}</td>
                         <td>{balanceData.morning && (<p>{balanceData.morning.total ? balanceData.morning.total : 0}</p>)}</td>
                     </tr>
                     <tr key={"evening"} className="MorningData">
-                        <td>Milk</td>
+                        <td style={{ textAlign: 'start' }}>Milk</td>
                         <td></td>
                         <td style={{ textAlign: 'center' }}>{balanceData.evening && (<p>{balanceData.evening.totalmilk ? balanceData.evening.totalmilk : 0}</p>)}</td>
                         <td>{balanceData.evening && (<p>{balanceData.evening.total ? balanceData.evening.total : 0}</p>)}</td>
                     </tr>
                     {balanceData.borrow.map((item, index) => (
                         <tr key={index} className="MorningData">
-                            <td><div style={{display:"flex", flexDirection:"column"}}><h3>{admin && itemSetup(item.item) || item.item}</h3><p>{item.name}</p></div></td>
-                            <td style={{ textAlign: 'center' }}>{item.date}</td>
-                            <td style={{ textAlign: 'center' }}>{item.quantity}×{item.price}</td>
+                            <td><div style={{display:"flex", flexDirection:"column",alignItems:"flex-start"}}><h3>{admin && itemSetup(item.item) || item.item}</h3><p>{item.name}</p></div></td>
+                            <td style={{ textAlign: 'start' }}>{item.date}</td>
+                            <td style={{ textAlign: 'left' }}>{item.quantity}×{item.price}</td>
                             <td>{item.money}</td>
                         </tr>
                     ))}

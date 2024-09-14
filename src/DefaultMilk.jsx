@@ -327,10 +327,10 @@ function DefaultMilk({ userId,smallScreen }) {
           />
           <label htmlFor="price" className={`input-label ${inputs.price ? "visited" : "not_visited"}`}>Price</label>
         </div>
-        <button style={{height:"30px", color:"white"}} type="submit" value="Submit"
+        <button style={{display:"flex",justifyContent:"center",alignItems:"center", height:"30px", color:"white"}} type="submit" value="Submit"
          onKeyDown={(e) => handleKeyDown(e, 4)}
          ref={(el) => (inputRefs.current[4] = el)}
-         />
+         >Submit</button>
       </form>
     </div></div>
   );

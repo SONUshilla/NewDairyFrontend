@@ -11,6 +11,7 @@ import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
 
 function ViewEntries(props) {
+  const [activeItem, setActiveItem] = useState("morning");
   const [data1, setdata1] = useState([]);
   const [data2, setdata2] = useState([]);
   const [Mtotal, setMtotal] = useState([]);
@@ -22,6 +23,10 @@ function ViewEntries(props) {
   const [active, setActive] = useState('morning'); // Default active is 'milk'
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
   const navigate =useNavigate();
+  const handleNavigation = (path, item) => {
+    navigate(path);
+    setActiveItem(item); // Set the active item
+  };
   useEffect(() => {
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth < 850);
@@ -213,8 +218,13 @@ function ViewEntries(props) {
             <DateSelector updateDates={updateDates} />
           </div>
             <ul>
-                <li><a onClick={()=>{navigate("/view-entries/morning")}}>Morning</a></li>
-                <li><a onClick={()=>{navigate("/view-entries/evening")}}>Evening</a></li>
+                <li className={activeItem === 'morning' ? 'active' : ''}>
+                  <a onClick={() => handleNavigation("/view-entries/morning", 'morning')}>Morning</a>
+                </li>
+                <li className={activeItem === 'evening' ? 'active' : ''}>
+                  <a onClick={() => handleNavigation("/view-entries/evening", 'evening')}>Evening</a>
+                </li>
+          
           </ul>
 
         </div>

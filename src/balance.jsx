@@ -14,6 +14,7 @@ import UserProfile from './userprofile';
 import { BrowserRouter as Router, Route, Routes, Link, Outlet ,useNavigate,useLocation} from "react-router-dom";
 
 const Balance = () => {
+  const [activeItem, setActiveItem] = useState("all");
   const [active, setActive] = useState('Stats'); // Default active is 'Stats'
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 850);
   const [startDate, setStartDate] = useState(moment().startOf('year').format('YYYY-MM-DD'));
@@ -30,6 +31,10 @@ const Balance = () => {
 
   const location = useLocation(); // Get location object from react-router-dom
   const navigate=useNavigate();
+  const handleNavigation = (path, item) => {
+    navigate(path);
+    setActiveItem(item); // Set the active item
+  };
   useEffect(() => {
     // Extract state from location
     const { state } = location;
@@ -111,6 +116,7 @@ const Balance = () => {
             {admin && <div>       
               <UserList onSelectUser={handleUserSelect} />
       </div>}
+            <div style={{display:"flex", width:"100%", justifyContent:"start", gap:"5px"}}>
             <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
             <button
               style={{
@@ -123,6 +129,7 @@ const Balance = () => {
             >
               <FontAwesomeIcon icon={faPrint} /> Print
             </button>
+            </div>
           </div>
           <div className="toggleBar">
             <p 
@@ -149,8 +156,12 @@ const Balance = () => {
       <div class="sidebar1">
             {admin && <UserList onSelectUser={handleUserSelect}/>}
             <ul>
-                <li><a onClick={()=>{navigate("/balance/all")}}>Balance Table</a></li>
-                <li><a onClick={()=>{navigate("/balance/balanceSheet")}}>Entry Table</a></li>
+               <li className={activeItem === 'all' ? 'active' : ''}>
+                  <a onClick={() => handleNavigation("/balance/all", 'all')}>Balance</a>
+                </li>
+                <li className={activeItem === 'balanceSheet' ? 'active' : ''}>
+                  <a onClick={() => handleNavigation("/balance/balanceSheet", 'balanceSheet')}>Balance Sheet</a>
+                </li>
             </ul>
         </div></div>
         <div>
