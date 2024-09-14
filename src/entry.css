@@ -5,13 +5,15 @@ height: 100%;
   }
 
   .form2 {
-display: flex;
-justify-content: center;
-align-items: center;
-gap:20px;
-flex-direction: row;
-padding: 30px 4px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    flex-direction: row;
+    padding: 30px 4px;
+    @media (max-width:800px) {
+      padding: 10px 0px;
+    }
   }
   .form2 h1 {
   padding: 10px;
@@ -27,6 +29,7 @@ padding: 30px 4px;
     align-items: start;
     @media (max-width:700px) {
       flex-direction: column;
+      justify-content: start;
     }
   }
 
@@ -170,5 +173,6 @@ padding: 30px 4px;
   display: flex;
   align-items: center;
   position: relative;
-  max-width: 400px;
+  max-width: 90%;
+  margin: 5px;
 }

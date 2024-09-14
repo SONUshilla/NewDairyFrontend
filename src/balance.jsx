@@ -106,6 +106,24 @@ const Balance = () => {
 <UserProfile onUserDataFetched={handleUserDataFetched} />
       {isSmallScreen ? (
         <div className="balance-table-container">
+
+          <div className="user-select">
+            {admin && <div>       
+              <UserList onSelectUser={handleUserSelect} />
+      </div>}
+            <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
+            <button
+              style={{
+                color: 'black',
+                backgroundColor: 'white',
+                border: '1px solid black',
+                padding: '8px'
+              }}
+              onClick={() => window.print()}
+            >
+              <FontAwesomeIcon icon={faPrint} /> Print
+            </button>
+          </div>
           <div className="toggleBar">
             <p 
               className={active === 'Stats' ? 'active' : ''}
@@ -120,37 +138,6 @@ const Balance = () => {
               Others
             </p>
           </div>
-          <div className="user-select">
-            {admin && <div>       
-              <UserList onSelectUser={handleUserSelect} />
-            <div className='ProfileUser'>
-    <div className='ProfileFront'>
-    {profile.image ? <div className='ProfileImageContainer'>
-    <img className='profileImage' src={profile.image}></img>
-    </div> : <span className="user-icon">{name.charAt(0)}</span>}
-      <div className='ProfileInfo'>
-        <h2>{name}</h2>
-        <p>{username}</p>
-      </div>
-</div>
-      <div>
-      <h3> {total}</h3>
-      </div>
-    </div></div>}
-            <DateSelector1 onSelectDateRange={handleDateRangeSelection} />
-            <button
-              style={{
-                color: 'black',
-                backgroundColor: 'white',
-                border: '1px solid black',
-                padding: '8px'
-              }}
-              onClick={() => window.print()}
-            >
-              <FontAwesomeIcon icon={faPrint} /> Print
-            </button>
-          </div>
-   
           <div className="table-container">
             {active === 'Stats' && <TotalBalance startDate={startDate} endDate={endDate} userId={userId}  AssociateUser={AssociateUser}/>}
             {active === 'entry' && <BalanceSheet startDate={startDate} endDate={endDate} userId={userId} option={option} AssociateUser={AssociateUser} />}

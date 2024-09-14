@@ -7,9 +7,9 @@
   transition: all 0.3s ease;
   cursor: pointer;
   padding: 5px;
-  width: 400px;
+  width: 500px;
   @media (max-width:800px) {
-    width: 100%;
+    width: 80vw;
   }
 }
 
@@ -85,8 +85,12 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
-  width: 400px;
+  width:100%;
   z-index: 10;
+  @media (max-width:800px) {
+    top: 70px;
+    left: 165px;
+  }
 }
 
 .UserListMenu ul {

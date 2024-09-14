@@ -97,7 +97,6 @@ const navigate=useNavigate();
       )}
       </div>
       <div className="form2">
-      {active === 'others'? <div className="table-heading">  <h1>Milk Entries</h1></div>:""}
       {active === 'others' && (
         <Routes>
           <Route path="/" element={<DefaultEntry userId={userId} />} />

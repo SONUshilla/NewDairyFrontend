@@ -170,6 +170,11 @@ function ViewEntries(props) {
     <>
       {isSmallScreen ? (
         <div className='main1'>
+  
+          {admin && <UserList onSelectUser={handleUserSelect} />}
+          <div className="DateSelector">
+            <DateSelector updateDates={updateDates} />
+          </div>
           <div className="toggleBar">
             <p 
               className={active === 'morning' ? 'active' : ''}
@@ -183,10 +188,6 @@ function ViewEntries(props) {
             >
               Evening
             </p>
-          </div>
-          {admin && <UserList onSelectUser={handleUserSelect} />}
-          <div className="DateSelector">
-            <DateSelector updateDates={updateDates} />
           </div>
           <div className='EntriesTable'>
             {active === 'morning' && (
