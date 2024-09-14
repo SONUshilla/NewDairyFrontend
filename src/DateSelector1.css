@@ -5,11 +5,10 @@
 }
 .balance-table {
   flex-grow: 1;
-  width: 43vw;
-  border-collapse: collapse; /* Allows rounded corners */
+  width: 100%;
+  border-collapse: separate; /* Allows rounded corners */
+  border-spacing: 0px 5px;
   overflow: scroll; /* Ensures rounded corners work */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a soft effect */
-  background: #f9f9f9; /* White background for the table */
   padding: 15px;
   margin: 0; /* Removes default margin */
   @media (max-width: 800px) {

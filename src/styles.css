@@ -133,8 +133,6 @@ text-transform: capitalize;
 /*entries*/
 .EntriesTable{
   display: flex;
-  border: 1px solid rgb(192, 186, 186);
-  box-shadow: 2px 2px 3px rgb(148, 145, 145);
   height: 80vh;
   @media (max-width: 768px) {
     display: flex;
@@ -151,21 +149,31 @@ text-transform: capitalize;
 .deleteIcon{
   height:10px;
 }
+.deleteIcon :hover{
+ color: #2C3E50;
+}
 .morningEntries {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   border-collapse: separate;
   width: 100%;
-  background-color: #a0e7e5;
-  border:2px solid gray;
-  border-spacing: 0px 10px;
+  border-spacing: 0px 5px;
+}
+.morningEntries tr th {
+  padding: 10px 0px;
+  color: white;
 }
 
-.morningEntries {
-  background-color: gray; /* Light blue */
-}
+
 .MorningHeading {
-  background-color:gray;
+  background-color:#2C3E50;
   color: white;
+}
+.MorningData th{
+  border-top: 2px solid rgb(211, 211, 211);
+  background-color: #2C3E50;
+}
+.MorningHeading th{
+  border-bottom: 2px solid rgb(211, 211, 211);
 }
 
 .MorningData tr{
@@ -173,7 +181,7 @@ text-transform: capitalize;
 
 }
 .MorningData td{
-      background-color: #2c3e50;
+      background-color: #3E5871;
       text-align: center;
       vertical-align: middle;
       padding: 5px;
@@ -192,8 +200,7 @@ text-transform: capitalize;
   border-bottom-right-radius: 10px;
 }
 .MorningData:hover {
-  background-color: aquamarine;
-  box-shadow: 5px 5px 8px rgb(126, 123, 123);
+
 }
 .MorningHeading:hover {
   box-shadow: 5px 5px 8px rgb(126, 123, 123);
