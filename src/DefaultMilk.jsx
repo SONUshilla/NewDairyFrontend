@@ -141,24 +141,29 @@ function DefaultMilk({ userId,smallScreen }) {
       fatValue /= 10;
     }
 
-    /*const localStorageKey = animalType === "cow" ? "Cow_fatPrices" : "buffalo_fatPrices";
-    const fatPrices = JSON.parse(localStorage.getItem(localStorageKey));
 
-    if (fatPrices) {
-      const foundObject = fatPrices.find(obj => obj.value === fatValue);
-      if (foundObject) {
-        price = parseFloat(foundObject.inputValue);
-      }
-    }*/
    if(animalType=="cow")
    {
-    const price2=parseFloat(localStorage.getItem("cowFatPrices"));
-    if(fat>35){
-      price=fat*((price2+10)/100);
-     }
-     else{
-     price=fat*price2/100;
-     }
+
+      const cowFatPrices = localStorage.getItem("Cow_fatPrices");
+      const parsedPrices = JSON.parse(cowFatPrices);
+      const priceBelow35 = parsedPrices.below35;
+      const priceAbove35 = parsedPrices.above35;
+      if(fatValue<3.5)
+      {
+        price=priceBelow35*fatValue/10;
+      }
+      else
+      {
+
+         price=priceAbove35*fatValue/10;
+      }
+   }
+   else{
+    const buffaloFatPrices = localStorage.getItem("buffalo_fatPrices");
+    const parsedPrices = JSON.parse(buffaloFatPrices);
+    const priceOn100 = parsedPrices.fat100;
+    price=priceOn100/10*fatValue;
    }
   
     return price.toFixed(2);
@@ -169,7 +174,7 @@ function DefaultMilk({ userId,smallScreen }) {
     let fatValue = parseFloat(fat);
     let snfValue = parseFloat(snf);
 
-    const localStorageKey = animalType === 'cow' ? 'cowChartData' : 'buffaloChartData';
+    const localStorageKey = animalType === 'cow' ? 'cow-snf' : 'buffalo-snf';
     const storedPrices = JSON.parse(localStorage.getItem(localStorageKey));
     
     if (storedPrices && storedPrices.length > snfValue && storedPrices[snfValue].length > fatValue) {

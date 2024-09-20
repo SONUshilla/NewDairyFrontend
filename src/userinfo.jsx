@@ -85,56 +85,22 @@ const navigate=useNavigate();
 
   <div className="userMenuIcons">
     <ul>
-    <li
-  onMouseDown={() => {
-    // Prompt user for input
-    const input = prompt("Enter your Buffalo Milk prices");
+    <li onMouseDown={()=>{
+        navigate("/entries/cow/prices")
+      }}>Cow Fat Prices</li>
+ 
+          <li onMouseDown={()=>{
+        navigate("/entries/cow/prices/snf")
+      }}>Cow Fat and Snf</li>
+            <li onMouseDown={()=>{
+        navigate("/entries/buffalo/prices")
+      }}>Buffalo Fat Prices</li>
+           <li onMouseDown={()=>{
+        navigate("/entries/buffalo/prices/snf")
+      }}>Buffalo Fat and snf</li>
+ 
 
-    // Validate input and store in localStorage if it's a number
-    if (input !== null) { // Check if the user pressed 'Cancel'
-      const numberInput = Number(input);
-
-      // Check if the input is a valid number
-      if (!isNaN(numberInput) && isFinite(numberInput)) {
-        localStorage.setItem("buffaloFatPrices", numberInput);
-        alert("Fat prices stored successfully.");
-      } else {
-        alert("Please enter a valid number.");
-      }
-    }
-  }}
->
-  Buffalo prices
-</li>
-
-<li
-  onMouseDown={() => {
-    // Prompt user for input
-    const input = prompt("Enter your Cow Milk prices");
-
-    // Validate input and store in localStorage if it's a number
-    if (input !== null) { // Check if the user pressed 'Cancel'
-      const numberInput = Number(input);
-
-      // Check if the input is a valid number
-      if (!isNaN(numberInput) && isFinite(numberInput)) {
-        localStorage.setItem("cowFatPrices", numberInput);
-        alert("Fat prices stored successfully.");
-      } else {
-        alert("Please enter a valid number.");
-      }
-    }
-  }}
->
-  Cow prices
-</li>
-
-      <li onMouseDown={()=>{
-        navigate("/buffalo/prices/snf")
-      }}>Cow</li>
-      <li>Hlo</li>
-      <li>Hlo</li>
-      <li onClick={handleLogout} className='logoutButton'>Logout</li>
+      <li onClick={handleLogout} style={{backgroundColor:"orangered", color:"white"}} className='logoutButton'>Logout</li>
     </ul>
   
   </div>
