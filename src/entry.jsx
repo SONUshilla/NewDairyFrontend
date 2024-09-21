@@ -92,7 +92,7 @@ const handleNavigation = (path, item) => {
   <div className="DefaultSmall">
    <div className="form2">
         <Routes>
-          <Route path="/milkEntries" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen}/>} />
+          <Route path="*" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen}/>} />
           <Route path="/Other" element={<DefaultEntry userId={userId} />} />
           <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"} />} />
           <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"} />} />
