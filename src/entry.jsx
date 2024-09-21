@@ -78,35 +78,29 @@ const handleNavigation = (path, item) => {
         <div className="toggleBar">
       <p 
         className={active === 'milk' ? 'active' : ''}
-        onClick={() => setActive('milk')}
+        onClick={() => navigate("/entries/milkEntries")}
       >
         milk entries
       </p>
       <p 
         className={active === 'others' ? 'active' : ''} 
-        onClick={() => setActive('others')}
+        onClick={() => navigate("/entries/other")}
       >
         others
       </p>
     </div>
-      <div className="DefaultSmall">
+  <div className="DefaultSmall">
    <div className="form2">
-
-   
-   {active === 'milk' && (
-  
         <Routes>
-          <Route path="/" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen}/>} />
+          <Route path="/milkEntries" element={<DefaultMilk userId={userId} smallScreen={isSmallScreen}/>} />
+          <Route path="/Other" element={<DefaultEntry userId={userId} />} />
+          <Route path="/buffalo/prices" element={<FatPrices tableTitle={"buffalo"} />} />
+          <Route path="/cow/prices" element={<FatPrices tableTitle={"Cow"} />} />
+          <Route path="/buffalo/prices/snf" element={ <CowPriceEntryGrid tableTitle={"buffalo-snf"}/>}/>
+          <Route path="/cow/prices/snf" element={<CowPriceEntryGrid tableTitle={"cow-snf"}/>} />
         </Routes>
-      )}
       </div>
-      <div className="form2">
-      {active === 'others' && (
-        <Routes>
-          <Route path="/" element={<DefaultEntry userId={userId} />} />
-        </Routes>
-      )}</div>
-      </div>
+    </div>
       
       <div className="main1">
         {DateSelect && (
