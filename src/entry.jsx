@@ -42,7 +42,6 @@ function Entry() {
     const fetchAdminStatus = async () => {
       try {
         const response = await axios.get(`${baseURL}/adminAuth`);
-        console.log(response.status);
         if (response.status === 200) {
           setAdmin(true);
         } else {

@@ -134,55 +134,50 @@ function DefaultMilk({ userId,smallScreen }) {
   };
 
   const calculatePriceBasedOnFat = (animalType, fat) => {
+    if (!fat) return "";  // No fat input, no price calculation
     let price = 0;
     let fatValue = parseFloat(fat);
-
+  
     if (fatValue > 13) {
       fatValue /= 10;
     }
-
-
-   if(animalType=="cow")
-   {
-
+  
+    if (animalType === "cow") {
       const cowFatPrices = localStorage.getItem("Cow_fatPrices");
       const parsedPrices = JSON.parse(cowFatPrices);
       const priceBelow35 = parsedPrices.below35;
       const priceAbove35 = parsedPrices.above35;
-      if(fatValue<3.5)
-      {
-        price=priceBelow35*fatValue/10;
+      if (fatValue < 3.5) {
+        price = priceBelow35 * fatValue / 10;
+      } else {
+        price = priceAbove35 * fatValue / 10;
       }
-      else
-      {
-
-         price=priceAbove35*fatValue/10;
-      }
-   }
-   else{
-    const buffaloFatPrices = localStorage.getItem("buffalo_fatPrices");
-    const parsedPrices = JSON.parse(buffaloFatPrices);
-    const priceOn100 = parsedPrices.fat100;
-    price=priceOn100/10*fatValue;
-   }
+    } else {
+      const buffaloFatPrices = localStorage.getItem("buffalo_fatPrices");
+      const parsedPrices = JSON.parse(buffaloFatPrices);
+      const priceOn100 = parsedPrices.fat100;
+      price = priceOn100 / 10 * fatValue;
+    }
   
     return price.toFixed(2);
   };
-
+  
   const calculatePriceBasedOnFatAndSNF = (animalType, fat, snf) => {
+    if (!fat || !snf) return "";  // No fat or SNF input, no price calculation
     let price = 0;
     let fatValue = parseFloat(fat);
     let snfValue = parseFloat(snf);
-
+  
     const localStorageKey = animalType === 'cow' ? 'cow-snf' : 'buffalo-snf';
     const storedPrices = JSON.parse(localStorage.getItem(localStorageKey));
-    
+  
     if (storedPrices && storedPrices.length > snfValue && storedPrices[snfValue].length > fatValue) {
       price = parseFloat(storedPrices[snfValue][fatValue]) || 0;
     }
-
+  
     return price.toFixed(2);
   };
+  
 
   const handleKeyDown = (e, index) => {
     if (e.key === 'Enter') {
@@ -258,7 +253,7 @@ function DefaultMilk({ userId,smallScreen }) {
         type="checkbox"
         checked={isAutoIncrement}
         id="autoIncrementDate"
-        onClick={ToggleAutoIncrement}
+        onChange={ToggleAutoIncrement}
       />
         <label for="autoIncrementDate">Auto increment date</label>
         </div>
