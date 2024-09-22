@@ -65,11 +65,7 @@ function Entry() {
     setUserId(selectedUserId);
   };
 
-  const handleToggleDateSelect = () => {
-    setDateSelect(!DateSelect);
-    setText(DateSelect ? "Enter Multiple" : "Back");
-    setPath(DateSelect ? "table" : "");
-  };
+
   
   return (
     <>
