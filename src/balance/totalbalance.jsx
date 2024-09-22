@@ -47,12 +47,15 @@ function TotalBalance({ startDate, endDate, userId ,AssociateUser}) {
       setGhee(ghee.totalMoney);
       setGheeQuantity(ghee.totalQuantity);
       setGrandTotal(
-        Before.total+milk.total -
+        (
+          Before.total +
+          milk.total -
           feed.totalMoney -
           moneyReceivedResults.totalMoney +
           moneyGivenResults.totalMoney -
           ghee.totalMoney
-      );
+        ).toFixed(2)
+      );      
     } catch (error) {
       setError("Error fetching data");
     } finally {
