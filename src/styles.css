@@ -124,7 +124,6 @@ text-transform: capitalize;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  box-sizing: border-box;
 }
 
 

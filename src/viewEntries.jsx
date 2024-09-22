@@ -9,6 +9,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { baseURL } from './config'; // Adjust the import path as necessary
 import setUpAxios from './setUpAxios';
+import TotalBalance from './balance/totalbalance';
 
 function ViewEntries(props) {
   const [activeItem, setActiveItem] = useState("morning");
@@ -194,6 +195,7 @@ function ViewEntries(props) {
               Evening
             </p>
           </div>
+          <div style={{display:"flex", flexDirection:"column",gap:"5px" ,justifyContent:"start"}}>
           <div className='EntriesTable'>
             {active === 'morning' && (
               <div>
@@ -207,8 +209,12 @@ function ViewEntries(props) {
                 {showdata(data2, Etotal, "evening")}
               </div>
             )}
+            
           </div>
-       
+          <div style={{padding:"10px"}}>
+          <h3>{startDate} to {endDate}</h3>
+          <TotalBalance startDate={startDate} endDate={endDate} userId={userId} /></div></div>
+
         </div>
       ) : (
         <div className='Default'>
@@ -228,7 +234,7 @@ function ViewEntries(props) {
           </ul>
 
         </div>
-     
+        <div>
           <div className='EntriesTable'>
           <Routes>
             <Route path="*" element={  <div>
@@ -246,6 +252,9 @@ function ViewEntries(props) {
           </Routes>
   
           </div>
+          <div style={{padding:"10px"}}>
+          <h3>{startDate} to {endDate}</h3>
+          <TotalBalance startDate={startDate} endDate={endDate} userId={userId} /></div></div>
         </div>
       )}
     </>
